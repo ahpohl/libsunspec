@@ -1,0 +1,31 @@
+/*
+ *  SunSpec Alliance Specifications
+ */
+
+#ifndef SUNSPEC_H_
+#define SUNSPEC_H_
+
+/* sunspec data types */
+
+typedef enum {
+	TYPE_INT16,
+	TYPE_UINT16,
+	TYPE_ACC16,
+	TYPE_ENUM16,
+	TYPE_BITFIELD16,
+	TYPE_PAD,
+	TYPE_INT32,
+	TYPE_UINT32,
+	TYPE_ACC32,
+	TYPE_ENUM32,
+	TYPE_BITFIELD32,
+	TYPE_INT64,
+	TYPE_UINT64,
+	TYPE_ACC64,
+	TYPE_STRING16,
+	TYPE_STRING32,
+	TYPE_FLOAT32,
+	TYPE_SUNSSF
+} sunspec_type_t;
+
+#endif /* SUNSPEC_H_ */
