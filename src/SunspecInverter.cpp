@@ -30,7 +30,7 @@ bool SunspecInverter::ConnectModeTcp(std::string ip_addr, int port = 502)
 		ErrorMessage = "Unable to create the libmodbus context";
 		return false;
 	}
-	if (modbus_connect(Ctx) == -1) {
+	if (modbus_connect(Ctx)) {
 	    ErrorMessage = std::string("Connection to \"") + ip_addr + "\" failed: "
 	      + modbus_strerror(errno) + " (" + std::to_string(errno) + ")";
 		return false;
