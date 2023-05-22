@@ -14,7 +14,7 @@ BUILD = build
 LFLAGS = -L../build
 
 # define any libraries to link into executable:
-LIBS = -Wl,-Bstatic -labbaurora -Wl,-Bdynamic
+LIBS = -Wl,-Bstatic -lsunspec -Wl,-Bdynamic -lmodbus
 
 # define source files
 SRCS = $(wildcard *.cpp)

@@ -15,6 +15,12 @@ int main(int argc, char *argv[])
     return EXIT_FAILURE;
   }
 
+  if (!inverter->SetRemoteId(1))
+  {
+    std::cout << "Set remote id failed: " << inverter->GetErrorMessage() << std::endl;
+    return EXIT_FAILURE;
+  }
+
   std::string mfg = inverter->GetManufacturer();
   std::cout << "Manufacturer: " << mfg << std::endl;
 
