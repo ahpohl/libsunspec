@@ -22,7 +22,7 @@ public:
 		const uint16_t &size);
 	bool ReadRegisterInt(int &num, const uint16_t &address,
 			const uint16_t &size);
-	void SetLogLevel(const unsigned char &log_level);
+	void SetModbusDebug(const bool &debug);
 	std::string GetErrorMessage(void) const;
 
 	/* Methods to retrieve inverter data */
@@ -31,7 +31,6 @@ public:
 
 private:
 	modbus_t *Ctx;
-	unsigned char Log;
 	std::string ErrorMessage;
 };
 

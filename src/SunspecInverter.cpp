@@ -8,7 +8,7 @@
 #include "CommonModel.h"
 #include "InverterModel.h"
 
-SunspecInverter::SunspecInverter(void) : Ctx(nullptr), Log(0)
+SunspecInverter::SunspecInverter(void) : Ctx(nullptr)
 {
 
 }
@@ -108,9 +108,9 @@ bool SunspecInverter::ReadRegisterInt(int &num, const uint16_t &address,
 	return true;
 }
 
-void SunspecInverter::SetLogLevel(const unsigned char &log_level)
+void SunspecInverter::SetModbusDebug(const bool &debug)
 {
-	Log = log_level;
+	modbus_set_debug(Ctx, debug);
 }
 
 std::string SunspecInverter::GetErrorMessage(void) const
