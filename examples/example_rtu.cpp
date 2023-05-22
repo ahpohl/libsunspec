@@ -9,7 +9,7 @@ int main(int argc, char *argv[])
 
   std::unique_ptr<SunspecInverter> inverter(new SunspecInverter());
   
-  if (!inverter->ConnectRtu(device))
+  if (!inverter->ConnectModeRtu(device))
   {
     std::cout << inverter->GetErrorMessage() << std::endl;
     return EXIT_FAILURE;

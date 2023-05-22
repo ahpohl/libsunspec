@@ -19,7 +19,7 @@ SunspecInverter::~SunspecInverter(void)
 	modbus_free(Ctx);
 }
 
-bool SunspecInverter::ConnectTcp(std::string ip_addr, int port = 502)
+bool SunspecInverter::ConnectModeTcp(std::string ip_addr, int port = 502)
 {
 	if (ip_addr.empty()) {
 	    ErrorMessage = "IP address argument empty";
@@ -38,7 +38,7 @@ bool SunspecInverter::ConnectTcp(std::string ip_addr, int port = 502)
 	return true;
 }
 
-bool SunspecInverter::ConnectRtu(std::string device)
+bool SunspecInverter::ConnectModeRtu(std::string device)
 {
 	if (device.empty()) {
 	    ErrorMessage = "Serial device argument empty";

@@ -14,8 +14,8 @@ class SunspecInverter
 public:
 	SunspecInverter(void);
 	~SunspecInverter(void);
-	bool ConnectTcp(std::string ip_address, int port);
-	bool ConnectRtu(std::string device);
+	bool ConnectModeTcp(std::string ip_address, int port);
+	bool ConnectModeRtu(std::string device);
 	bool SetRemoteId(const int &remote_id);
 	int GetRemoteId(void) const;
 	bool ReadRegisterString(std::string &str, const uint16_t &address,
