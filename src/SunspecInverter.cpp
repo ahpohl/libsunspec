@@ -54,6 +54,9 @@ bool SunspecInverter::ConnectModeRtu(std::string device)
 	    	+ modbus_strerror(errno) + " (" + std::to_string(errno) + ")";
 		return false;
 	}
+	if (!SetRemoteId(1)) {
+		return false;
+	}
 	return true;
 }
 
@@ -63,7 +66,7 @@ bool SunspecInverter::SetRemoteId(const int &remote_id)
 	    ErrorMessage = "Remote ID must be greater than zero.";
 	    return false;
 	}
-	if (modbus_set_slave(Ctx, remote_id) == -1) {
+	if (modbus_set_slave(Ctx, remote_id)) {
 		ErrorMessage = "Invalid remote ID";
 		return false;
 	}
