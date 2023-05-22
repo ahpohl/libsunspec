@@ -114,19 +114,24 @@ std::string SunspecInverter::GetErrorMessage(void) const
 	return ErrorMessage;
 }
 
-std::string SunspecInverter::GetManufacturer(void)
+bool SunspecInverter::GetManufacturer(std::string &mfg)
 {
-	std::string mfg;
-	ReadRegisterString(mfg, CommonModel::C001_ADDR_Mn, CommonModel::C001_SIZE_Mn);
-
-	return mfg;
+	if (!ReadRegisterString(mfg, CommonModel::C001_ADDR_Mn, CommonModel::C001_SIZE_Mn)) {
+		return false;
+	}
+	return true;
 }
 
-double SunspecInverter::GetAcPower(void)
+bool SunspecInverter::GetAcPower(double &pwr)
 {
 	int num = 0, sf = 0;
-	ReadRegisterInt(num, InverterModel::I10X_ADDR_W, InverterModel::I10X_SIZE_W);
-	ReadRegisterInt(sf, InverterModel::I10X_ADDR_W_SF, InverterModel::I10X_SIZE_W_SF);
+	if (!ReadRegisterInt(num, InverterModel::I10X_ADDR_W, InverterModel::I10X_SIZE_W)) {
+		return false;
+	}
+	if (!ReadRegisterInt(sf, InverterModel::I10X_ADDR_W_SF, InverterModel::I10X_SIZE_W_SF)) {
+		return false;
+	}
+	pwr = pow(num, sf);
 
-	return pow(num, sf);
+	return true;
 }

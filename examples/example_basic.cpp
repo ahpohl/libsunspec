@@ -11,25 +11,35 @@ int main(int argc, char *argv[])
   
   if (!inverter->ConnectRtu(device))
   {
-    std::cout << "Inverter setup failed: " << inverter->GetErrorMessage() << std::endl;
+    std::cout << inverter->GetErrorMessage() << std::endl;
     return EXIT_FAILURE;
   }
 
   if (!inverter->SetRemoteId(1))
   {
-    std::cout << "Set remote id failed: " << inverter->GetErrorMessage() << std::endl;
+    std::cout << inverter->GetErrorMessage() << std::endl;
     return EXIT_FAILURE;
   }
 
-  std::string mfg = inverter->GetManufacturer();
+  std::string mfg;
+  if (!inverter->GetManufacturer(mfg))
+  {
+	  std::cout << inverter->GetErrorMessage() << std::endl;
+	  return EXIT_FAILURE;
+  }
   std::cout << "Manufacturer: " << mfg << std::endl;
 
   std::ios::fmtflags old_settings = std::cout.flags();
   std::cout.precision(2);
   std::cout.setf(std::ios::fixed, std::ios::floatfield);  
 
-  double grid_power = inverter->GetAcPower();
-  std::cout << "Grid Power Reading: " << grid_power << " W" << std::endl;
+  double ac_power;
+  if (!inverter->GetAcPower(ac_power))
+  {
+	  std::cout << inverter->GetErrorMessage() << std::endl;
+	  return EXIT_FAILURE;
+  }
+  std::cout << "Grid Power Reading: " << ac_power << " W" << std::endl;
 
   std::cout.flags(old_settings);
   return EXIT_SUCCESS;

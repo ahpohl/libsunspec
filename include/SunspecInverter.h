@@ -26,8 +26,8 @@ public:
 	std::string GetErrorMessage(void) const;
 
 	/* Methods to retrieve inverter data */
-	std::string GetManufacturer(void);
-	double GetAcPower(void);
+	bool GetManufacturer(std::string &mfg);
+	bool GetAcPower(double &ac_power);
 
 private:
 	modbus_t *Ctx;
