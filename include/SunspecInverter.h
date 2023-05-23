@@ -19,10 +19,12 @@ public:
 	void SetModbusDebug(const bool &debug);
 	bool SetRemoteId(const int &remote_id);
 	int GetRemoteId(void) const;
-	bool ReadRegisterString(std::string &str, const uint16_t &address,
+	bool ReadRegister(std::string &str, const uint16_t &address,
 		const uint16_t &size);
-	bool ReadRegisterInt(unsigned int &num, const uint16_t &address, 
+	bool ReadRegister(unsigned int &num, const uint16_t &address,
     const uint16_t &size);
+	bool ReadRegister(int16_t &num, const uint16_t &address,
+			const uint16_t &size);
 	std::string GetErrorMessage(void) const;
 
 	/* Methods to retrieve inverter data */
