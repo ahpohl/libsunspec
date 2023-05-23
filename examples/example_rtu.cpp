@@ -35,6 +35,14 @@ int main(int argc, char *argv[])
   }
   std::cout << "AC power now: " << ac_power << " W" << std::endl;
 
+  uint64_t energy_year;
+  if (!inverter->GetEnergyYear(energy_year))
+  {
+	  std::cout << inverter->GetErrorMessage() << std::endl;
+	  return EXIT_FAILURE;
+  }
+  std::cout << "Energy current year: " << energy_year * 0.001 << " kWh" << std::endl;
+
   std::cout.flags(old_settings);
   return EXIT_SUCCESS;
 }

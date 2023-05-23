@@ -26,6 +26,3 @@ const uint16_t CommonModel::C001_SIZE_Opt = 8;
 const uint16_t CommonModel::C001_SIZE_Vr  = 8;
 const uint16_t CommonModel::C001_SIZE_SN  = 16;
 const uint16_t CommonModel::C001_SIZE_DA  = 1;
-
-
-

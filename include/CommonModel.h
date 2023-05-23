@@ -2,8 +2,8 @@
  *  Common Models
  */
 
-#ifndef COMMON_H_
-#define COMMON_H_
+#ifndef COMMONMODEL_H_
+#define COMMONMODEL_H_
 
 #include <cstdint>
 
@@ -38,25 +38,4 @@ public:
 
 };
 
-typedef enum {
-	TYPE_INT16,
-	TYPE_UINT16,
-	TYPE_ACC16,
-	TYPE_ENUM16,
-	TYPE_BITFIELD16,
-	TYPE_PAD,
-	TYPE_INT32,
-	TYPE_UINT32,
-	TYPE_ACC32,
-	TYPE_ENUM32,
-	TYPE_BITFIELD32,
-	TYPE_INT64,
-	TYPE_UINT64,
-	TYPE_ACC64,
-	TYPE_STRING16,
-	TYPE_STRING32,
-	TYPE_FLOAT32,
-	TYPE_SUNSSF
-} sunspec_type_t;
-
-#endif /* COMMON_H_ */
+#endif /* COMMONMODEL_H_ */

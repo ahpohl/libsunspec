@@ -2,8 +2,8 @@
  *  Inverter model
  */
 
-#ifndef INVERTER_H_
-#define INVERTER_H_
+#ifndef INVERTERMODEL_H_
+#define INVERTERMODEL_H_
 
 #include <cstdint>
 
@@ -109,4 +109,4 @@ public:
 	static const uint16_t I10X_SIZE_EvtVnd4;
 };
 
-#endif /* INVERTER_H_ */
+#endif /* INVERTERMODEL_H_ */

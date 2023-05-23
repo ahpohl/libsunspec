@@ -7,6 +7,7 @@
 #include "SunspecInverter.h"
 #include "CommonModel.h"
 #include "InverterModel.h"
+#include "FroniusRegister.h"
 
 SunspecInverter::SunspecInverter(void) : Ctx(nullptr)
 {
@@ -101,9 +102,13 @@ bool SunspecInverter::ReadRegister(std::string &str, const uint16_t &address,
 	return true;
 }
 
-bool SunspecInverter::ReadRegister(unsigned int &num, const uint16_t &address,
+bool SunspecInverter::ReadRegister(uint64_t &num, const uint16_t &address,
 		const uint16_t &size)
 {
+	if (size > 4) {
+		ErrorMessage = "Only 64-bit wide unsigned integer supported by this method";
+		return false;
+	}
 	uint16_t tab_reg[size] = {0};
 
 	int rc = modbus_read_registers(Ctx, address, size, tab_reg);
@@ -141,6 +146,10 @@ std::string SunspecInverter::GetErrorMessage(void) const
 	return ErrorMessage;
 }
 
+/*
+ * Get inverter methods start here
+ * */
+
 bool SunspecInverter::GetManufacturer(std::string &mfg)
 {
 	if (!ReadRegister(mfg, CommonModel::C001_ADDR_Mn, CommonModel::C001_SIZE_Mn)) {
@@ -159,8 +168,16 @@ bool SunspecInverter::GetAcPower(double &pwr)
 		return false;
 	}
 	pwr = static_cast<double>(num) * pow(10, sf);
-	std::cout << "AC power unscaled: " << num << std::endl;
-	std::cout << "Scale factor: " << sf << std::endl;
+
+	return true;
+}
+
+bool SunspecInverter::GetEnergyYear(uint64_t &energy_year)
+{
+	if (!ReadRegister(energy_year, FroniusRegister::F_ADDR_Site_Energy_Year,
+			FroniusRegister::F_SIZE_Site_Energy_Year)) {
+		return false;
+	}
 
 	return true;
 }

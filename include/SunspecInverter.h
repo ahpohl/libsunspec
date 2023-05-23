@@ -21,15 +21,16 @@ public:
 	int GetRemoteId(void) const;
 	bool ReadRegister(std::string &str, const uint16_t &address,
 		const uint16_t &size);
-	bool ReadRegister(unsigned int &num, const uint16_t &address,
+	bool ReadRegister(uint64_t &num, const uint16_t &address,
     const uint16_t &size);
 	bool ReadRegister(int16_t &num, const uint16_t &address,
-			const uint16_t &size);
+		const uint16_t &size);
 	std::string GetErrorMessage(void) const;
 
 	/* Methods to retrieve inverter data */
 	bool GetManufacturer(std::string &mfg);
 	bool GetAcPower(double &ac_power);
+	bool GetEnergyYear(uint64_t energy_year);
 
 private:
 	modbus_t *Ctx;
