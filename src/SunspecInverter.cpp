@@ -101,10 +101,10 @@ bool SunspecInverter::ReadRegisterString(std::string &str, const uint16_t &addre
 	return true;
 }
 
-bool SunspecInverter::ReadRegisterInt(int &num, const uint16_t &address,
+bool SunspecInverter::ReadRegisterInt(unsigned int &num, const uint16_t &address,
 		const uint16_t &size)
 {
-	uint16_t tab_reg[size] = {0};
+  uint16_t tab_reg[size] = {0};
 
 	int rc = modbus_read_registers(Ctx, address, size, tab_reg);
 	if (rc == -1) {
@@ -131,16 +131,16 @@ bool SunspecInverter::GetManufacturer(std::string &mfg)
 
 bool SunspecInverter::GetAcPower(double &pwr)
 {
-	int num = 0, sf = 0;
+	unsigned int num = 0, sf = 0;
 	if (!ReadRegisterInt(num, InverterModel::I10X_ADDR_W, InverterModel::I10X_SIZE_W)) {
 		return false;
 	}
 	if (!ReadRegisterInt(sf, InverterModel::I10X_ADDR_W_SF, InverterModel::I10X_SIZE_W_SF)) {
 		return false;
 	}
-	//pwr = pow(num, sf);
-
-	pwr = num;
+	pwr = static_cast<double>(num) * pow(10, sf);
+  std::cout << "AC power unscaled: " << num << std::endl;
+  std::cout << "Scale factor: " << sf << std::endl;
 
 	return true;
 }
