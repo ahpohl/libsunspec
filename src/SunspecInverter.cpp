@@ -60,6 +60,11 @@ bool SunspecInverter::ConnectModeRtu(std::string device)
 	return true;
 }
 
+void SunspecInverter::SetModbusDebug(const bool &debug)
+{
+	modbus_set_debug(Ctx, debug);
+}
+
 bool SunspecInverter::SetRemoteId(const int &remote_id)
 {
 	if (remote_id <= 0) {
@@ -111,11 +116,6 @@ bool SunspecInverter::ReadRegisterInt(int &num, const uint16_t &address,
 	return true;
 }
 
-void SunspecInverter::SetModbusDebug(const bool &debug)
-{
-	modbus_set_debug(Ctx, debug);
-}
-
 std::string SunspecInverter::GetErrorMessage(void) const
 {
 	return ErrorMessage;
@@ -138,7 +138,9 @@ bool SunspecInverter::GetAcPower(double &pwr)
 	if (!ReadRegisterInt(sf, InverterModel::I10X_ADDR_W_SF, InverterModel::I10X_SIZE_W_SF)) {
 		return false;
 	}
-	pwr = pow(num, sf);
+	//pwr = pow(num, sf);
+
+	pwr = num;
 
 	return true;
 }

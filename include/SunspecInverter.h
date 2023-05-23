@@ -16,13 +16,13 @@ public:
 	~SunspecInverter(void);
 	bool ConnectModeTcp(std::string ip_address, int port);
 	bool ConnectModeRtu(std::string device);
+	void SetModbusDebug(const bool &debug);
 	bool SetRemoteId(const int &remote_id);
 	int GetRemoteId(void) const;
 	bool ReadRegisterString(std::string &str, const uint16_t &address,
 		const uint16_t &size);
 	bool ReadRegisterInt(int &num, const uint16_t &address,
 			const uint16_t &size);
-	void SetModbusDebug(const bool &debug);
 	std::string GetErrorMessage(void) const;
 
 	/* Methods to retrieve inverter data */
