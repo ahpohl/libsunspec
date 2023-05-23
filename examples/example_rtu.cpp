@@ -15,6 +15,8 @@ int main(int argc, char *argv[])
     return EXIT_FAILURE;
   }
 
+  //inverter->SetModbusDebug(true);
+
   std::string mfg;
   if (!inverter->GetManufacturer(mfg))
   {
@@ -33,7 +35,7 @@ int main(int argc, char *argv[])
 	  std::cout << inverter->GetErrorMessage() << std::endl;
 	  return EXIT_FAILURE;
   }
-  std::cout << "Grid Power Reading: " << ac_power << " W" << std::endl;
+  std::cout << "AC Power: " << ac_power << " W" << std::endl;
 
   std::cout.flags(old_settings);
   return EXIT_SUCCESS;
