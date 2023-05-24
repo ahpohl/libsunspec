@@ -112,8 +112,16 @@ bool Sunspec::ReadRegister(uint64_t &num, const uint16_t &address,
 	    	+ modbus_strerror(errno) + " (" + std::to_string(errno) + ")";
 		return false;
 	}
-	memcpy(&num, &tab_reg, sizeof(tab_reg));
-	return true;
+
+	uint16_t *ptr = &tab_reg[size - 1];
+	uint16_t tab_rev[size] = {0};
+
+    for (int i = 0; i < size; i++) {
+    	tab_rev[i] = *ptr--;
+    }
+    memcpy(&num, tab_rev, sizeof(tab_rev));
+
+    return true;
 }
 
 bool Sunspec::ReadRegister(int16_t &num, const uint16_t &address,
