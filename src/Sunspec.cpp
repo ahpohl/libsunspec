@@ -1,26 +1,21 @@
 #include <iostream>
 #include <string>
 #include <cstring>
-#include <cmath>
 #include <modbus/modbus.h>
+#include <Sunspec.h>
 
-#include "SunspecInverter.h"
-#include "CommonModel.h"
-#include "InverterModel.h"
-#include "FroniusRegister.h"
-
-SunspecInverter::SunspecInverter(void) : Ctx(nullptr)
+Sunspec::Sunspec(void) : Ctx(nullptr)
 {
 
 }
 
-SunspecInverter::~SunspecInverter(void)
+Sunspec::~Sunspec(void)
 {
 	modbus_close(Ctx);
 	modbus_free(Ctx);
 }
 
-bool SunspecInverter::ConnectModeTcp(std::string ip_addr, int port = 502)
+bool Sunspec::ConnectModeTcp(std::string ip_addr, int port = 502)
 {
 	if (ip_addr.empty()) {
 	    ErrorMessage = "IP address argument empty";
@@ -39,7 +34,7 @@ bool SunspecInverter::ConnectModeTcp(std::string ip_addr, int port = 502)
 	return true;
 }
 
-bool SunspecInverter::ConnectModeRtu(std::string device)
+bool Sunspec::ConnectModeRtu(std::string device)
 {
 	if (device.empty()) {
 	    ErrorMessage = "Serial device argument empty";
@@ -61,12 +56,12 @@ bool SunspecInverter::ConnectModeRtu(std::string device)
 	return true;
 }
 
-void SunspecInverter::SetModbusDebug(const bool &debug)
+void Sunspec::SetModbusDebug(const bool &debug)
 {
 	modbus_set_debug(Ctx, debug);
 }
 
-bool SunspecInverter::SetRemoteId(const int &remote_id)
+bool Sunspec::SetRemoteId(const int &remote_id)
 {
 	if (remote_id <= 0) {
 	    ErrorMessage = "Remote ID must be greater than zero.";
@@ -79,12 +74,12 @@ bool SunspecInverter::SetRemoteId(const int &remote_id)
 	return true;
 }
 
-int SunspecInverter::GetRemoteId(void) const
+int Sunspec::GetRemoteId(void) const
 {
 	return modbus_get_slave(Ctx);
 }
 
-bool SunspecInverter::ReadRegister(std::string &str, const uint16_t &address,
+bool Sunspec::ReadRegister(std::string &str, const uint16_t &address,
 		const uint16_t &size)
 {
 	uint16_t tab_reg[size] = {0};
@@ -102,7 +97,7 @@ bool SunspecInverter::ReadRegister(std::string &str, const uint16_t &address,
 	return true;
 }
 
-bool SunspecInverter::ReadRegister(uint64_t &num, const uint16_t &address,
+bool Sunspec::ReadRegister(uint64_t &num, const uint16_t &address,
 		const uint16_t &size)
 {
 	if (size > 4) {
@@ -121,7 +116,7 @@ bool SunspecInverter::ReadRegister(uint64_t &num, const uint16_t &address,
 	return true;
 }
 
-bool SunspecInverter::ReadRegister(int16_t &num, const uint16_t &address,
+bool Sunspec::ReadRegister(int16_t &num, const uint16_t &address,
 		const uint16_t &size)
 {
 	if (size != 1) {
@@ -141,43 +136,7 @@ bool SunspecInverter::ReadRegister(int16_t &num, const uint16_t &address,
 	return true;
 }
 
-std::string SunspecInverter::GetErrorMessage(void) const
+std::string Sunspec::GetErrorMessage(void) const
 {
 	return ErrorMessage;
-}
-
-/*
- * Get inverter methods start here
- * */
-
-bool SunspecInverter::GetManufacturer(std::string &mfg)
-{
-	if (!ReadRegister(mfg, CommonModel::C001_ADDR_Mn, CommonModel::C001_SIZE_Mn)) {
-		return false;
-	}
-	return true;
-}
-
-bool SunspecInverter::GetAcPower(double &pwr)
-{
-	int16_t num = 0, sf = 0;
-	if (!ReadRegister(num, InverterModel::I10X_ADDR_W, InverterModel::I10X_SIZE_W)) {
-		return false;
-	}
-	if (!ReadRegister(sf, InverterModel::I10X_ADDR_W_SF, InverterModel::I10X_SIZE_W_SF)) {
-		return false;
-	}
-	pwr = static_cast<double>(num) * pow(10, sf);
-
-	return true;
-}
-
-bool SunspecInverter::GetEnergyYear(uint64_t &energy_year)
-{
-	if (!ReadRegister(energy_year, FroniusRegister::F_ADDR_Site_Energy_Year,
-			FroniusRegister::F_SIZE_Site_Energy_Year)) {
-		return false;
-	}
-
-	return true;
 }

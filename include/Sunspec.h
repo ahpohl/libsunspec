@@ -9,11 +9,11 @@
 #include <string>
 #include <modbus/modbus.h>
 
-class SunspecInverter
+class Sunspec
 {
 public:
-	SunspecInverter(void);
-	~SunspecInverter(void);
+	Sunspec(void);
+	virtual ~Sunspec(void);
 	bool ConnectModeTcp(std::string ip_address, int port);
 	bool ConnectModeRtu(std::string device);
 	void SetModbusDebug(const bool &debug);
@@ -26,11 +26,6 @@ public:
 	bool ReadRegister(int16_t &num, const uint16_t &address,
 		const uint16_t &size);
 	std::string GetErrorMessage(void) const;
-
-	/* Methods to retrieve inverter data */
-	bool GetManufacturer(std::string &mfg);
-	bool GetAcPower(double &ac_power);
-	bool GetEnergyYear(uint64_t energy_year);
 
 private:
 	modbus_t *Ctx;
