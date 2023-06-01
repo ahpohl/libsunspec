@@ -27,6 +27,10 @@ SHARED_LIB := libsunspec.so
 # define examples directory
 EXAMPLE := examples
 
+# use local libmodbus compiled for aarch64
+MODBUS_LIB := -L./modbus/lib
+MODBUS_INC := -I./modbus/include
+
 #############
 ### build ###
 #############
@@ -43,10 +47,10 @@ CPPFLAGS += -DVERSION_BUILD_DATE=\""$(shell date "+%F %T")"\" \
             -DVERSION_BUILD=\"$(BUILD_INFO)\"
 
 # define any directories containing header files other than /usr/include
-INCLUDES = -I./include
+INCLUDES = -I./include $(MODBUS_INC)
 
 # define library paths in addition to /usr/lib
-LFLAGS = -Wl,-soname,$(SHARED_LIB).$(MAJOR_VERSION)
+LFLAGS = -Wl,-soname,$(SHARED_LIB).$(MAJOR_VERSION) $(MODBUS_LIB)
 
 # define any libraries to link into executable:
 LIBS =

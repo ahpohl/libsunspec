@@ -1,3 +1,7 @@
+# use local libmodbus compiled for aarch64
+MODBUS_LIB := -L../modbus/lib
+MODBUS_INC := -I../modbus/include
+
 # define the C compiler to use
 CPP = g++
 
@@ -5,13 +9,13 @@ CPP = g++
 CPPFLAGS = -Wall -g -std=c++11 -pthread
 
 # define any directories containing header files other than /usr/include
-INCLUDES = -I../include
+INCLUDES = -I../include $(MODBUS_INC)
 
 # define examples build directory
 BUILD = build
 
 # define library paths in addition to /usr/lib
-LFLAGS = -L../build
+LFLAGS = -L../build $(MODBUS_LIB)
 
 # define any libraries to link into executable:
 LIBS = -Wl,-Bstatic -lsunspec -Wl,-Bdynamic -lmodbus
