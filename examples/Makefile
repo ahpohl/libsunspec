@@ -1,7 +1,3 @@
-# use local libmodbus compiled for aarch64
-MODBUS_LIB := -L../modbus/lib
-MODBUS_INC := -I../modbus/include
-
 # define the C compiler to use
 CPP = g++
 
@@ -19,6 +15,14 @@ LFLAGS = -L../build $(MODBUS_LIB)
 
 # define any libraries to link into executable:
 LIBS = -Wl,-Bstatic -lsunspec -Wl,-Bdynamic -lmodbus
+
+# define cross compiler for aarch64 target
+ifeq ($(CROSS_COMPILE),aarch64)
+CPP := aarch64-linux-gnu-g++
+# use local libmodbus compiled for aarch64
+LFLAGS += -L../modbus/lib
+INCLUDES += -I../modbus/include
+endif
 
 # define source files
 SRCS = $(wildcard *.cpp)
