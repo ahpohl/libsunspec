@@ -36,13 +36,13 @@ int main(int argc, char *argv[])
   }
   std::cout << "AC power now: " << ac_power << " W" << std::endl;
 
-  uint64_t energy_year;
-  if (!sun->GetEnergyYear(energy_year))
+  double energy_year;
+  if (!sun->GetAcLifetimeEnergy(energy_year))
   {
 	  std::cout << sun->GetErrorMessage() << std::endl;
 	  return EXIT_FAILURE;
   }
-  std::cout << "Energy current year: " << energy_year * 0.001 << " kWh" << std::endl;
+  std::cout << "Energy current year: " << energy_year  << " kWh" << std::endl;
 
   std::cout.flags(old_settings);
   return EXIT_SUCCESS;

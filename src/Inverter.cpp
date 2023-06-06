@@ -1,8 +1,11 @@
 #include <cmath>
+#include <modbus/modbus.h>
+
+#include "Sunspec.h"
 #include "Inverter.h"
-#include "CommonModel.h"
-#include "InverterModel.h"
-#include "FroniusRegister.h"
+
+using namespace CommonModel;
+using namespace InverterModel;
 
 Inverter::Inverter(void) {
 	// TODO Auto-generated constructor stub
@@ -15,32 +18,60 @@ Inverter::~Inverter(void) {
 
 bool Inverter::GetManufacturer(std::string &mfg)
 {
-	if (!ReadRegister(mfg, CommonModel::C001_ADDR_Mn, CommonModel::C001_SIZE_Mn)) {
+	uint16_t *tab_reg = nullptr;
+
+	tab_reg = ReadRegister(C001_ADDR_Mn, C001_SIZE_Mn);
+	if (!tab_reg) {
 		return false;
 	}
+	mfg = Register2String(tab_reg, C001_SIZE_Mn);
+	free(tab_reg);
+
 	return true;
 }
 
 bool Inverter::GetAcPower(double &pwr)
 {
-	int16_t num = 0, sf = 0;
-	if (!ReadRegister(num, InverterModel::I10X_ADDR_W, InverterModel::I10X_SIZE_W)) {
+	uint16_t *tab_reg = nullptr;
+
+	tab_reg = ReadRegister(I10X_ADDR_W, I10X_SIZE_W);
+	if (!tab_reg) {
 		return false;
 	}
-	if (!ReadRegister(sf, InverterModel::I10X_ADDR_W_SF, InverterModel::I10X_SIZE_W_SF)) {
+	int16_t num = Register2s16(tab_reg);
+	free(tab_reg);
+
+	tab_reg = ReadRegister(I10X_ADDR_W_SF, I10X_SIZE_W_SF);
+	if (!tab_reg) {
 		return false;
 	}
+	int16_t sf = Register2s16(tab_reg);
+	free(tab_reg);
+
 	pwr = static_cast<double>(num) * pow(10, sf);
 
 	return true;
 }
 
-bool Inverter::GetEnergyYear(uint64_t &energy_year)
+bool Inverter::GetAcLifetimeEnergy(double &energy_lifetime)
 {
-	if (!ReadRegister(energy_year, FroniusRegister::F_ADDR_Site_Energy_Year,
-			FroniusRegister::F_SIZE_Site_Energy_Year)) {
+	uint16_t *tab_reg = nullptr;
+
+	tab_reg = ReadRegister(I10X_ADDR_WH, I10X_SIZE_WH);
+	if (!tab_reg) {
 		return false;
 	}
+	int16_t num = Register2s16(tab_reg);
+	free(tab_reg);
+
+	tab_reg = ReadRegister(I10X_ADDR_WH_SF, I10X_SIZE_WH_SF);
+	if (!tab_reg) {
+		return false;
+	}
+	int16_t sf = Register2s16(tab_reg);
+	free(tab_reg);
+
+	energy_lifetime = static_cast<double>(num) * pow(10, sf);
 
 	return true;
 }

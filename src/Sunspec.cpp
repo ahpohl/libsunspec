@@ -79,69 +79,92 @@ int Sunspec::GetRemoteId(void) const
 	return modbus_get_slave(Ctx);
 }
 
-bool Sunspec::ReadRegister(std::string &str, const uint16_t &address,
-		const uint16_t &size)
+uint16_t *Sunspec::ReadRegister(const uint16_t &address, const uint16_t &size)
 {
-	uint16_t tab_reg[size] = {0};
+	uint16_t *tab_reg = (uint16_t*) malloc(sizeof(uint16_t) * size);
+	if (!tab_reg)
+	{
+		return nullptr;
+	}
 
 	int rc = modbus_read_registers(Ctx, address, size, tab_reg);
 	if (rc == -1) {
 	    ErrorMessage = std::string("Read register ") + std::to_string(address) + " failed: "
 	    	+ modbus_strerror(errno) + " (" + std::to_string(errno) + ")";
-		return false;
+		return nullptr;
 	}
-	for (int i = 0; i < rc; i++) {
+
+	return tab_reg;
+}
+
+std::string Sunspec::Register2String(const uint16_t *tab_reg, const uint16_t &size)
+{
+	std::string str;
+
+	for (int i = 0; i < size; i++) {
 		str.push_back((tab_reg[i] >> 8) & 0xFF);
 	    str.push_back(tab_reg[i]);
 	}
-	return true;
+	return str;
 }
 
-bool Sunspec::ReadRegister(uint64_t &num, const uint16_t &address,
-		const uint16_t &size)
+int16_t Sunspec::Register2s16(const uint16_t *tab_reg)
 {
-	if (size > 4) {
-		ErrorMessage = "Only 64-bit wide unsigned integer supported by this method";
-		return false;
-	}
-	uint16_t tab_reg[size] = {0};
-
-	int rc = modbus_read_registers(Ctx, address, size, tab_reg);
-	if (rc == -1) {
-	    ErrorMessage = std::string("Read register ") + std::to_string(address) + " failed: "
-	    	+ modbus_strerror(errno) + " (" + std::to_string(errno) + ")";
-		return false;
-	}
-
-	uint16_t *ptr = &tab_reg[size - 1];
-	uint16_t tab_rev[size] = {0};
-
-    for (int i = 0; i < size; i++) {
-    	tab_rev[i] = *ptr--;
-    }
-    memcpy(&num, tab_rev, sizeof(tab_rev));
-
-    return true;
+	return static_cast<int16_t>(tab_reg[0]);
 }
 
-bool Sunspec::ReadRegister(int16_t &num, const uint16_t &address,
-		const uint16_t &size)
+uint16_t Sunspec::Register2u16(const uint16_t *tab_reg)
 {
-	if (size != 1) {
-		ErrorMessage = "Only 16-bit wide integer supported by this method";
-		return false;
-	}
-	uint16_t tab_reg = 0;
+	return tab_reg[0];
+}
 
-	int rc = modbus_read_registers(Ctx, address, 1, &tab_reg);
-	if (rc == -1) {
-	    ErrorMessage = std::string("Read register ") + std::to_string(address) + " failed: "
-	    	+ modbus_strerror(errno) + " (" + std::to_string(errno) + ")";
-		return false;
-	}
-	num = static_cast<int16_t>(tab_reg);
+float Sunspec::Register2float(const uint16_t *tab_reg)
+{
+	float num = 0;
+    memcpy(&num, tab_reg, 2);
 
-	return true;
+    return num;
+}
+
+int32_t Sunspec::Register2s32(const uint16_t *tab_reg)
+{
+	int32_t num = 0;
+    memcpy(&num, tab_reg, 2);
+
+    return num;
+}
+
+uint32_t Sunspec::Register2u32(const uint16_t *tab_reg)
+{
+	uint32_t num = 0;
+    memcpy(&num, tab_reg, 2);
+
+    return num;
+}
+
+int64_t Sunspec::Register2s64(const uint16_t *tab_reg)
+{
+	int64_t num = 0;
+    memcpy(&num, tab_reg, 4);
+
+    return num;
+}
+
+uint64_t Sunspec::Register2u64(const uint16_t *tab_reg)
+{
+	uint64_t num = 0;
+    memcpy(&num, tab_reg, 4);
+
+    return num;
+}
+
+template <typename T_NUM, typename T_SIZE>
+T_NUM Sunspec::Reg2Num(const uint16_t *tab_reg, const uint16_t &size)
+{
+	T_NUM num = 0;
+    memcpy(&num, tab_reg, size);
+
+    return num;
 }
 
 std::string Sunspec::GetErrorMessage(void) const

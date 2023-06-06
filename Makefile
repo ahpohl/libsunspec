@@ -53,7 +53,7 @@ LIBS =
 
 # define cross compiler for aarch64 target
 ifeq ($(CROSS_COMPILE),aarch64)
-CPP := aarch64-linux-gnu-g++
+CPP := aarch64-unknown-linux-gnu-g++
 # use local libmodbus compiled for aarch64
 LFLAGS += -L./modbus/lib
 INCLUDES += -I./modbus/include

@@ -16,7 +16,7 @@ public:
 	bool GetAcPower(double &ac_power);
 
 	/* Fronius register */
-	bool GetEnergyYear(uint64_t &energy_year);
+	bool GetAcLifetimeEnergy(double &energy_year);
 };
 
 #endif /* INVERTER_H_ */
