@@ -1,6 +1,8 @@
 #include "Sunspec.h"
 #include "Inverter.h"
 
+#include "../src/Sunspec-impl.cpp"
+
 using namespace CommonModel;
 using namespace InverterModel;
 
