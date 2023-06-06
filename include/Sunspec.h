@@ -41,9 +41,9 @@ private:
 template <typename T>
 T Sunspec::ConvertRegister(const uint16_t *tab_reg, const uint16_t &size)
 {
-	T num = 0;
-    memcpy(&num, tab_reg, size);
-    return num;
+	T res = 0;
+    memcpy(&res, tab_reg, size);
+    return res;
 }
 
 template <typename T>

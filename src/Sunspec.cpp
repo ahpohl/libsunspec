@@ -88,8 +88,7 @@ int Sunspec::GetRemoteId(void) const
 uint16_t *Sunspec::ReadRegister(const uint16_t &address, const uint16_t &size)
 {
 	uint16_t *tab_reg = (uint16_t*) malloc(sizeof(uint16_t) * size);
-	if (!tab_reg)
-	{
+	if (!tab_reg) {
 		return nullptr;
 	}
 
