@@ -7,6 +7,8 @@
 
 #include <cstdint>
 #include <string>
+#include <cstring>
+#include <cmath>
 #include <modbus/modbus.h>
 
 class Sunspec
@@ -20,24 +22,54 @@ public:
 	void SetModbusDebug(const bool &debug);
 	bool SetRemoteId(const int &remote_id);
 	int GetRemoteId(void) const;
+	bool GetString(std::string &str, const uint16_t &reg_addr, const uint16_t &size);
 
-	uint16_t *ReadRegister(const uint16_t &address, const uint16_t &size);
-	std::string Register2String(const uint16_t *regs, const uint16_t &size);
-	int16_t Register2s16(const uint16_t *tab_reg);
-	uint16_t Register2u16(const uint16_t *tab_reg);
-	float Register2float(const uint16_t *tab_reg);
-	int32_t Register2s32(const uint16_t *tab_reg);
-	uint32_t Register2u32(const uint16_t *tab_reg);
-	int64_t Register2s64(const uint16_t *tab_reg);
-	uint64_t Register2u64(const uint16_t *tab_reg);
-
-	template <typename T_NUM, typename T_SIZE>
-	T_NUM Reg2Num(const uint16_t *tab_reg, const uint16_t &size);
+	template <typename T>
+	bool GetIntSf(double &res, const uint16_t &reg_addr, const uint16_t &reg_size,
+		const uint16_t &sf_addr);
 
 private:
+	uint16_t *ReadRegister(const uint16_t &address, const uint16_t &size);
+
+	template <typename T>
+	T ConvertRegister(const uint16_t *tab_reg, const uint16_t &size);
+
 	modbus_t *Ctx;
 	std::string ErrorMessage;
 };
+
+template <typename T>
+T Sunspec::ConvertRegister(const uint16_t *tab_reg, const uint16_t &size)
+{
+	T num = 0;
+    memcpy(&num, tab_reg, size);
+    return num;
+}
+
+template <typename T>
+bool Sunspec::GetIntSf(double &res, const uint16_t &reg_addr, const uint16_t &reg_size,
+	const uint16_t &sf_addr)
+{
+	uint16_t *tab_reg = nullptr;
+
+	tab_reg = ReadRegister(reg_addr, reg_size);
+	if (!tab_reg) {
+		return false;
+	}
+	T num = ConvertRegister<T>(tab_reg, reg_size);
+	free(tab_reg);
+
+	tab_reg = ReadRegister(sf_addr, sizeof(int16_t));
+	if (!tab_reg) {
+		return false;
+	}
+	int16_t sf = ConvertRegister<int16_t>(tab_reg, sizeof(int16_t));
+	free(tab_reg);
+
+	res = static_cast<double>(num) * pow(10, sf);
+
+    return res;
+}
 
 namespace CommonModel
 {

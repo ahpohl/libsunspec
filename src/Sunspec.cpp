@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include <cstring>
+#include <cmath>
 #include <modbus/modbus.h>
 #include <Sunspec.h>
 
@@ -13,6 +14,11 @@ Sunspec::~Sunspec(void)
 {
 	modbus_close(Ctx);
 	modbus_free(Ctx);
+}
+
+std::string Sunspec::GetErrorMessage(void) const
+{
+	return ErrorMessage;
 }
 
 bool Sunspec::ConnectModeTcp(std::string ip_addr, int port = 502)
@@ -97,7 +103,8 @@ uint16_t *Sunspec::ReadRegister(const uint16_t &address, const uint16_t &size)
 	return tab_reg;
 }
 
-std::string Sunspec::Register2String(const uint16_t *tab_reg, const uint16_t &size)
+template <>
+std::string Sunspec::ConvertRegister(const uint16_t *tab_reg, const uint16_t &size)
 {
 	std::string str;
 
@@ -108,66 +115,17 @@ std::string Sunspec::Register2String(const uint16_t *tab_reg, const uint16_t &si
 	return str;
 }
 
-int16_t Sunspec::Register2s16(const uint16_t *tab_reg)
+bool Sunspec::GetString(std::string &str, const uint16_t &reg_addr, const uint16_t &size)
 {
-	return static_cast<int16_t>(tab_reg[0]);
+	uint16_t *tab_reg = nullptr;
+
+	tab_reg = ReadRegister(reg_addr, size);
+	if (!tab_reg) {
+		return false;
+	}
+	str = ConvertRegister<std::string>(tab_reg, size);
+	free(tab_reg);
+
+	return true;
 }
 
-uint16_t Sunspec::Register2u16(const uint16_t *tab_reg)
-{
-	return tab_reg[0];
-}
-
-float Sunspec::Register2float(const uint16_t *tab_reg)
-{
-	float num = 0;
-    memcpy(&num, tab_reg, 2);
-
-    return num;
-}
-
-int32_t Sunspec::Register2s32(const uint16_t *tab_reg)
-{
-	int32_t num = 0;
-    memcpy(&num, tab_reg, 2);
-
-    return num;
-}
-
-uint32_t Sunspec::Register2u32(const uint16_t *tab_reg)
-{
-	uint32_t num = 0;
-    memcpy(&num, tab_reg, 2);
-
-    return num;
-}
-
-int64_t Sunspec::Register2s64(const uint16_t *tab_reg)
-{
-	int64_t num = 0;
-    memcpy(&num, tab_reg, 4);
-
-    return num;
-}
-
-uint64_t Sunspec::Register2u64(const uint16_t *tab_reg)
-{
-	uint64_t num = 0;
-    memcpy(&num, tab_reg, 4);
-
-    return num;
-}
-
-template <typename T_NUM, typename T_SIZE>
-T_NUM Sunspec::Reg2Num(const uint16_t *tab_reg, const uint16_t &size)
-{
-	T_NUM num = 0;
-    memcpy(&num, tab_reg, size);
-
-    return num;
-}
-
-std::string Sunspec::GetErrorMessage(void) const
-{
-	return ErrorMessage;
-}
