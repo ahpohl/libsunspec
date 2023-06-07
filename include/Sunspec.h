@@ -23,22 +23,17 @@ public:
 
 	template <typename T>
 	bool GetRegister(T &res, const uint16_t &reg_addr, const uint16_t &size);
-
-	bool GetString(std::string &str, const uint16_t &reg_addr, const uint16_t &size);
-	bool GetFloat(float &res, const uint16_t &reg_addr, const uint16_t &size);
-
 	template <typename T>
 	bool GetIntSf(double &res, const uint16_t &reg_addr, const uint16_t &reg_size,
 		const uint16_t &sf_addr);
 
 private:
+	modbus_t *Ctx;
+	std::string ErrorMessage;
 	uint16_t *ReadRegister(const uint16_t &address, const uint16_t &size);
 
 	template <typename T>
 	T ConvertRegister(const uint16_t *tab_reg, const uint16_t &size);
-
-	modbus_t *Ctx;
-	std::string ErrorMessage;
 };
 
 #endif /* SUNSPEC_H_ */

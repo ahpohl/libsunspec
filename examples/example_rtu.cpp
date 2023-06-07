@@ -16,6 +16,11 @@ int main(int argc, char *argv[])
     return EXIT_FAILURE;
   }
 
+  std::ios::fmtflags old_settings = std::cout.flags();
+  std::cout.precision(2);
+  std::cout.setf(std::ios::fixed, std::ios::floatfield);
+
+  /*
   std::string mfg;
   if (!sun->GetManufacturer(mfg))
   {
@@ -24,10 +29,6 @@ int main(int argc, char *argv[])
   }
   std::cout << "Manufacturer: " << mfg << std::endl;
 
-  std::ios::fmtflags old_settings = std::cout.flags();
-  std::cout.precision(2);
-  std::cout.setf(std::ios::fixed, std::ios::floatfield);  
-
   double ac_power;
   if (!sun->GetAcPower(ac_power))
   {
@@ -35,6 +36,7 @@ int main(int argc, char *argv[])
 	  return EXIT_FAILURE;
   }
   std::cout << "AC power now: " << ac_power << " W" << std::endl;
+  */
 
   double energy_lifetime;
   if (!sun->GetAcLifetimeEnergy(energy_lifetime))
