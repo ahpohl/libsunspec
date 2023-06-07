@@ -2,15 +2,13 @@
 #include "SunspecModelIntSf.h"
 #include "Inverter.h"
 
-#include "../src/Sunspec-impl.cpp"
-
 using namespace CommonModel;
 using namespace InverterModel;
 using namespace FroniusRegister;
 
-bool Inverter::GetManufacturer(std::string &mfg)
+bool Inverter::GetManufacturer(std::string &res)
 {
-	return GetRegister<std::string>(mfg, C001_ADDR_Mn, C001_SIZE_Mn);
+	return GetRegister<std::string>(res, C001_ADDR_Mn, C001_SIZE_Mn);
 }
 
 bool Inverter::GetAcPower(double &res)

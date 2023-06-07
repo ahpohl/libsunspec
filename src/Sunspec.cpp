@@ -104,6 +104,20 @@ uint16_t *Sunspec::ReadRegister(const uint16_t &address, const uint16_t &size)
 	return tab_reg;
 }
 
+template <typename T>
+T Sunspec::ConvertRegister(const uint16_t *tab_reg, const uint16_t &size)
+{
+	uint16_t tab_rev[size] = {0};
+	uint16_t *ptr = (uint16_t*) &tab_reg[size - 1];
+    for (int i = 0; i < size; i++) {
+    	tab_rev[i] = *ptr--;
+    }
+	T res = 0;
+	memcpy(&res, tab_rev, sizeof(uint16_t) * size);
+
+    return res;
+}
+
 template <>
 std::string Sunspec::ConvertRegister(const uint16_t *tab_reg, const uint16_t &size)
 {
@@ -115,3 +129,42 @@ std::string Sunspec::ConvertRegister(const uint16_t *tab_reg, const uint16_t &si
 	}
 	return str;
 }
+
+template <typename T>
+bool Sunspec::GetRegister(T &res, const uint16_t &reg_addr, const uint16_t &size)
+{
+	uint16_t *tab_reg = nullptr;
+
+	tab_reg = ReadRegister(reg_addr, size);
+	if (!tab_reg) {
+		return false;
+	}
+	res = ConvertRegister<T>(tab_reg, size);
+	delete tab_reg;
+
+	return true;
+}
+
+template bool Sunspec::GetRegister(std::string&, const uint16_t&, const uint16_t&);
+template bool Sunspec::GetRegister(uint64_t&, const uint16_t&, const uint16_t&);
+
+template <typename T>
+bool Sunspec::GetRegister(double &res, const uint16_t &reg_addr, const uint16_t &reg_size,
+	const uint16_t &sf_addr)
+{
+	T num;
+	if (!GetRegister<T>(num, reg_addr, reg_size))
+	{
+		return false;
+	}
+	int16_t sf = 0;
+	if (!GetRegister<int16_t>(sf, sf_addr, 1))
+	{
+		return false;
+	}
+	res = static_cast<double>(num) * pow(10, sf);
+
+    return true;
+}
+
+template bool Sunspec::GetRegister<int16_t>(double&, const uint16_t&, const uint16_t&, const uint16_t&);
