@@ -20,7 +20,6 @@ int main(int argc, char *argv[])
   std::cout.precision(2);
   std::cout.setf(std::ios::fixed, std::ios::floatfield);
 
-  /*
   std::string mfg;
   if (!sun->GetManufacturer(mfg))
   {
@@ -36,15 +35,14 @@ int main(int argc, char *argv[])
 	  return EXIT_FAILURE;
   }
   std::cout << "AC power now: " << ac_power << " W" << std::endl;
-  */
 
-  double energy_lifetime;
-  if (!sun->GetAcLifetimeEnergy(energy_lifetime))
+  uint64_t energy_total;
+  if (!sun->GetSiteEnergyTotal(energy_total))
   {
 	  std::cout << sun->GetErrorMessage() << std::endl;
 	  return EXIT_FAILURE;
   }
-  std::cout << "Lifetime energy: " << energy_lifetime  << " kWh" << std::endl;
+  std::cout << "Site energy total: " << energy_total  << " Wh" << std::endl;
 
   std::cout.flags(old_settings);
   return EXIT_SUCCESS;

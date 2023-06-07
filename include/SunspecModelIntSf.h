@@ -137,16 +137,18 @@ namespace FroniusRegister
 {
 	/* Fronius register start address */
 
-	constexpr uint16_t F_ADDR_Delete_Data                    = 212;
-	constexpr uint16_t F_ADDR_Store_Data                     = 213;
-	constexpr uint16_t F_ADDR_Active_State_Code              = 214;
-	constexpr uint16_t F_ADDR_Reset_All_Event_Flags          = 215;
-	constexpr uint16_t F_ADDR_ModelType                      = 216;
-	constexpr uint16_t F_ADDR_Storage_Restrictions_View_Mode = 217;
-	constexpr uint16_t F_ADDR_Site_Power                     = 500;
-	constexpr uint16_t F_ADDR_Site_Energy_Day                = 502;
-	constexpr uint16_t F_ADDR_Site_Energy_Year               = 506;
-	constexpr uint16_t F_ADDR_Site_Energy_Total              = 510;
+	constexpr uint16_t F_REG_OFFSET = 0x1;
+
+	constexpr uint16_t F_ADDR_Delete_Data                    = 212 - F_REG_OFFSET;
+	constexpr uint16_t F_ADDR_Store_Data                     = 213 - F_REG_OFFSET;
+	constexpr uint16_t F_ADDR_Active_State_Code              = 214 - F_REG_OFFSET;
+	constexpr uint16_t F_ADDR_Reset_All_Event_Flags          = 215 - F_REG_OFFSET;
+	constexpr uint16_t F_ADDR_ModelType                      = 216 - F_REG_OFFSET;
+	constexpr uint16_t F_ADDR_Storage_Restrictions_View_Mode = 217 - F_REG_OFFSET;
+	constexpr uint16_t F_ADDR_Site_Power                     = 500 - F_REG_OFFSET;
+	constexpr uint16_t F_ADDR_Site_Energy_Day                = 502 - F_REG_OFFSET;
+	constexpr uint16_t F_ADDR_Site_Energy_Year               = 506 - F_REG_OFFSET;
+	constexpr uint16_t F_ADDR_Site_Energy_Total              = 510 - F_REG_OFFSET;
 
 	/* Fronius register size */
 

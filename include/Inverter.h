@@ -13,10 +13,11 @@ public:
 	bool GetManufacturer(std::string &mfg);
 
 	/* Inverter model */
-	bool GetAcPower(double &ac_power);
+	bool GetAcPower(double &res);
 
 	/* Fronius register */
-	bool GetAcLifetimeEnergy(double &energy_year);
+	bool GetAcLifetimeEnergy(double &res);
+	bool GetSiteEnergyTotal(uint64_t &res);
 };
 
 #endif /* INVERTER_H_ */
