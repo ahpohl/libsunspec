@@ -5,8 +5,6 @@
 
 namespace CommonModel
 {
-	/* common model register start address */
-
 	constexpr uint16_t C001_REG_OFFSET = 0x9C3F;
 
 	constexpr uint16_t C001_ADDR_SID =  1 + C001_REG_OFFSET;
@@ -18,8 +16,6 @@ namespace CommonModel
 	constexpr uint16_t C001_ADDR_Vr  = 45 + C001_REG_OFFSET;
 	constexpr uint16_t C001_ADDR_SN  = 53 + C001_REG_OFFSET;
 	constexpr uint16_t C001_ADDR_DA  = 69 + C001_REG_OFFSET;
-
-	/* common model register size */
 
 	constexpr uint16_t C001_SIZE_SID = 2;
 	constexpr uint16_t C001_SIZE_ID  = 1;
@@ -34,8 +30,6 @@ namespace CommonModel
 
 namespace InverterModel
 {
-	/* inverter model register start address */
-
 	constexpr uint16_t I10X_REG_OFFSET = 0x9C84;
 
 	constexpr uint16_t I10X_ADDR_ID      =  1 + I10X_REG_OFFSET;
@@ -83,8 +77,6 @@ namespace InverterModel
 	constexpr uint16_t I10X_ADDR_EvtVnd2 = 47 + I10X_REG_OFFSET;
 	constexpr uint16_t I10X_ADDR_EvtVnd3 = 49 + I10X_REG_OFFSET;
 	constexpr uint16_t I10X_ADDR_EvtVnd4 = 51 + I10X_REG_OFFSET;
-
-	/* inverter model register size */
 
 	constexpr uint16_t I10X_SIZE_ID      = 1;
 	constexpr uint16_t I10X_SIZE_L       = 1;
@@ -135,8 +127,6 @@ namespace InverterModel
 
 namespace FroniusRegister
 {
-	/* Fronius register start address */
-
 	constexpr uint16_t F_REG_OFFSET = 0x1;
 
 	constexpr uint16_t F_ADDR_Delete_Data                    = 212 - F_REG_OFFSET;
@@ -149,8 +139,6 @@ namespace FroniusRegister
 	constexpr uint16_t F_ADDR_Site_Energy_Day                = 502 - F_REG_OFFSET;
 	constexpr uint16_t F_ADDR_Site_Energy_Year               = 506 - F_REG_OFFSET;
 	constexpr uint16_t F_ADDR_Site_Energy_Total              = 510 - F_REG_OFFSET;
-
-	/* Fronius register size */
 
 	constexpr uint16_t F_SIZE_Delete_Data                    = 1;
 	constexpr uint16_t F_SIZE_Store_Data                     = 1;
