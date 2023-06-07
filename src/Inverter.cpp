@@ -8,15 +8,6 @@ using namespace CommonModel;
 using namespace InverterModel;
 using namespace FroniusRegister;
 
-Inverter::Inverter(void) {
-	// TODO Auto-generated constructor stub
-
-}
-
-Inverter::~Inverter(void) {
-	// TODO Auto-generated destructor stub
-}
-
 bool Inverter::GetManufacturer(std::string &mfg)
 {
 	return GetRegister<std::string>(mfg, C001_ADDR_Mn, C001_SIZE_Mn);
