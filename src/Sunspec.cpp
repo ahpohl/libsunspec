@@ -128,3 +128,16 @@ bool Sunspec::GetString(std::string &str, const uint16_t &reg_addr, const uint16
 	return true;
 }
 
+bool Sunspec::GetFloat(float &res, const uint16_t &reg_addr, const uint16_t &size)
+{
+	uint16_t *tab_reg = nullptr;
+
+	tab_reg = ReadRegister(reg_addr, size);
+	if (!tab_reg) {
+		return false;
+	}
+	res = ConvertRegister<float>(tab_reg, size);
+	free(tab_reg);
+
+	return true;
+}

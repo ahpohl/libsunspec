@@ -20,7 +20,10 @@ public:
 	void SetModbusDebug(const bool &debug);
 	bool SetRemoteId(const int &remote_id);
 	int GetRemoteId(void) const;
+
+
 	bool GetString(std::string &str, const uint16_t &reg_addr, const uint16_t &size);
+	bool GetFloat(float &res, const uint16_t &reg_addr, const uint16_t &size);
 
 	template <typename T>
 	bool GetIntSf(double &res, const uint16_t &reg_addr, const uint16_t &reg_size,
