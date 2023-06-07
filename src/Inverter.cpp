@@ -1,4 +1,5 @@
 #include "Sunspec.h"
+#include "SunspecModelIntSf.h"
 #include "Inverter.h"
 
 #include "../src/Sunspec-impl.cpp"
@@ -17,7 +18,7 @@ Inverter::~Inverter(void) {
 
 bool Inverter::GetManufacturer(std::string &mfg)
 {
-	return GetString(mfg, C001_ADDR_Mn, C001_SIZE_Mn);
+	return GetRegister<std::string>(mfg, C001_ADDR_Mn, C001_SIZE_Mn);
 }
 
 bool Inverter::GetAcPower(double &pwr)

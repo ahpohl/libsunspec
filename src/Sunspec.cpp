@@ -5,6 +5,8 @@
 #include <modbus/modbus.h>
 #include <Sunspec.h>
 
+#include "../src/Sunspec-impl.cpp"
+
 Sunspec::Sunspec(void) : Ctx(nullptr)
 {
 

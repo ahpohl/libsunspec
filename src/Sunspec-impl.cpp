@@ -14,28 +14,37 @@ T Sunspec::ConvertRegister(const uint16_t *tab_reg, const uint16_t &size)
 }
 
 template <typename T>
-bool Sunspec::GetIntSf(double &res, const uint16_t &reg_addr, const uint16_t &reg_size,
-	const uint16_t &sf_addr)
+bool Sunspec::GetRegister(T &res, const uint16_t &reg_addr, const uint16_t &size)
 {
 	uint16_t *tab_reg = nullptr;
 
-	tab_reg = ReadRegister(reg_addr, reg_size);
+	tab_reg = ReadRegister(reg_addr, size);
 	if (!tab_reg) {
 		return false;
 	}
-	T num = ConvertRegister<T>(tab_reg, reg_size);
+	res = ConvertRegister<T>(tab_reg, size);
 	delete tab_reg;
 
-	tab_reg = ReadRegister(sf_addr, sizeof(int16_t));
-	if (!tab_reg) {
+	return true;
+}
+
+template <typename T>
+bool Sunspec::GetIntSf(double &res, const uint16_t &reg_addr, const uint16_t &reg_size,
+	const uint16_t &sf_addr)
+{
+	T num;
+	if (!GetRegister<T>(num, reg_addr, reg_size))
+	{
 		return false;
 	}
-	int16_t sf = ConvertRegister<int16_t>(tab_reg, sizeof(int16_t));
-	delete tab_reg;
-
+	int16_t sf = 0;
+	if (!GetRegister<int16_t>(sf, sf_addr, 1))
+	{
+		return false;
+	}
 	res = static_cast<double>(num) * pow(10, sf);
 
-    return res;
+    return true;
 }
 
 #endif /* SUNSPEC_IMPL_CPP_ */
