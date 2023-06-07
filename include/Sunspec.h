@@ -24,7 +24,7 @@ public:
 	template <typename T>
 	bool GetRegister(T &res, const uint16_t &reg_addr, const uint16_t &size);
 	template <typename T>
-	bool GetIntSf(double &res, const uint16_t &reg_addr, const uint16_t &reg_size,
+	bool GetRegister(double &res, const uint16_t &reg_addr, const uint16_t &reg_size,
 		const uint16_t &sf_addr);
 
 private:

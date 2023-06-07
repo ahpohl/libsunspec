@@ -15,12 +15,7 @@ bool Inverter::GetManufacturer(std::string &mfg)
 
 bool Inverter::GetAcPower(double &res)
 {
-	return GetIntSf<int16_t>(res, I10X_ADDR_W, I10X_SIZE_W, I10X_ADDR_W_SF);
-}
-
-bool Inverter::GetAcLifetimeEnergy(double &res)
-{
-	return GetIntSf<uint32_t>(res, I10X_ADDR_WH, I10X_SIZE_WH, I10X_ADDR_WH_SF);
+	return GetRegister<int16_t>(res, I10X_ADDR_W, I10X_SIZE_W, I10X_ADDR_W_SF);
 }
 
 bool Inverter::GetSiteEnergyTotal(uint64_t &res)

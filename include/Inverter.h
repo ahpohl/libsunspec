@@ -11,7 +11,6 @@ public:
 
 	/* Inverter model */
 	bool GetAcPower(double &res);
-	bool GetAcLifetimeEnergy(double &res);
 
 	/* Fronius register */
 	bool GetSiteEnergyTotal(uint64_t &res);
