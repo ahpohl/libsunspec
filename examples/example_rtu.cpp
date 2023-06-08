@@ -42,7 +42,7 @@ int main(int argc, char *argv[])
 	  std::cout << sun->GetErrorMessage() << std::endl;
 	  return EXIT_FAILURE;
   }
-  std::cout << "Site energy total: " << energy_total  << " Wh" << std::endl;
+  std::cout << "Site energy total: " << energy_total  << " kWh" << std::endl;
 
   std::cout.flags(old_settings);
   return EXIT_SUCCESS;
