@@ -1,3 +1,8 @@
+/**
+	@brief   Class to capture data from inverters
+	@author  Alexander Pohl <alex@ahpohl.com>
+*/
+
 #ifndef INVERTER_H_
 #define INVERTER_H_
 
@@ -6,13 +11,22 @@
 class Inverter: public SunSpec
 {
 public:
-	/* Common model */
+	/** Manufacturer
+
+	    @returns: e.g. Fronius
+	*/
 	bool GetManufacturer(std::string &str);
 
-	/* Inverter model */
+	/** Instantaneous AC power being produced from inverter
+
+	    @returns: AC power [W]
+	*/
 	bool GetAcPower(double &res);
 
-	/* Fronius register */
+	/** Instantaneous total site energy produced from inverter
+
+	    @returns: total site energy [kWh]
+	*/
 	bool GetSiteEnergyTotal(double &res);
 };
 

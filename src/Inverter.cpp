@@ -32,12 +32,6 @@ bool Inverter::GetAcPower(double &res)
 	return true;
 }
 
-/**
-	@brief:		Instantaneous Site Energy Total Produced from Inverter
-
-	@return:	Site Energy Total Produced [kWh]
-*/
-
 bool Inverter::GetSiteEnergyTotal(double &res)
 {
 	if (!GetRegister(F_Site_Energy_Total.res, F_Site_Energy_Total.reg, F_Site_Energy_Total.nb))

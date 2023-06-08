@@ -21,7 +21,7 @@ std::string SunSpec::GetErrorMessage(void) const
 	return ErrorMessage;
 }
 
-bool SunSpec::ConnectModeTcp(std::string ip_addr, int port = 502)
+bool SunSpec::ConnectModbusTcp(std::string ip_addr, int port = 502)
 {
 	if (ip_addr.empty()) {
 	    ErrorMessage = "IP address argument empty";
@@ -40,13 +40,13 @@ bool SunSpec::ConnectModeTcp(std::string ip_addr, int port = 502)
 	return true;
 }
 
-bool SunSpec::ConnectModeRtu(std::string device)
+bool SunSpec::ConnectModbusRtu(std::string device, unsigned int baud_rate = 9600)
 {
 	if (device.empty()) {
 	    ErrorMessage = "Serial device argument empty";
 	    return false;
 	}
-	Ctx = modbus_new_rtu(device.c_str(), 9600, 'N', 8, 1);
+	Ctx = modbus_new_rtu(device.c_str(), baud_rate, 'N', 8, 1);
 	if (Ctx == nullptr) {
 		ErrorMessage = "Unable to create the libmodbus context";
 		return false;
@@ -116,6 +116,7 @@ T SunSpec::ConvertRegister(const uint16_t *tab_reg, const uint16_t &size)
     return res;
 }
 
+/** Convert raw ModBus registers to a string */
 template <>
 std::string SunSpec::ConvertRegister(const uint16_t *tab_reg, const uint16_t &size)
 {
