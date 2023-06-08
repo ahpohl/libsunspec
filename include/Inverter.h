@@ -7,13 +7,13 @@ class Inverter: public Sunspec
 {
 public:
 	/* Common model */
-	bool GetManufacturer(std::string &mfg);
+	bool GetManufacturer(std::string &str);
 
 	/* Inverter model */
 	bool GetAcPower(double &res);
 
 	/* Fronius register */
-	bool GetSiteEnergyTotal(uint64_t &res);
+	bool GetSiteEnergyTotal(double &res);
 };
 
 #endif /* INVERTER_H_ */

@@ -36,7 +36,7 @@ int main(int argc, char *argv[])
   }
   std::cout << "AC power now: " << ac_power << " W" << std::endl;
 
-  uint64_t energy_total;
+  double energy_total;
   if (!sun->GetSiteEnergyTotal(energy_total))
   {
 	  std::cout << sun->GetErrorMessage() << std::endl;

@@ -1,3 +1,4 @@
+#include <cmath>
 #include "Sunspec.h"
 #include "SunspecModelIntSf.h"
 #include "Inverter.h"
@@ -6,18 +7,39 @@ using namespace CommonModel;
 using namespace InverterModel;
 using namespace FroniusRegister;
 
-bool Inverter::GetManufacturer(std::string &res)
+bool Inverter::GetManufacturer(std::string &str)
 {
-	return GetRegister<std::string>(res, C001_ADDR_Mn, C001_SIZE_Mn);
+	if (!GetRegister(C001_Mn.str, C001_Mn.reg, C001_Mn.nb)) {
+		return false;
+	}
+	str = C001_Mn.str;
+
+	return true;
 }
 
 bool Inverter::GetAcPower(double &res)
 {
-	return GetRegister<int16_t>(res, I10X_ADDR_W, I10X_SIZE_W, I10X_ADDR_W_SF);
+	if (!GetRegister(I10X_W.res, I10X_W.reg, I10X_W.nb))
+	{
+		return false;
+	}
+	if (!GetRegister(I10X_W_SF.res, I10X_W_SF.reg, I10X_W_SF.nb))
+	{
+		return false;
+	}
+	res = static_cast<double>(I10X_W.res) * pow(10, I10X_W_SF.res);
+
+	return true;
 }
 
-bool Inverter::GetSiteEnergyTotal(uint64_t &res)
+bool Inverter::GetSiteEnergyTotal(double &res)
 {
-	return GetRegister<uint64_t>(res, F_ADDR_Site_Energy_Total, F_SIZE_Site_Energy_Total);
+	if (!GetRegister(F_Site_Energy_Total.res, F_Site_Energy_Total.reg, F_Site_Energy_Total.nb))
+	{
+		return false;
+	}
+	res = static_cast<double>(F_Site_Energy_Total.res) * 0.001f;
+
+	return true;
 }
 

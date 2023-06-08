@@ -145,26 +145,8 @@ bool Sunspec::GetRegister(T &res, const uint16_t &reg_addr, const uint16_t &size
 	return true;
 }
 
-template bool Sunspec::GetRegister(std::string&, const uint16_t&, const uint16_t&);
-template bool Sunspec::GetRegister(uint64_t&, const uint16_t&, const uint16_t&);
-
-template <typename T>
-bool Sunspec::GetRegister(double &res, const uint16_t &reg_addr, const uint16_t &reg_size,
-	const uint16_t &sf_addr)
-{
-	T num;
-	if (!GetRegister<T>(num, reg_addr, reg_size))
-	{
-		return false;
-	}
-	int16_t sf = 0;
-	if (!GetRegister<int16_t>(sf, sf_addr, 1))
-	{
-		return false;
-	}
-	res = static_cast<double>(num) * pow(10, sf);
-
-    return true;
-}
-
-template bool Sunspec::GetRegister<int16_t>(double&, const uint16_t&, const uint16_t&, const uint16_t&);
+template bool Sunspec::GetRegister(int16_t &, const uint16_t &, const uint16_t &);
+template bool Sunspec::GetRegister(uint16_t &, const uint16_t &, const uint16_t &);
+template bool Sunspec::GetRegister(uint32_t &, const uint16_t &, const uint16_t &);
+template bool Sunspec::GetRegister(uint64_t &, const uint16_t &, const uint16_t &);
+template bool Sunspec::GetRegister(std::string &, const uint16_t &, const uint16_t &);
