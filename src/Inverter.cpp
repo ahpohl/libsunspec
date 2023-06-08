@@ -1,6 +1,6 @@
+#include <SunSpec.h>
+#include <SunSpecModelIntSf.h>
 #include <cmath>
-#include "Sunspec.h"
-#include "SunspecModelIntSf.h"
 #include "Inverter.h"
 
 using namespace CommonModel;
@@ -31,6 +31,12 @@ bool Inverter::GetAcPower(double &res)
 
 	return true;
 }
+
+/**
+	@brief:		Instantaneous Site Energy Total Produced from Inverter
+
+	@return:	Site Energy Total Produced [kWh]
+*/
 
 bool Inverter::GetSiteEnergyTotal(double &res)
 {

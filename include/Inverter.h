@@ -1,9 +1,9 @@
 #ifndef INVERTER_H_
 #define INVERTER_H_
 
-#include "Sunspec.h"
+#include "SunSpec.h"
 
-class Inverter: public Sunspec
+class Inverter: public SunSpec
 {
 public:
 	/* Common model */

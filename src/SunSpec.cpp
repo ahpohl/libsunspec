@@ -3,27 +3,25 @@
 #include <cstring>
 #include <cmath>
 #include <modbus/modbus.h>
-#include <Sunspec.h>
+#include <SunSpec.h>
 
-//#include "../src/Sunspec-impl.cpp"
-
-Sunspec::Sunspec(void) : Ctx(nullptr)
+SunSpec::SunSpec(void) : Ctx(nullptr)
 {
 
 }
 
-Sunspec::~Sunspec(void)
+SunSpec::~SunSpec(void)
 {
 	modbus_close(Ctx);
 	modbus_free(Ctx);
 }
 
-std::string Sunspec::GetErrorMessage(void) const
+std::string SunSpec::GetErrorMessage(void) const
 {
 	return ErrorMessage;
 }
 
-bool Sunspec::ConnectModeTcp(std::string ip_addr, int port = 502)
+bool SunSpec::ConnectModeTcp(std::string ip_addr, int port = 502)
 {
 	if (ip_addr.empty()) {
 	    ErrorMessage = "IP address argument empty";
@@ -42,7 +40,7 @@ bool Sunspec::ConnectModeTcp(std::string ip_addr, int port = 502)
 	return true;
 }
 
-bool Sunspec::ConnectModeRtu(std::string device)
+bool SunSpec::ConnectModeRtu(std::string device)
 {
 	if (device.empty()) {
 	    ErrorMessage = "Serial device argument empty";
@@ -64,12 +62,12 @@ bool Sunspec::ConnectModeRtu(std::string device)
 	return true;
 }
 
-void Sunspec::SetModbusDebug(const bool &debug)
+void SunSpec::SetModbusDebug(const bool &debug)
 {
 	modbus_set_debug(Ctx, debug);
 }
 
-bool Sunspec::SetRemoteId(const int &remote_id)
+bool SunSpec::SetRemoteId(const int &remote_id)
 {
 	if (remote_id <= 0) {
 	    ErrorMessage = "Remote ID must be greater than zero.";
@@ -82,12 +80,12 @@ bool Sunspec::SetRemoteId(const int &remote_id)
 	return true;
 }
 
-int Sunspec::GetRemoteId(void) const
+int SunSpec::GetRemoteId(void) const
 {
 	return modbus_get_slave(Ctx);
 }
 
-uint16_t *Sunspec::ReadRegister(const uint16_t &address, const uint16_t &size)
+uint16_t *SunSpec::ReadRegister(const uint16_t &address, const uint16_t &size)
 {
 	uint16_t *tab_reg = (uint16_t*) malloc(sizeof(uint16_t) * size);
 	if (!tab_reg) {
@@ -105,7 +103,7 @@ uint16_t *Sunspec::ReadRegister(const uint16_t &address, const uint16_t &size)
 }
 
 template <typename T>
-T Sunspec::ConvertRegister(const uint16_t *tab_reg, const uint16_t &size)
+T SunSpec::ConvertRegister(const uint16_t *tab_reg, const uint16_t &size)
 {
 	uint16_t tab_rev[size] = {0};
 	uint16_t *ptr = (uint16_t*) &tab_reg[size - 1];
@@ -119,7 +117,7 @@ T Sunspec::ConvertRegister(const uint16_t *tab_reg, const uint16_t &size)
 }
 
 template <>
-std::string Sunspec::ConvertRegister(const uint16_t *tab_reg, const uint16_t &size)
+std::string SunSpec::ConvertRegister(const uint16_t *tab_reg, const uint16_t &size)
 {
 	std::string str;
 
@@ -131,7 +129,7 @@ std::string Sunspec::ConvertRegister(const uint16_t *tab_reg, const uint16_t &si
 }
 
 template <typename T>
-bool Sunspec::GetRegister(T &res, const uint16_t &reg_addr, const uint16_t &size)
+bool SunSpec::GetRegister(T &res, const uint16_t &reg_addr, const uint16_t &size)
 {
 	uint16_t *tab_reg = nullptr;
 
@@ -145,8 +143,8 @@ bool Sunspec::GetRegister(T &res, const uint16_t &reg_addr, const uint16_t &size
 	return true;
 }
 
-template bool Sunspec::GetRegister(int16_t &, const uint16_t &, const uint16_t &);
-template bool Sunspec::GetRegister(uint16_t &, const uint16_t &, const uint16_t &);
-template bool Sunspec::GetRegister(uint32_t &, const uint16_t &, const uint16_t &);
-template bool Sunspec::GetRegister(uint64_t &, const uint16_t &, const uint16_t &);
-template bool Sunspec::GetRegister(std::string &, const uint16_t &, const uint16_t &);
+template bool SunSpec::GetRegister(int16_t &, const uint16_t &, const uint16_t &);
+template bool SunSpec::GetRegister(uint16_t &, const uint16_t &, const uint16_t &);
+template bool SunSpec::GetRegister(uint32_t &, const uint16_t &, const uint16_t &);
+template bool SunSpec::GetRegister(uint64_t &, const uint16_t &, const uint16_t &);
+template bool SunSpec::GetRegister(std::string &, const uint16_t &, const uint16_t &);

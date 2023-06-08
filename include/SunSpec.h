@@ -1,6 +1,10 @@
-/*
- *  SunSpec Alliance Specifications
- */
+/**
+	@brief:		This library provides methods to capture data from SunSpec compatible inverters, meters and batteries.
+
+				Supports both ModBus TCP and ModBus RTU protocols.
+
+	@author:	Alexander Pohl <alex@ahpohl.com>
+*/
 
 #ifndef SUNSPEC_H_
 #define SUNSPEC_H_
@@ -9,11 +13,11 @@
 #include <string>
 #include <modbus/modbus.h>
 
-class Sunspec
+class SunSpec
 {
 public:
-	Sunspec(void);
-	virtual ~Sunspec(void);
+	SunSpec(void);
+	virtual ~SunSpec(void);
 	std::string GetErrorMessage(void) const;
 	bool ConnectModeTcp(std::string ip_address, int port);
 	bool ConnectModeRtu(std::string device);
