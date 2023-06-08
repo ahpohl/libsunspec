@@ -38,7 +38,7 @@ namespace CommonModel
 
 	/** Options
 
-	    @returns: Firmware version of Datamanager
+	    @returns: i.e. firmware version of Datamanager
 	*/
 	struct { std::string str;  const uint16_t reg = 40037-1; const uint16_t nb = 8;  } C001_Opt;
 
@@ -53,7 +53,7 @@ namespace CommonModel
         If the inverter serial number is not supported, then two fallbacks are implemented that
         are still unique but may not match the inverter serial number printed on the nameplate:
 
-        1: serial of inverter controller (PMC) if supported
+        1: Serial of inverter controller (PMC) if supported
         2: Unique ID (UID) of inverter controller
 
         For SYMOHYBRID inverters the inverter serial number is not supported and this register
@@ -66,7 +66,7 @@ namespace CommonModel
 	*/
 	struct { std::string str;  const uint16_t reg = 40053-1; const uint16_t nb = 16; } C001_SN;
 
-	/** ModBus device address
+	/** Read ModBus device address
 
 	    @returns: 1-247
 	*/

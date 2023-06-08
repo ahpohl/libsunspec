@@ -11,12 +11,6 @@
 class Inverter: public SunSpec
 {
 public:
-	/** Manufacturer
-
-	    @returns: e.g. Fronius
-	*/
-	bool GetManufacturer(std::string &str);
-
 	/** Instantaneous AC power being produced from inverter
 
 	    @returns: AC power [W]

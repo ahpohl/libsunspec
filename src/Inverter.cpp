@@ -3,19 +3,8 @@
 #include <cmath>
 #include "Inverter.h"
 
-using namespace CommonModel;
 using namespace InverterModel;
 using namespace FroniusRegister;
-
-bool Inverter::GetManufacturer(std::string &str)
-{
-	if (!GetRegister(C001_Mn.str, C001_Mn.reg, C001_Mn.nb)) {
-		return false;
-	}
-	str = C001_Mn.str;
-
-	return true;
-}
 
 bool Inverter::GetAcPower(double &res)
 {

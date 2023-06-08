@@ -1,3 +1,8 @@
+/** @example example_rtu.cpp
+
+    This example shows how to connect to a SunSpec inverter in ModBus RTU serial mode.
+*/
+
 #include <iostream>
 #include <iomanip>
 #include <memory>
@@ -10,14 +15,16 @@ int main(int argc, char *argv[])
 
   std::unique_ptr<Inverter> sun(new Inverter());
   
-  if (!sun->ConnectModeRtu(device))
+  if (!sun->ConnectModbusRtu(device))
   {
     std::cout << sun->GetErrorMessage() << std::endl;
     return EXIT_FAILURE;
   }
 
-  std::ios::fmtflags old_settings = std::cout.flags();
-  std::cout.setf(std::ios::fixed, std::ios::floatfield);
+  if (!sun->IsSunSpecModBus()) {
+	  std::cout << sun->GetErrorMessage() << std::endl;
+	  return EXIT_FAILURE;
+  }
 
   std::string mfg;
   if (!sun->GetManufacturer(mfg))
@@ -26,6 +33,17 @@ int main(int argc, char *argv[])
 	  return EXIT_FAILURE;
   }
   std::cout << "Manufacturer: " << mfg << std::endl;
+
+  std::string model;
+  if (!sun->GetDeviceModel(model))
+  {
+	  std::cout << sun->GetErrorMessage() << std::endl;
+	  return EXIT_FAILURE;
+  }
+  std::cout << "Model: " << model << std::endl;
+
+  std::ios::fmtflags old_settings = std::cout.flags();
+  std::cout.setf(std::ios::fixed, std::ios::floatfield);
 
   double ac_power;
   if (!sun->GetAcPower(ac_power))

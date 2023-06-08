@@ -4,6 +4,9 @@
 #include <cmath>
 #include <modbus/modbus.h>
 #include <SunSpec.h>
+#include <SunSpecModelIntSf.h>
+
+using namespace CommonModel;
 
 SunSpec::SunSpec(void) : Ctx(nullptr)
 {
@@ -21,7 +24,7 @@ std::string SunSpec::GetErrorMessage(void) const
 	return ErrorMessage;
 }
 
-bool SunSpec::ConnectModbusTcp(std::string ip_addr, int port = 502)
+bool SunSpec::ConnectModbusTcp(std::string ip_addr, int port)
 {
 	if (ip_addr.empty()) {
 	    ErrorMessage = "IP address argument empty";
@@ -40,7 +43,7 @@ bool SunSpec::ConnectModbusTcp(std::string ip_addr, int port = 502)
 	return true;
 }
 
-bool SunSpec::ConnectModbusRtu(std::string device, unsigned int baud_rate = 9600)
+bool SunSpec::ConnectModbusRtu(std::string device, int baud_rate)
 {
 	if (device.empty()) {
 	    ErrorMessage = "Serial device argument empty";
@@ -149,3 +152,37 @@ template bool SunSpec::GetRegister(uint16_t &, const uint16_t &, const uint16_t 
 template bool SunSpec::GetRegister(uint32_t &, const uint16_t &, const uint16_t &);
 template bool SunSpec::GetRegister(uint64_t &, const uint16_t &, const uint16_t &);
 template bool SunSpec::GetRegister(std::string &, const uint16_t &, const uint16_t &);
+
+bool SunSpec::IsSunSpecModBus(void)
+{
+	uint64_t sid;
+	if (!GetRegister(sid, C001_SID.reg, C001_SID.nb)) {
+		return false;
+	}
+	if ( sid != 0x53756e53 ) {
+		ErrorMessage = "Device is not compatible with the ModBus SunSpec protocol.";
+		return false;
+	}
+
+	return true;
+}
+
+bool SunSpec::GetManufacturer(std::string &str)
+{
+	if (!GetRegister(C001_Mn.str, C001_Mn.reg, C001_Mn.nb)) {
+		return false;
+	}
+	str = C001_Mn.str;
+
+	return true;
+}
+
+bool SunSpec::GetDeviceModel(std::string &str)
+{
+	if (!GetRegister(C001_Md.str, C001_Md.reg, C001_Md.nb)) {
+		return false;
+	}
+	str = C001_Md.str;
+
+	return true;
+}

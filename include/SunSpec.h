@@ -30,10 +30,10 @@ public:
         The ConnectModbusTcp() function shall allocate and initialize a modbus_t structure
         to communicate with a ModBus TCP IPv4 server.
 
-        @param ip_address IP address of the server to which the client wants to establish a connection,
-        @param port port argument is the TCP port to use, default 502.
+        @param ip_address IP address of the server to which the client wants to establish a connection
+        @param port port argument is the TCP port to use
     */
-	bool ConnectModbusTcp(std::string ip_address, int port);
+	bool ConnectModbusTcp(std::string ip_address, int port = 502);
 
 	/** Create a libmodbus context for RTU serial
 
@@ -41,9 +41,9 @@ public:
 	    to communicate in RTU mode on a serial line.
 
 	    @param device device specifies the name of the serial port
-	    @param baud_rate baud rate, defaults to 9600
+	    @param baud_rate baud rate (9600 or 19200)
 	*/
-	bool ConnectModbusRtu(std::string device, unsigned int baud_rate);
+	bool ConnectModbusRtu(std::string device, int baud_rate = 9600);
 
 	/**  Set/clear debug flag of the ModBus context (very verbose) */
 	void SetModbusDebug(const bool &debug);
@@ -70,6 +70,22 @@ public:
 	*/
 	int GetRemoteId(void) const;
 
+	/** Checks if the device is SunSpec ModBus protocol compatible */
+	bool IsSunSpecModBus(void);
+
+	/** Manufacturer
+
+	    @returns: e.g. Fronius
+	*/
+	bool GetManufacturer(std::string &str);
+
+	/** Device model
+
+	    @returns: i.e. IG+150V [3p]
+	*/
+	bool GetDeviceModel(std::string &str);
+
+protected:
 	/** Get a ModBus register and convert to number or string
 
 	    Method automatically converts the raw register value(s) to the destination format
