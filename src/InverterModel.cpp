@@ -14,7 +14,7 @@ bool InverterModel::IsSunSpecInverter(void)
 	if (!GetRegister(id, I10X_ID.reg, I10X_ID.nb)) {
 		return false;
 	}
-	if ( id != 1 ) {
+	if ( !((id == 101) || (id == 102) || (id == 103)) ) {
 		ErrorMessage = std::string("Invalid ID of Inverter Model block (") + std::to_string(id) + ")";
 		return false;
 	}

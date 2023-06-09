@@ -70,13 +70,14 @@ public:
 	*/
 	bool GetModBusAddress(int &slave_id);
 
-	/** Checks if the device is SunSpec ModBus protocol compatible */
-	bool IsSunSpecModBus(void);
-
 	/** Manufacturer
 
 	    @returns i.e. Fronius
 	*/
+
+	/** Checks if the device is SunSpec ModBus protocol compatible */
+	bool IsSunSpecModBus(void);
+
 	bool GetManufacturer(std::string &str);
 
 	/** Device model
