@@ -3,12 +3,12 @@
 	@author  Alexander Pohl <alex@ahpohl.com>
 */
 
-#ifndef INVERTER_H_
-#define INVERTER_H_
+#ifndef INVERTERMODEL_H_
+#define INVERTERMODEL_H_
 
 #include "SunSpec.h"
 
-class Inverter: public SunSpec
+class InverterModel: virtual public SunSpec
 {
 public:
 	/** Checks if the inverter is SunSpec ModBus protocol compatible */
@@ -21,4 +21,4 @@ public:
 	bool GetAcPower(double &res);
 };
 
-#endif /* INVERTER_H_ */
+#endif /* INVERTERMODEL_H_ */

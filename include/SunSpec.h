@@ -116,12 +116,12 @@ protected:
 	template <typename T>
 	bool GetRegister(T &res, const uint16_t &reg_addr, const uint16_t &size);
 
+	/** String to hold the error message */
+	std::string ErrorMessage;
+
 private:
 	/** Structure that holds the ModBus connection */
 	modbus_t *Ctx;
-
-	/** String to hold the error message */
-	std::string ErrorMessage;
 
 	/** Read raw ModBus registers from the device
 

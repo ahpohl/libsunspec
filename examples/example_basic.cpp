@@ -1,21 +1,21 @@
-/** @example example_inverter.cpp
+/** @example example_basic.cpp
 
-    Demonstration of the SunSpec Inverter Model.
+    Get instantaneous energy, power and MPPT voltages from a Fronius inverter
 
     Connection in ModBus RTU serial mode.
 */
 
+#include <FroniusInverter.h>
 #include <iostream>
 #include <iomanip>
 #include <memory>
 
-#include "../include/Inverter.h"
 
 int main(int argc, char *argv[])
 {
   const std::string device = "/dev/serial/by-id/usb-FTDI_FT232R_USB_UART_AC009Y6C-if00-port0";
 
-  std::unique_ptr<Inverter> sun(new Inverter());
+  std::unique_ptr<FroniusInverter> sun(new FroniusInverter());
   
   if (!sun->ConnectModbusRtu(device))
   {

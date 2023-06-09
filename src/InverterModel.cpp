@@ -1,12 +1,11 @@
+#include <InverterModel.h>
 #include <SunSpec.h>
 #include <SunSpecModelIntSf.h>
 #include <cmath>
-#include "Inverter.h"
 
-using namespace InverterModel;
-using namespace FroniusRegister;
+using namespace InverterRegisterMap;
 
-bool Inverter::IsSunSpecInverter(void)
+bool InverterModel::IsSunSpecInverter(void)
 {
 	if (!IsSunSpecModBus()) {
 		return false;
@@ -27,9 +26,11 @@ bool Inverter::IsSunSpecInverter(void)
 		ErrorMessage = std::string("Invalid length of Inverter Model block (") + std::to_string(length) + ")";
 		return false;
 	}
+
+	return true;
 }
 
-bool Inverter::GetAcPower(double &res)
+bool InverterModel::GetAcPower(double &res)
 {
 	if (!GetRegister(I10X_W.res, I10X_W.reg, I10X_W.nb))
 	{
@@ -43,4 +44,3 @@ bool Inverter::GetAcPower(double &res)
 
 	return true;
 }
-

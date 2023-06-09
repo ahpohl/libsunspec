@@ -1,9 +1,10 @@
-#include <Fronius.h>
+#include <FroniusRegister.h>
+#include <SunSpec.h>
 #include <SunSpecModelIntSf.h>
 
-using namespace FroniusRegister;
+using namespace FroniusRegisterMap;
 
-bool Fronius::GetSiteEnergyTotal(double &res)
+bool FroniusRegister::GetSiteEnergyTotal(double &res)
 {
 	if (!GetRegister(F_Site_Energy_Total.res, F_Site_Energy_Total.reg, F_Site_Energy_Total.nb))
 	{

@@ -3,12 +3,12 @@
 	@author  Alexander Pohl <alex@ahpohl.com>
 */
 
-#ifndef FRONIUS_H_
-#define FRONIUS_H_
+#ifndef FRONIUSREGISTER_H_
+#define FRONIUSREGISTER_H_
 
 #include "SunSpec.h"
 
-class Fronius: public SunSpec
+class FroniusRegister: virtual public SunSpec
 {
 public:
 	/** Instantaneous total site energy produced from inverter
@@ -18,4 +18,4 @@ public:
 	bool GetSiteEnergyTotal(double &res);
 };
 
-#endif /* FRONIUS_H_ */
+#endif /* FRONIUSREGISTER_H_ */

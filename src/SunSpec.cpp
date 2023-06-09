@@ -6,7 +6,7 @@
 #include <SunSpec.h>
 #include <SunSpecModelIntSf.h>
 
-using namespace CommonModel;
+using namespace CommonRegisterMap;
 
 SunSpec::SunSpec(void) : Ctx(nullptr)
 {

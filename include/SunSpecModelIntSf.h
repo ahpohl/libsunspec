@@ -4,7 +4,7 @@
 #include <cstdint>
 
 /** @brief Register description of the Common SunSpec model */
-namespace CommonModel
+namespace CommonRegisterMap
 {
 	/** Well-known value. Uniquely identifies this as a SunSpec ModBus map.
 
@@ -77,7 +77,7 @@ namespace CommonModel
 };
 
 /** @brief Register description of the Inverter SunSpec model */
-namespace InverterModel
+namespace InverterRegisterMap
 {
 	/** Uniquely identifies this as a SunSpec inverter ModBus map.
 
@@ -251,7 +251,7 @@ namespace InverterModel
 };
 
 /** @brief Register description of the Fronius specific registers */
-namespace FroniusRegister
+namespace FroniusRegisterMap
 {
 	/** Delete stored ratings of the current inverter by writing 0xFFFF. */
 	struct { uint16_t res = 0; const uint16_t reg = 212-1; const uint16_t nb = 1; } F_Delete_Data;
