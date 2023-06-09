@@ -36,13 +36,16 @@ namespace CommonModel
 	*/
 	struct { std::string str;  const uint16_t reg = 40021-1; const uint16_t nb = 16; } C001_Md;
 
-	/** Options
+	/** SW version of installed option
 
-	    @returns: i.e. firmware version of Datamanager
+	    @returns i.e. Firmware version of Datamanager
 	*/
 	struct { std::string str;  const uint16_t reg = 40037-1; const uint16_t nb = 8;  } C001_Opt;
 
-	/** SW version of inverter */
+	/** SW version of main device
+
+	    @returns i.e. Firmware version of inverter, meter, battery etc.
+	*/
 	struct { std::string str;  const uint16_t reg = 40045-1; const uint16_t nb = 8;  } C001_Vr;
 
 	/** Serial number of the inverter

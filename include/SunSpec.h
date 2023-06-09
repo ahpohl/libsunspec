@@ -48,42 +48,60 @@ public:
 	/**  Set/clear debug flag of the ModBus context (very verbose) */
 	void SetModbusDebug(const bool &debug);
 
-	/** Sets the slave number in the libmodbus context
+	/** Sets the ModBus device address (slave ID)
 
-	    The SetRemoteId() function sets the slave number in the libmodbus context. It is usually only required
+	    The SetModBusAddress() function sets the slave number in the libmodbus context. It is usually only required
 	    to set the slave ID in RTU. The meaning of this ID will be different if your program acts as client (master)
 	    or server (slave).
 
-        As RTU client, SetRemoteId() sets the ID of the remote device you want to communicate. Be sure to set the
+        As RTU client, SetModBusAddress() sets the ID of the remote device you want to communicate. Be sure to set the
         slave ID before issuing any ModBus requests on the serial bus. If you communicate with several servers
         (slaves), you can set the slave ID of the remote device before each request.
 
 	    In TCP, the slave number is only required if the message must reach a device on a serial network.
 
-	    @param remote_id ModBus device address (1-247)
+	    @param slave_id ModBus device address (1-247), default (1)
 	*/
-	bool SetRemoteId(const int &remote_id);
+	bool SetModBusAddress(const int slave_id = 1);
 
-	/** Get the slave number in the libmodbus context
+	/** Reads ModBus device address (slave ID)
 
-	    @returns ModBus device address (1-247)
+	    @returns: 1-247
 	*/
-	int GetRemoteId(void) const;
+	bool GetModBusAddress(int &slave_id);
 
 	/** Checks if the device is SunSpec ModBus protocol compatible */
 	bool IsSunSpecModBus(void);
 
 	/** Manufacturer
 
-	    @returns: e.g. Fronius
+	    @returns i.e. Fronius
 	*/
 	bool GetManufacturer(std::string &str);
 
 	/** Device model
 
-	    @returns: i.e. IG+150V [3p]
+	    @returns i.e. IG+150V [3p]
 	*/
 	bool GetDeviceModel(std::string &str);
+
+	/** SW version of installed option
+
+	    @returns i.e. Firmware version of Datamanager
+	*/
+	bool GetOptionFwVersion(std::string &str);
+
+	/** SW version of main device
+
+	    @returns i.e. Firmware version of inverter, meter, battery etc.
+	*/
+	bool GetDeviceFwVersion(std::string &str);
+
+	/** Serial number of the device
+
+		@returns Serial number
+	*/
+	bool GetSerialNumber(std::string &str);
 
 protected:
 	/** Get a ModBus register and convert to number or string

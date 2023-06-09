@@ -1,6 +1,8 @@
-/** @example example_rtu.cpp
+/** @example example_inverter.cpp
 
-    This example shows how to connect to a SunSpec inverter in ModBus RTU serial mode.
+    Demonstration of the SunSpec Inverter Model.
+
+    Connection in ModBus RTU serial mode.
 */
 
 #include <iostream>
@@ -20,27 +22,6 @@ int main(int argc, char *argv[])
     std::cout << sun->GetErrorMessage() << std::endl;
     return EXIT_FAILURE;
   }
-
-  if (!sun->IsSunSpecModBus()) {
-	  std::cout << sun->GetErrorMessage() << std::endl;
-	  return EXIT_FAILURE;
-  }
-
-  std::string mfg;
-  if (!sun->GetManufacturer(mfg))
-  {
-	  std::cout << sun->GetErrorMessage() << std::endl;
-	  return EXIT_FAILURE;
-  }
-  std::cout << "Manufacturer: " << mfg << std::endl;
-
-  std::string model;
-  if (!sun->GetDeviceModel(model))
-  {
-	  std::cout << sun->GetErrorMessage() << std::endl;
-	  return EXIT_FAILURE;
-  }
-  std::cout << "Model: " << model << std::endl;
 
   std::ios::fmtflags old_settings = std::cout.flags();
   std::cout.setf(std::ios::fixed, std::ios::floatfield);

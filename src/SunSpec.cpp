@@ -59,7 +59,7 @@ bool SunSpec::ConnectModbusRtu(std::string device, int baud_rate)
 	    	+ modbus_strerror(errno) + " (" + std::to_string(errno) + ")";
 		return false;
 	}
-	if (!SetRemoteId(1)) {
+	if (!SetModBusAddress()) {
 		return false;
 	}
 	return true;
@@ -70,22 +70,27 @@ void SunSpec::SetModbusDebug(const bool &debug)
 	modbus_set_debug(Ctx, debug);
 }
 
-bool SunSpec::SetRemoteId(const int &remote_id)
+bool SunSpec::SetModBusAddress(const int slave_id)
 {
-	if (remote_id <= 0) {
-	    ErrorMessage = "Remote ID must be greater than zero.";
+	if ( (slave_id < 1) || (slave_id > 247) ) {
+	    ErrorMessage = std::string("Invalid slave ID (") + std::to_string(slave_id) + "). ID must be in the range (1-247)";
 	    return false;
 	}
-	if (modbus_set_slave(Ctx, remote_id)) {
-		ErrorMessage = "Invalid remote ID";
+	if (modbus_set_slave(Ctx, slave_id)) {
+		ErrorMessage = "Invalid slave ID";
 		return false;
 	}
 	return true;
 }
 
-int SunSpec::GetRemoteId(void) const
+bool SunSpec::GetModBusAddress(int &slave_id)
 {
-	return modbus_get_slave(Ctx);
+	if (!GetRegister(C001_DA.res, C001_DA.reg, C001_DA.nb)) {
+		return false;
+	}
+	slave_id = static_cast<int>(C001_DA.res);
+
+	return true;
 }
 
 uint16_t *SunSpec::ReadRegister(const uint16_t &address, const uint16_t &size)
@@ -183,6 +188,36 @@ bool SunSpec::GetDeviceModel(std::string &str)
 		return false;
 	}
 	str = C001_Md.str;
+
+	return true;
+}
+
+bool SunSpec::GetOptionFwVersion(std::string &str)
+{
+	if (!GetRegister(C001_Opt.str, C001_Opt.reg, C001_Opt.nb)) {
+		return false;
+	}
+	str = C001_Opt.str;
+
+	return true;
+}
+
+bool SunSpec::GetDeviceFwVersion(std::string &str)
+{
+	if (!GetRegister(C001_Vr.str, C001_Vr.reg, C001_Vr.nb)) {
+		return false;
+	}
+	str = C001_Vr.str;
+
+	return true;
+}
+
+bool SunSpec::GetSerialNumber(std::string &str)
+{
+	if (!GetRegister(C001_SN.str, C001_SN.reg, C001_SN.nb)) {
+		return false;
+	}
+	str = C001_SN.str;
 
 	return true;
 }
