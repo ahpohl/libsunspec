@@ -11,17 +11,14 @@
 class Inverter: public SunSpec
 {
 public:
+	/** Checks if the inverter is SunSpec ModBus protocol compatible */
+	bool IsSunSpecInverter(void);
+
 	/** Instantaneous AC power being produced from inverter
 
 	    @returns AC power [W]
 	*/
 	bool GetAcPower(double &res);
-
-	/** Instantaneous total site energy produced from inverter
-
-	    @returns total site energy [kWh]
-	*/
-	bool GetSiteEnergyTotal(double &res);
 };
 
 #endif /* INVERTER_H_ */

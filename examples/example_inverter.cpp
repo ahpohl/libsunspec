@@ -23,6 +23,11 @@ int main(int argc, char *argv[])
     return EXIT_FAILURE;
   }
 
+  if (!sun->IsSunSpecInverter()) {
+	  std::cout << sun->GetErrorMessage() << std::endl;
+	  return EXIT_FAILURE;
+  }
+
   std::ios::fmtflags old_settings = std::cout.flags();
   std::cout.setf(std::ios::fixed, std::ios::floatfield);
 
@@ -35,6 +40,7 @@ int main(int argc, char *argv[])
   std::cout.precision(0);
   std::cout << "AC power now: " << ac_power << " W" << std::endl;
 
+  /*
   double energy_total;
   if (!sun->GetSiteEnergyTotal(energy_total))
   {
@@ -43,6 +49,7 @@ int main(int argc, char *argv[])
   }
   std::cout.precision(3);
   std::cout << "Site energy total: " << energy_total  << " kWh" << std::endl;
+  */
 
   std::cout.flags(old_settings);
   return EXIT_SUCCESS;

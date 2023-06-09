@@ -6,6 +6,29 @@
 using namespace InverterModel;
 using namespace FroniusRegister;
 
+bool Inverter::IsSunSpecInverter(void)
+{
+	if (!IsSunSpecModBus()) {
+		return false;
+	}
+	uint16_t id;
+	if (!GetRegister(id, I10X_ID.reg, I10X_ID.nb)) {
+		return false;
+	}
+	if ( id != 1 ) {
+		ErrorMessage = std::string("Invalid ID of Inverter Model block (") + std::to_string(id) + ")";
+		return false;
+	}
+	uint16_t length;
+	if (!GetRegister(length, I10X_L.reg, I10X_L.nb)) {
+		return false;
+	}
+	if ( length != 50 ) {
+		ErrorMessage = std::string("Invalid length of Inverter Model block (") + std::to_string(length) + ")";
+		return false;
+	}
+}
+
 bool Inverter::GetAcPower(double &res)
 {
 	if (!GetRegister(I10X_W.res, I10X_W.reg, I10X_W.nb))
@@ -17,17 +40,6 @@ bool Inverter::GetAcPower(double &res)
 		return false;
 	}
 	res = static_cast<double>(I10X_W.res) * pow(10, I10X_W_SF.res);
-
-	return true;
-}
-
-bool Inverter::GetSiteEnergyTotal(double &res)
-{
-	if (!GetRegister(F_Site_Energy_Total.res, F_Site_Energy_Total.reg, F_Site_Energy_Total.nb))
-	{
-		return false;
-	}
-	res = static_cast<double>(F_Site_Energy_Total.res) * 0.001f;
 
 	return true;
 }

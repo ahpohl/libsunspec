@@ -160,12 +160,28 @@ template bool SunSpec::GetRegister(std::string &, const uint16_t &, const uint16
 
 bool SunSpec::IsSunSpecModBus(void)
 {
-	uint64_t sid;
+	uint32_t sid;
 	if (!GetRegister(sid, C001_SID.reg, C001_SID.nb)) {
 		return false;
 	}
 	if ( sid != 0x53756e53 ) {
 		ErrorMessage = "Device is not compatible with the ModBus SunSpec protocol.";
+		return false;
+	}
+	uint16_t id;
+	if (!GetRegister(id, C001_ID.reg, C001_ID.nb)) {
+		return false;
+	}
+	if ( id != 1 ) {
+		ErrorMessage = std::string("Invalid ID of Common Model block (") + std::to_string(id) + ")";
+		return false;
+	}
+	uint16_t length;
+	if (!GetRegister(length, C001_L.reg, C001_L.nb)) {
+		return false;
+	}
+	if ( length != 65 ) {
+		ErrorMessage = std::string("Invalid length of Common Model block (") + std::to_string(length) + ")";
 		return false;
 	}
 
