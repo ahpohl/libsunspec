@@ -43,59 +43,59 @@ int main(int argc, char *argv[])
   std::cout << "AC total current: " << current_total << " A" << std::endl;
 
   /* only for 3-phase inverter
-  double current_pha;
-  if (!inverter->GetAcCurrentPhaseA(current_pha))
-  {
-	  std::cout << inverter->GetErrorMessage() << std::endl;
-	  return EXIT_FAILURE;
-  }
-  std::cout.precision(2);
-  std::cout << "AC phase-A current: " << current_pha << " A" << std::endl;
+	  double current_pha;
+	  if (!inverter->GetAcCurrentPhaseA(current_pha))
+	  {
+		  std::cout << inverter->GetErrorMessage() << std::endl;
+		  return EXIT_FAILURE;
+	  }
+	  std::cout.precision(2);
+	  std::cout << "AC phase-A current: " << current_pha << " A" << std::endl;
 
-  double current_phb;
-  if (!inverter->GetAcCurrentPhaseB(current_phb))
-  {
-	  std::cout << inverter->GetErrorMessage() << std::endl;
-	  return EXIT_FAILURE;
-  }
-  std::cout.precision(2);
-  std::cout << "AC phase-B current: " << current_pha << " A" << std::endl;
+	  double current_phb;
+	  if (!inverter->GetAcCurrentPhaseB(current_phb))
+	  {
+		  std::cout << inverter->GetErrorMessage() << std::endl;
+		  return EXIT_FAILURE;
+	  }
+	  std::cout.precision(2);
+	  std::cout << "AC phase-B current: " << current_pha << " A" << std::endl;
 
-  double current_phc;
-  if (!inverter->GetAcCurrentPhaseC(current_phc))
-  {
-	  std::cout << inverter->GetErrorMessage() << std::endl;
-	  return EXIT_FAILURE;
-  }
-  std::cout.precision(2);
-  std::cout << "AC phase-C current: " << current_pha << " A" << std::endl;
+	  double current_phc;
+	  if (!inverter->GetAcCurrentPhaseC(current_phc))
+	  {
+		  std::cout << inverter->GetErrorMessage() << std::endl;
+		  return EXIT_FAILURE;
+	  }
+	  std::cout.precision(2);
+	  std::cout << "AC phase-C current: " << current_pha << " A" << std::endl;
 
-  double voltage_ab;
-  if (!inverter->GetAcVoltagePhaseAB(voltage_ab))
-  {
-	  std::cout << inverter->GetErrorMessage() << std::endl;
-	  return EXIT_FAILURE;
-  }
-  std::cout.precision(2);
-  std::cout << "AC phase-AB voltage : " << voltage_ab << " V" << std::endl;
+	  double voltage_ab;
+	  if (!inverter->GetAcVoltagePhaseAB(voltage_ab))
+	  {
+		  std::cout << inverter->GetErrorMessage() << std::endl;
+		  return EXIT_FAILURE;
+	  }
+	  std::cout.precision(2);
+	  std::cout << "AC phase-AB voltage : " << voltage_ab << " V" << std::endl;
 
-  double voltage_bc;
-  if (!inverter->GetAcVoltagePhaseBC(voltage_bc))
-  {
-	  std::cout << inverter->GetErrorMessage() << std::endl;
-	  return EXIT_FAILURE;
-  }
-  std::cout.precision(2);
-  std::cout << "AC phase-BC voltage : " << voltage_bc << " V" << std::endl;
+	  double voltage_bc;
+	  if (!inverter->GetAcVoltagePhaseBC(voltage_bc))
+	  {
+		  std::cout << inverter->GetErrorMessage() << std::endl;
+		  return EXIT_FAILURE;
+	  }
+	  std::cout.precision(2);
+	  std::cout << "AC phase-BC voltage : " << voltage_bc << " V" << std::endl;
 
-  double voltage_ca;
-  if (!inverter->GetAcVoltagePhaseCA(voltage_ca))
-  {
-	  std::cout << inverter->GetErrorMessage() << std::endl;
-	  return EXIT_FAILURE;
-  }
-  std::cout.precision(2);
-  std::cout << "AC phase-CA voltage : " << voltage_ca << " V" << std::endl;
+	  double voltage_ca;
+	  if (!inverter->GetAcVoltagePhaseCA(voltage_ca))
+	  {
+		  std::cout << inverter->GetErrorMessage() << std::endl;
+		  return EXIT_FAILURE;
+	  }
+	  std::cout.precision(2);
+	  std::cout << "AC phase-CA voltage : " << voltage_ca << " V" << std::endl;
   */
 
   double voltage_pha;
@@ -108,23 +108,23 @@ int main(int argc, char *argv[])
   std::cout << "AC phase-A voltage : " << voltage_pha << " V" << std::endl;
 
   /* only for 3-phase inverter
-  double voltage_phb;
-  if (!inverter->GetAcVoltagePhaseB(voltage_phb))
-  {
-	  std::cout << inverter->GetErrorMessage() << std::endl;
-	  return EXIT_FAILURE;
-  }
-  std::cout.precision(2);
-  std::cout << "AC phase-B voltage : " << voltage_phb << " V" << std::endl;
+	  double voltage_phb;
+	  if (!inverter->GetAcVoltagePhaseB(voltage_phb))
+	  {
+		  std::cout << inverter->GetErrorMessage() << std::endl;
+		  return EXIT_FAILURE;
+	  }
+	  std::cout.precision(2);
+	  std::cout << "AC phase-B voltage : " << voltage_phb << " V" << std::endl;
 
-  double voltage_phc;
-  if (!inverter->GetAcVoltagePhaseC(voltage_phc))
-  {
-	  std::cout << inverter->GetErrorMessage() << std::endl;
-	  return EXIT_FAILURE;
-  }
-  std::cout.precision(2);
-  std::cout << "AC phase-C voltage : " << voltage_phc << " V" << std::endl;
+	  double voltage_phc;
+	  if (!inverter->GetAcVoltagePhaseC(voltage_phc))
+	  {
+		  std::cout << inverter->GetErrorMessage() << std::endl;
+		  return EXIT_FAILURE;
+	  }
+	  std::cout.precision(2);
+	  std::cout << "AC phase-C voltage : " << voltage_phc << " V" << std::endl;
   */
 
   double ac_power;

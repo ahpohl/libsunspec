@@ -8,19 +8,19 @@ namespace CommonRegisterMap
 {
 	/** Well-known value. Uniquely identifies this as a SunSpec ModBus map.
 
-	    @returns: 0x53756e53 ('SunS')
+	    @returns 0x53756e53 ('SunS')
 	*/
 	struct { uint32_t res = 0; const uint16_t reg = 40001-1; const uint16_t nb = 2;  } C001_SID;
 
     /** Well-known value. Uniquely identifies this as a SunSpec Common Model block
 
-     	@returns: 1
+     	@returns 1
     */
 	struct { uint16_t res = 0; const uint16_t reg = 40003-1; const uint16_t nb = 1;  } C001_ID;
 
 	/** Length of Common Model block.
 
-	    @returns: 65
+	    @returns 65
 	*/
 	struct { uint16_t res = 0; const uint16_t reg = 40004-1; const uint16_t nb = 1;  } C001_L;
 
@@ -32,7 +32,7 @@ namespace CommonRegisterMap
 
 	/** Device model
 
-	    @returns: i.e. IG+150V [3p]
+	    @returns i.e. IG+150V [3p]
 	*/
 	struct { std::string str;  const uint16_t reg = 40021-1; const uint16_t nb = 16; } C001_Md;
 
@@ -71,7 +71,7 @@ namespace CommonRegisterMap
 
 	/** Read ModBus device address
 
-	    @returns: 1-247
+	    @returns 1-247
 	*/
 	struct { uint16_t res = 0; const uint16_t reg = 40069-1; const uint16_t nb = 1;  } C001_DA;
 };
@@ -81,15 +81,15 @@ namespace InverterRegisterMap
 {
 	/** Uniquely identifies this as a SunSpec inverter ModBus map.
 
-	    @returns: 101: single phase
-	              102: split phase
-	              103: three phase
+	    @returns 101: single phase
+	             102: split phase
+	             103: three phase
 	*/
 	struct { uint16_t res = 0; const uint16_t reg = 40070-1; const uint16_t nb = 1; } I10X_ID;
 
 	/** Length of inverter model block.
 
-	    @returns: 50
+	    @returns 50
 	 */
 	struct { uint16_t res = 0; const uint16_t reg = 40071-1; const uint16_t nb = 1; } I10X_L;
 
@@ -167,31 +167,31 @@ namespace InverterRegisterMap
 
 	/** DC current value [A]
 
-	    Not supported if multiple DC inputs; current can be found in Multiple MPPT model
+	    @note Not supported if multiple DC inputs; current can be found in Multiple MPPT model
 	*/
 	struct { uint16_t res = 0; const uint16_t reg = 40097-1; const uint16_t nb = 1; } I10X_DCA;
 
 	/** DC current scale factor
 
-	    Not supported if multiple DC inputs.
+	    @note Not supported if multiple DC inputs.
 	*/
 	struct { int16_t  res = 0; const uint16_t reg = 40098-1; const uint16_t nb = 1; } I10X_DCA_SF;
 
 	/** DC voltage value [V]
 
-	    Not supported if multiple DC inputs; voltage can be found in Multiple MPPT model
+	    @note Not supported if multiple DC inputs; voltage can be found in Multiple MPPT model
 	*/
 	struct { uint16_t res = 0; const uint16_t reg = 40099-1; const uint16_t nb = 1; } I10X_DCV;
 
 	/** DC voltage scale factor
 
-	    Not supported if multiple DC inputs.
+	    @note Not supported if multiple DC inputs.
 	*/
 	struct { int16_t  res = 0; const uint16_t reg = 40100-1; const uint16_t nb = 1; } I10X_DCV_SF;
 
 	/** DC power value [W]
 
-	    Total power of all DC inputs.
+	    @note Total power of all DC inputs.
 	*/
 	struct { int16_t  res = 0; const uint16_t reg = 40101-1; const uint16_t nb = 1; } I10X_DCW;
 
