@@ -250,6 +250,40 @@ namespace InverterRegisterMap
 	struct { uint32_t res = 0; const uint16_t reg = 40120-1; const uint16_t nb = 2; } I10X_EvtVnd4;
 };
 
+/** @brief Register description of the Multi MPPT Model registers */
+namespace MultiMpptRegisterMap
+{
+	struct { uint16_t res = 0; const uint16_t reg = 40254; const uint16_t nb = 1; } I160_ID;
+	struct { uint16_t res = 0; const uint16_t reg = 40255; const uint16_t nb = 1; } I160_L;
+	struct { int16_t  res = 0; const uint16_t reg = 40256; const uint16_t nb = 1; } I160_DCA_SF;
+	struct { int16_t  res = 0; const uint16_t reg = 40257; const uint16_t nb = 1; } I160_DCV_SF;
+	struct { int16_t  res = 0; const uint16_t reg = 40258; const uint16_t nb = 1; } I160_DCW_SF;
+	struct { int16_t  res = 0; const uint16_t reg = 40259; const uint16_t nb = 1; } I160_DCWH_SF;
+	struct { uint32_t res = 0; const uint16_t reg = 40260; const uint16_t nb = 2; } I160_Evt;
+	struct { uint16_t res = 0; const uint16_t reg = 40262; const uint16_t nb = 1; } I160_N;
+	struct { uint16_t res = 0; const uint16_t reg = 40263; const uint16_t nb = 1; } I160_TmsPer;
+	struct { uint16_t res = 0; const uint16_t reg = 40264; const uint16_t nb = 1; } I160_1_ID;
+	struct { std::string str;  const uint16_t reg = 40265; const uint16_t nb = 8; } I160_1_IDStr;
+	struct { uint16_t res = 0; const uint16_t reg = 40273; const uint16_t nb = 1; } I160_1_DCA;
+	struct { uint16_t res = 0; const uint16_t reg = 40274; const uint16_t nb = 1; } I160_1_DCV;
+	struct { uint16_t res = 0; const uint16_t reg = 40275; const uint16_t nb = 1; } I160_1_DCW;
+	struct { uint32_t res = 0; const uint16_t reg = 40276; const uint16_t nb = 2; } I160_1_DCWH;
+	struct { uint32_t res = 0; const uint16_t reg = 40278; const uint16_t nb = 2; } I160_1_Tms;
+	struct { int16_t  res = 0; const uint16_t reg = 40280; const uint16_t nb = 1; } I160_1_Tmp;
+	struct { uint16_t res = 0; const uint16_t reg = 40281; const uint16_t nb = 1; } I160_1_DCSt;
+	struct { uint32_t res = 0; const uint16_t reg = 40282; const uint16_t nb = 2; } I160_1_DCEvt;
+	struct { uint16_t res = 0; const uint16_t reg = 40284; const uint16_t nb = 1; } I160_2_ID;
+	struct { std::string str;  const uint16_t reg = 40285; const uint16_t nb = 8; } I160_2_IDStr;
+	struct { uint16_t res = 0; const uint16_t reg = 40293; const uint16_t nb = 1; } I160_2_DCA;
+	struct { uint16_t res = 0; const uint16_t reg = 40294; const uint16_t nb = 1; } I160_2_DCV;
+	struct { uint16_t res = 0; const uint16_t reg = 40295; const uint16_t nb = 1; } I160_2_DCW;
+	struct { uint32_t res = 0; const uint16_t reg = 40296; const uint16_t nb = 2; } I160_2_DCWH;
+	struct { uint32_t res = 0; const uint16_t reg = 40298; const uint16_t nb = 2; } I160_2_Tms;
+	struct { int16_t  res = 0; const uint16_t reg = 40300; const uint16_t nb = 1; } I160_2_Tmp;
+	struct { uint16_t res = 0; const uint16_t reg = 40301; const uint16_t nb = 1; } I160_2_DCSt;
+	struct { uint32_t res = 0; const uint16_t reg = 40302; const uint16_t nb = 2; } I160_2_DCEvt;
+};
+
 /** @brief Register description of the Fronius specific registers */
 namespace FroniusRegisterMap
 {
