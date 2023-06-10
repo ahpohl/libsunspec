@@ -1,5 +1,5 @@
 /**
-	@brief   Base class to capture data from SunSpec compatible inverters, meters and batteries.
+	@brief   Base class for SunSpec compatible inverters, meters and batteries.
 
              Supports both ModBus TCP and ModBus RTU protocols.
 
@@ -69,40 +69,6 @@ public:
 	    @returns: 1-247
 	*/
 	bool GetModBusAddress(int &slave_id);
-
-	/** Manufacturer
-
-	    @returns i.e. Fronius
-	*/
-
-	/** Checks if the device is SunSpec ModBus protocol compatible */
-	bool IsSunSpecModBus(void);
-
-	bool GetManufacturer(std::string &str);
-
-	/** Device model
-
-	    @returns i.e. IG+150V [3p]
-	*/
-	bool GetDeviceModel(std::string &str);
-
-	/** SW version of installed option
-
-	    @returns i.e. Firmware version of Datamanager
-	*/
-	bool GetOptionFwVersion(std::string &str);
-
-	/** SW version of main device
-
-	    @returns i.e. Firmware version of inverter, meter, battery etc.
-	*/
-	bool GetDeviceFwVersion(std::string &str);
-
-	/** Serial number of the device
-
-		@returns Serial number
-	*/
-	bool GetSerialNumber(std::string &str);
 
 protected:
 	/** Get a ModBus register and convert to number or string

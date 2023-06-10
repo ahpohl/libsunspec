@@ -106,7 +106,7 @@ namespace InverterRegisterMap
 	struct { uint16_t res = 0; const uint16_t reg = 40075-1; const uint16_t nb = 1; } I10X_AphC;
 
 	/** AC current scale factor */
-	struct { int16_t  res = 0; const uint16_t reg_= 40076-1; const uint16_t nb = 1; } I10X_A_SF;
+	struct { int16_t  res = 0; const uint16_t reg = 40076-1; const uint16_t nb = 1; } I10X_A_SF;
 
 	/** AC voltage phase-AB value [V] */
 	struct { uint16_t res = 0; const uint16_t reg = 40077-1; const uint16_t nb = 1; } I10X_PPVphAB;
@@ -200,25 +200,25 @@ namespace InverterRegisterMap
 
 	/** Cabinet temperature [°C]
 
-	  	Not supported
+	  	@note Not supported
 	*/
 	struct { int16_t  res = 0; const uint16_t reg = 40103-1; const uint16_t nb = 1; } I10X_TmpCab;
 
 	/** Coolant or heat sink temperature [°C]
 
-	    Not supported
+	    @note Not supported
 	 */
 	struct { int16_t  res = 0; const uint16_t reg = 40104-1; const uint16_t nb = 1; } I10X_TmpSnk;
 
 	/** Transformer temperature [°C]
 
-	    Not supported
+	    @note Not supported
 	*/
 	struct { int16_t  res = 0; const uint16_t reg = 40105-1; const uint16_t nb = 1; } I10X_TmpTrns;
 
 	/** Other temperature [°C]
 
-	    Not supported
+	    @note Not supported
 	*/
 	struct { int16_t  res = 0; const uint16_t reg = 40106-1; const uint16_t nb = 1; } I10X_TmpOt;
 

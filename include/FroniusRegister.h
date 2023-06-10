@@ -1,5 +1,5 @@
 /**
-	@brief   Class for Fronius specific registers
+	@brief   Class to manipulate Fronius specific registers
 	@author  Alexander Pohl <alex@ahpohl.com>
 */
 
