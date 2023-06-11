@@ -7,9 +7,11 @@
 
 #include "CommonModel.h"
 #include "InverterModel.h"
+#include "MultiMpptModel.h"
 #include "FroniusRegister.h"
 
-class FroniusInverter: public CommonModel, public InverterModel, public FroniusRegister
+class FroniusInverter: public CommonModel, public InverterModel,
+	public MultiMpptModel, public FroniusRegister
 {
 public:
 

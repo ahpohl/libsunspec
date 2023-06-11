@@ -1,4 +1,4 @@
-/** @example example_inverter.cpp
+/** @example inverter.cpp
 
     Demonstration of a SunSpec compatible Fronius inverter.
 
@@ -178,8 +178,8 @@ int main(int argc, char *argv[])
 	  std::cout << inverter->GetErrorMessage() << std::endl;
 	  return EXIT_FAILURE;
   }
-  std::cout.precision(3);
-  std::cout << "AC lifetime energy: " << energy_lifetime  << " kWh" << std::endl;
+  std::cout.precision(2);
+  std::cout << "AC energy lifetime: " << energy_lifetime  << " kWh" << std::endl;
 
   std::cout.flags(old_settings);
   return EXIT_SUCCESS;

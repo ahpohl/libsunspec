@@ -1,8 +1,8 @@
-/** @example example_common.cpp
+/** @example inverter.cpp
 
     Demonstration of a SunSpec compatible Fronius inverter.
 
-    Common register map
+    Fronius specific register map
 
     Connection in ModBus RTU serial mode.
 */
@@ -30,53 +30,45 @@ int main(int argc, char *argv[])
 	  return EXIT_FAILURE;
   }
 
-  std::string mfg;
-  if (!inverter->GetManufacturer(mfg))
+  std::ios::fmtflags old_settings = std::cout.flags();
+  std::cout.setf(std::ios::fixed, std::ios::floatfield);
+
+  double power;
+  if (!inverter->GetSitePower(power))
   {
 	  std::cout << inverter->GetErrorMessage() << std::endl;
 	  return EXIT_FAILURE;
   }
-  std::cout << "Manufacturer: " << mfg << std::endl;
+  std::cout.precision(0);
+  std::cout << "Site power total: " << power  << " W" << std::endl;
 
-  std::string model;
-  if (!inverter->GetDeviceModel(model))
+  double energy_day;
+  if (!inverter->GetSiteEnergyDay(energy_day))
   {
 	  std::cout << inverter->GetErrorMessage() << std::endl;
 	  return EXIT_FAILURE;
   }
-  std::cout << "Model: " << model << std::endl;
+  std::cout.precision(2);
+  std::cout << "Site energy current day: " << energy_day  << " kWh" << std::endl;
 
-  std::string option;
-  if (!inverter->GetOptionFwVersion(option))
+  double energy_year;
+  if (!inverter->GetAcEnergyLifetime(energy_year))
   {
 	  std::cout << inverter->GetErrorMessage() << std::endl;
 	  return EXIT_FAILURE;
   }
-  std::cout << "Datamanager FW: " << option << std::endl;
+  std::cout.precision(2);
+  std::cout << "Site energy current year: " << energy_year  << " kWh" << std::endl;
 
-  std::string device_fw;
-  if (!inverter->GetDeviceFwVersion(device_fw))
+  double energy_total;
+  if (!inverter->GetSiteEnergyTotal(energy_total))
   {
 	  std::cout << inverter->GetErrorMessage() << std::endl;
 	  return EXIT_FAILURE;
   }
-  std::cout << "Inverter FW: " << device_fw << std::endl;
+  std::cout.precision(2);
+  std::cout << "Site energy total lifetime: " << energy_total  << " kWh" << std::endl;
 
-  std::string serial_nb;
-  if (!inverter->GetDeviceFwVersion(serial_nb))
-  {
-	  std::cout << inverter->GetErrorMessage() << std::endl;
-	  return EXIT_FAILURE;
-  }
-  std::cout << "Serial: " << serial_nb << std::endl;
-
-  int address;
-  if (!inverter->GetModBusAddress(address))
-  {
-	  std::cout << inverter->GetErrorMessage() << std::endl;
-	  return EXIT_FAILURE;
-  }
-  std::cout << "ModBus address (slave ID): " << address << std::endl;
-
+  std::cout.flags(old_settings);
   return EXIT_SUCCESS;
 }

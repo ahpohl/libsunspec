@@ -11,9 +11,26 @@
 class FroniusRegister: virtual public SunSpec
 {
 public:
-	/** Instantaneous total site energy produced from inverter
+	/** Total power (site sum) of all connected inverters.
 
-	    @returns total site energy [kWh]
+	    @returns power [W]
+	*/
+	bool GetSitePower(double &res);
+	/** Total energy for current day of all connected inverters.
+
+	    @returns current day energy [kWh]
+	*/
+	bool GetSiteEnergyDay(double &res);
+
+	/** Total energy for current year of all connected inverters.
+
+	    @returns current year energy [kWh]
+	*/
+	bool GetSiteEnergyYear(double &res);
+
+	/** Total lifetime energy of all connected inverters.
+
+	    @returns lifetime energy [kWh]
 	*/
 	bool GetSiteEnergyTotal(double &res);
 };

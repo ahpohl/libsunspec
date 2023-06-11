@@ -253,35 +253,125 @@ namespace InverterRegisterMap
 /** @brief Register description of the Multi MPPT Model registers */
 namespace MultiMpptRegisterMap
 {
-	struct { uint16_t res = 0; const uint16_t reg = 40254; const uint16_t nb = 1; } I160_ID;
-	struct { uint16_t res = 0; const uint16_t reg = 40255; const uint16_t nb = 1; } I160_L;
-	struct { int16_t  res = 0; const uint16_t reg = 40256; const uint16_t nb = 1; } I160_DCA_SF;
-	struct { int16_t  res = 0; const uint16_t reg = 40257; const uint16_t nb = 1; } I160_DCV_SF;
-	struct { int16_t  res = 0; const uint16_t reg = 40258; const uint16_t nb = 1; } I160_DCW_SF;
-	struct { int16_t  res = 0; const uint16_t reg = 40259; const uint16_t nb = 1; } I160_DCWH_SF;
-	struct { uint32_t res = 0; const uint16_t reg = 40260; const uint16_t nb = 2; } I160_Evt;
-	struct { uint16_t res = 0; const uint16_t reg = 40262; const uint16_t nb = 1; } I160_N;
-	struct { uint16_t res = 0; const uint16_t reg = 40263; const uint16_t nb = 1; } I160_TmsPer;
-	struct { uint16_t res = 0; const uint16_t reg = 40264; const uint16_t nb = 1; } I160_1_ID;
-	struct { std::string str;  const uint16_t reg = 40265; const uint16_t nb = 8; } I160_1_IDStr;
-	struct { uint16_t res = 0; const uint16_t reg = 40273; const uint16_t nb = 1; } I160_1_DCA;
-	struct { uint16_t res = 0; const uint16_t reg = 40274; const uint16_t nb = 1; } I160_1_DCV;
-	struct { uint16_t res = 0; const uint16_t reg = 40275; const uint16_t nb = 1; } I160_1_DCW;
-	struct { uint32_t res = 0; const uint16_t reg = 40276; const uint16_t nb = 2; } I160_1_DCWH;
-	struct { uint32_t res = 0; const uint16_t reg = 40278; const uint16_t nb = 2; } I160_1_Tms;
-	struct { int16_t  res = 0; const uint16_t reg = 40280; const uint16_t nb = 1; } I160_1_Tmp;
-	struct { uint16_t res = 0; const uint16_t reg = 40281; const uint16_t nb = 1; } I160_1_DCSt;
-	struct { uint32_t res = 0; const uint16_t reg = 40282; const uint16_t nb = 2; } I160_1_DCEvt;
-	struct { uint16_t res = 0; const uint16_t reg = 40284; const uint16_t nb = 1; } I160_2_ID;
-	struct { std::string str;  const uint16_t reg = 40285; const uint16_t nb = 8; } I160_2_IDStr;
-	struct { uint16_t res = 0; const uint16_t reg = 40293; const uint16_t nb = 1; } I160_2_DCA;
-	struct { uint16_t res = 0; const uint16_t reg = 40294; const uint16_t nb = 1; } I160_2_DCV;
-	struct { uint16_t res = 0; const uint16_t reg = 40295; const uint16_t nb = 1; } I160_2_DCW;
-	struct { uint32_t res = 0; const uint16_t reg = 40296; const uint16_t nb = 2; } I160_2_DCWH;
-	struct { uint32_t res = 0; const uint16_t reg = 40298; const uint16_t nb = 2; } I160_2_Tms;
-	struct { int16_t  res = 0; const uint16_t reg = 40300; const uint16_t nb = 1; } I160_2_Tmp;
-	struct { uint16_t res = 0; const uint16_t reg = 40301; const uint16_t nb = 1; } I160_2_DCSt;
-	struct { uint32_t res = 0; const uint16_t reg = 40302; const uint16_t nb = 2; } I160_2_DCEvt;
+	/** Uniquely identifies this as a SunSpec Multiple MPPT Inverter Extension Model mode
+
+		@returns 160
+	*/
+	struct { uint16_t res = 0; const uint16_t reg = 40254-1; const uint16_t nb = 1; } I160_ID;
+
+	/** Length of Multiple MPPT Inverter Extension Model
+
+	    @returns 48
+	*/
+	struct { uint16_t res = 0; const uint16_t reg = 40255-1; const uint16_t nb = 1; } I160_L;
+
+	/** DC current scale factor */
+	struct { int16_t  res = 0; const uint16_t reg = 40256-1; const uint16_t nb = 1; } I160_DCA_SF;
+
+	/** DC voltage scale factor */
+	struct { int16_t  res = 0; const uint16_t reg = 40257-1; const uint16_t nb = 1; } I160_DCV_SF;
+
+	/** DC power scale factor */
+	struct { int16_t  res = 0; const uint16_t reg = 40258-1; const uint16_t nb = 1; } I160_DCW_SF;
+
+	/** DC energy scale factor
+
+	    @note Not supported for Fronius Hybrid inverters
+	*/
+	struct { int16_t  res = 0; const uint16_t reg = 40259-1; const uint16_t nb = 1; } I160_DCWH_SF;
+
+	/** Global Events */
+	struct { uint32_t res = 0; const uint16_t reg = 40260-1; const uint16_t nb = 2; } I160_Evt;
+
+	/** Number of modules
+
+	    @returns 2
+	*/
+	struct { uint16_t res = 0; const uint16_t reg = 40262-1; const uint16_t nb = 1; } I160_N;
+
+	/** Timestamp Period
+
+	    @note Not supported
+	*/
+	struct { uint16_t res = 0; const uint16_t reg = 40263-1; const uint16_t nb = 1; } I160_TmsPer;
+
+	/** Input ID
+
+		@returns 1
+	*/
+	struct { uint16_t res = 0; const uint16_t reg = 40264-1; const uint16_t nb = 1; } I160_1_ID;
+
+	/** Input ID string
+
+		@returns String 1
+	*/
+	struct { std::string str;  const uint16_t reg = 40265-1; const uint16_t nb = 8; } I160_1_IDStr;
+
+    /** DC current [A] */
+	struct { uint16_t res = 0; const uint16_t reg = 40273-1; const uint16_t nb = 1; } I160_1_DCA;
+
+	/** DC voltage [V] */
+	struct { uint16_t res = 0; const uint16_t reg = 40274-1; const uint16_t nb = 1; } I160_1_DCV;
+
+	/** DC power [V] */
+	struct { uint16_t res = 0; const uint16_t reg = 40275-1; const uint16_t nb = 1; } I160_1_DCW;
+
+	/** DC lifetime energy [Wh]
+
+	    @note Not supported for Fronius Hybrid inverters
+	*/
+	struct { uint32_t res = 0; const uint16_t reg = 40276-1; const uint16_t nb = 2; } I160_1_DCWH;
+
+	/** Timestamp [s] */
+	struct { uint32_t res = 0; const uint16_t reg = 40278-1; const uint16_t nb = 2; } I160_1_Tms;
+
+	/** Temperature [°C] */
+	struct { int16_t  res = 0; const uint16_t reg = 40280-1; const uint16_t nb = 1; } I160_1_Tmp;
+
+	/** Operating state */
+	struct { uint16_t res = 0; const uint16_t reg = 40281-1; const uint16_t nb = 1; } I160_1_DCSt;
+
+	/** Module events */
+	struct { uint32_t res = 0; const uint16_t reg = 40282-1; const uint16_t nb = 2; } I160_1_DCEvt;
+
+	/** Input ID
+
+		@returns 2
+	*/
+	struct { uint16_t res = 0; const uint16_t reg = 40284-1; const uint16_t nb = 1; } I160_2_ID;
+
+	/** Input ID string
+
+		@returns String 2
+	*/
+	struct { std::string str;  const uint16_t reg = 40285-1; const uint16_t nb = 8; } I160_2_IDStr;
+
+	/** DC current [A] */
+	struct { uint16_t res = 0; const uint16_t reg = 40293-1; const uint16_t nb = 1; } I160_2_DCA;
+
+	/** DC voltage [V] */
+	struct { uint16_t res = 0; const uint16_t reg = 40294-1; const uint16_t nb = 1; } I160_2_DCV;
+
+	/** DC power [V] */
+	struct { uint16_t res = 0; const uint16_t reg = 40295-1; const uint16_t nb = 1; } I160_2_DCW;
+
+	/** DC lifetime energy [Wh]
+
+	    @note Not supported for Fronius Hybrid inverters
+	*/
+	struct { uint32_t res = 0; const uint16_t reg = 40296-1; const uint16_t nb = 2; } I160_2_DCWH;
+
+	/** Timestamp [s] */
+	struct { uint32_t res = 0; const uint16_t reg = 40298-1; const uint16_t nb = 2; } I160_2_Tms;
+
+	/** Temperature [°C] */
+	struct { int16_t  res = 0; const uint16_t reg = 40300-1; const uint16_t nb = 1; } I160_2_Tmp;
+
+	/** Operating state */
+	struct { uint16_t res = 0; const uint16_t reg = 40301-1; const uint16_t nb = 1; } I160_2_DCSt;
+
+	/** Module events */
+	struct { uint32_t res = 0; const uint16_t reg = 40302-1; const uint16_t nb = 2; } I160_2_DCEvt;
 };
 
 /** @brief Register description of the Fronius specific registers */
