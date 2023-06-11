@@ -1,4 +1,4 @@
-/** @example multi_mppt.cpp
+/** @example multi-mppt.cpp
 
     Demonstration of a SunSpec compatible Fronius inverter.
 
@@ -11,6 +11,7 @@
 #include <iostream>
 #include <iomanip>
 #include <memory>
+#include <chrono>
 
 
 int main(int argc, char *argv[])
@@ -78,9 +79,12 @@ int main(int argc, char *argv[])
 		  std::cout << inverter->GetErrorMessage() << std::endl;
 		  return EXIT_FAILURE;
 	  }
-	  std::cout.precision(2);
-	  std::cout << "  Timestamp: " << static_cast<double>(ts) / (3600.0f * 24.0f * 365.0f) << " years" << std::endl;
+	  std::cout.precision(0);
+	  std::cout << "  Timestamp: " << (ts + 946684800) << " secs since epoch" << std::endl;
   }
+
+  double now = std::chrono::duration_cast<std::chrono::seconds>(std::chrono::system_clock::now().time_since_epoch()).count();
+  std::cout << "Timestamp now: " << now << std::endl;
 
   std::cout.flags(old_settings);
   return EXIT_SUCCESS;

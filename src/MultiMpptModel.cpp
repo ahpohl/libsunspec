@@ -27,7 +27,7 @@ bool MultiMpptModel::IsMultiMpptRegisterMap(void)
 	return true;
 }
 
-bool MultiMpptModel::GetDcCurrent(double &res, int string_id)
+bool MultiMpptModel::GetDcCurrent(double &res, const int string_id)
 {
 	if (!GetRegister(I160_DCA_SF.res, I160_DCA_SF.reg, I160_DCA_SF.nb)) {
 		return false;
@@ -54,7 +54,7 @@ bool MultiMpptModel::GetDcCurrent(double &res, int string_id)
 	return true;
 }
 
-bool MultiMpptModel::GetDcVoltage(double &res, int string_id)
+bool MultiMpptModel::GetDcVoltage(double &res, const int string_id)
 {
 	if (!GetRegister(I160_DCV_SF.res, I160_DCV_SF.reg, I160_DCV_SF.nb)) {
 		return false;
@@ -81,7 +81,7 @@ bool MultiMpptModel::GetDcVoltage(double &res, int string_id)
 	return true;
 }
 
-bool MultiMpptModel::GetDcPower(double &res, int string_id)
+bool MultiMpptModel::GetDcPower(double &res, const int string_id)
 {
 	if (!GetRegister(I160_DCW_SF.res, I160_DCW_SF.reg, I160_DCW_SF.nb)) {
 		return false;
@@ -108,7 +108,7 @@ bool MultiMpptModel::GetDcPower(double &res, int string_id)
 	return true;
 }
 
-bool MultiMpptModel::GetDcEnergyLifetime(double &res, int string_id)
+bool MultiMpptModel::GetDcEnergyLifetime(double &res, const int string_id)
 {
 	if (!GetRegister(I160_DCWH_SF.res, I160_DCWH_SF.reg, I160_DCWH_SF.nb)) {
 		return false;
@@ -135,7 +135,7 @@ bool MultiMpptModel::GetDcEnergyLifetime(double &res, int string_id)
 	return true;
 }
 
-bool MultiMpptModel::GetTimestamp(unsigned int &ts, int string_id)
+bool MultiMpptModel::GetTimestamp(unsigned int &ts, const int string_id)
 {
 	switch(string_id) {
 	case 1:
@@ -158,7 +158,7 @@ bool MultiMpptModel::GetTimestamp(unsigned int &ts, int string_id)
 	return true;
 }
 
-bool MultiMpptModel::GetDcTemperature(double &res, int string_id)
+bool MultiMpptModel::GetDcTemperature(double &res, const int string_id)
 {
 	switch(string_id) {
 	case 1:

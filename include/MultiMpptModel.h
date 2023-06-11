@@ -16,45 +16,45 @@ public:
 
 	/** DC current
 
-		@param res DC current [A]
-		@param string string ID
+		@returns res DC current [A]
+		@param string_id string 1 (default) or string 2
 	*/
-	bool GetDcCurrent(double &res, int string_id);
+	bool GetDcCurrent(double &res, const int string_id = 1);
 
 	/** DC voltage
 
-		@param res DC voltage [V]
-		@param string string ID
+		@returns res DC voltage [V]
+		@param string_id string 1 (default) or string 2
 	*/
-	bool GetDcVoltage(double &res, int string_id);
+	bool GetDcVoltage(double &res, const int string_id = 1);
 
 	/** DC power
 
-		@param res DC power [W]
-		@param string string ID
+		@returns res DC power [W]
+		@param string_id string 1 (default) or string 2
 	*/
-	bool GetDcPower(double &res, int string_id);
+	bool GetDcPower(double &res, const int string_id = 1);
 
 	/** DC lifetime energy
 
-		@param res DC energy [kWh]
-		@param string string ID
+		@returns res DC energy [kWh]
+		@param string_id string 1 (default) or string 2
 	*/
-	bool GetDcEnergyLifetime(double &res, int string_id);
+	bool GetDcEnergyLifetime(double &res, const int string_id = 1);
 
 	/** Timestamp
 
-		@param ts timestamp [seconds since 01-Jan-2000 00:00 UTC]
-		@param string string ID
+		@returns ts timestamp [seconds since 01-Jan-2000 00:00 UTC]
+		@param string_id string 1 (default) or string 2
 	*/
-	bool GetTimestamp(unsigned int &ts, int string_id);
+	bool GetTimestamp(unsigned int &ts, const int string_id = 1);
 
 	/** Temperature
 
-		@param res temperature [°C]
-		@param string string ID
+		@returns res temperature [°C]
+		@param string_id string 1 (default) or string 2
 	*/
-	bool GetDcTemperature(double &res, int string_id);
+	bool GetDcTemperature(double &res, const int string_id = 1);
 };
 
 #endif /* MULTIMPPTMODEL_H_ */
