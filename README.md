@@ -9,6 +9,14 @@ The library is written in plain C++ and implements the basic functions to commun
 
 The library API documentation including some basic examples is located [here](https://ahpohl.github.io/libsunspec/).
 
+# Compilation
+
+With a suitable [toolchain](https://archlinuxarm.org/wiki/Distcc_Cross-Compiling) installed for the aarch64 architecture, cross compilation is done like this:
+
+```
+make CROSS_COMPILE=aarch install
+```
+
 # Related projects
 
 * [libfronius](https://github.com/mhei/libfronius) by Michael Heimpold, only supports the old Fronius protocol
