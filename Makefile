@@ -102,10 +102,10 @@ endif
 
 install: all
 	install -d $(DESTDIR)$(PREFIX)/lib
-	install -d $(DESTDIR)$(PREFIX)/include
 	install -m 644 $(OBJ_DIR)/$(STATIC_LIB) $(DESTDIR)$(PREFIX)/lib/$(STATIC_LIB)
 	install -m 755 $(OBJ_DIR)/$(SHARED_LIB) $(DESTDIR)$(PREFIX)/lib/$(SHARED_LIB).$(FULL_VERSION)
-	ln -sr $(DESTDIR)$(PREFIX)/lib/$(SHARED_LIB).$(MAJOR_VERSION) $(DESTDIR)$(PREFIX)/lib/$(SHARED_LIB)
+	ln -sr $(DESTDIR)$(PREFIX)/lib/$(SHARED_LIB).$(FULL_VERSION) $(DESTDIR)$(PREFIX)/lib/$(SHARED_LIB)
+	ln -sr $(DESTDIR)$(PREFIX)/lib/$(SHARED_LIB).$(FULL_VERSION) $(DESTDIR)$(PREFIX)/lib/$(SHARED_LIB).$(MAJOR_VERSION)
 
 docs:
 	doxygen Doxyfile
