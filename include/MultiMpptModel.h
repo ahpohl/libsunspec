@@ -16,42 +16,42 @@ public:
 
 	/** DC current
 
-		@returns res DC current [A]
+		@param res DC current [A]
 		@param string_id string 1 (default) or string 2
 	*/
 	bool GetDcCurrent(double &res, const int string_id = 1);
 
 	/** DC voltage
 
-		@returns res DC voltage [V]
+		@param res DC voltage [V]
 		@param string_id string 1 (default) or string 2
 	*/
 	bool GetDcVoltage(double &res, const int string_id = 1);
 
 	/** DC power
 
-		@returns res DC power [W]
+		@param res DC power [W]
 		@param string_id string 1 (default) or string 2
 	*/
 	bool GetDcPower(double &res, const int string_id = 1);
 
 	/** DC lifetime energy
 
-		@returns res DC energy [kWh]
+		@param res DC energy [kWh]
 		@param string_id string 1 (default) or string 2
 	*/
 	bool GetDcEnergyLifetime(double &res, const int string_id = 1);
 
 	/** Timestamp
 
-		@returns ts timestamp [seconds since 01-Jan-2000 00:00 UTC]
+		@param ts timestamp [seconds since 01-Jan-2000 00:00 UTC]
 		@param string_id string 1 (default) or string 2
 	*/
 	bool GetTimestamp(unsigned int &ts, const int string_id = 1);
 
 	/** Temperature
 
-		@returns res temperature [°C]
+		@param res temperature [°C]
 		@param string_id string 1 (default) or string 2
 	*/
 	bool GetDcTemperature(double &res, const int string_id = 1);

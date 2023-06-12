@@ -1,4 +1,4 @@
-/** @example inverter.cpp
+/** @example fronius-inverter.cpp
 
     Demonstration of a SunSpec compatible Fronius inverter.
 
