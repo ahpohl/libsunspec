@@ -1,9 +1,9 @@
 [![Build Status](https://travis-ci.com/ahpohl/libsunspec.svg?branch=master)](https://travis-ci.com/ahpohl/libsunspec)
 # Overview
 
-The Aurora protocol is used by ABB to control/monitor their power devices (inverters, central inverters, etc) over a RS485 bus. Usually inverters are capable of the Aurora Protocol as well as Modbus RTU protocol. This library requires the inverter to be conneced with RS485/Aurora protocol and does not support other devices such as the Aurora Central or the Junction Box.
+Libsunspec provides methods to read data from SunSpec compatible inverters, meters and batteries. Currently only Fronius 2-string inverters such as Primo and Symo are implemeted, but the classes were designed in such a way that extension to other SunSpec compatible inverters such as SMA Sunny Boy is easy. The library supports both ModBus TCP and ModBus RTU connections. It implements the [INT+SF register map](.docs/sunspec/Inverter_Register_Map_Int&SF_v1.0_with_SYMOHYBRID_MODEL_124.xlsx), but could be easily adopted to the float model as well.
 
-The library is written in plain C++ and implements the basic functions to communicate with the inverter as found in [Aurora Communication Protocol V4.2](./docs/pdf/AuroraCommunicationProtocol_4_2.pdf). It runs on SBCs such as the Raspberry Pi 3/4 or the Odroid C2/C4 and does not need the Arduino Core for compilation as the other Arduino/esp libraries already on GitHub do.
+The library is written in plain C++ and implements the basic functions to communicate with the inverter. It depends only on [libmodbus](https://libmodbus.org/) for low level methods and supports cross compilation on x86_64 for aarch64.
 
 # Documentation
 
@@ -11,12 +11,7 @@ The library API documentation including some basic examples is located [here](ht
 
 # Related projects
 
-The C++ library is based on the [ABBAurora Arduino library](https://github.com/jrbenito/ABBAurora) from Josenivaldo Benito Jr.
-
-* Another [ABBAurora library](https://github.com/xreef/ABB_Aurora_Solar_Inverter_Library) for Arduino, esp8266 and esp32 by Renzo Mischianti
-* Linux [Aurora](http://www.curtronics.com/Solar/AuroraData.html) command line program from Curtis Blank
-* [Davide's page](http://www.drhack.it/arduino/32-lettura-inverte-power-one-aurora.html) with lots of info
-* [Aurora Monitor](http://auroramonitor.sourceforge.net/) on SourceForge
+* [libfronius](https://github.com/mhei/libfronius) by Michael Heimpold, only supports the old Fronius protocol
 
 # Changelog
 
