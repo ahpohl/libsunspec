@@ -1,25 +1,17 @@
 [![Build Status](https://travis-ci.com/ahpohl/libsunspec.svg?branch=master)](https://travis-ci.com/ahpohl/libsunspec)
 # Overview
 
-Libsunspec provides methods to read data from SunSpec compatible inverters, meters and batteries. Currently only Fronius 2-string inverters such as Primo and Symo are implemeted, but the classes were designed in such a way that extension to other SunSpec compatible inverters such as SMA Sunny Boy is easy. The library supports both ModBus TCP and ModBus RTU connections. It implements the [INT+SF register map](.docs/sunspec/fronius/Inverter_Register_Map_Int&SF_v1.0_with_SYMOHYBRID_MODEL_124.xlsx), but could be easily adopted to the float map as well.
+Libsunspec adheres to the SunSpec INT+SF register map but could be easily adapted to the float registers. Modbus TCP and Modbus RTU register maps were downloaded from the [Fronius website](https://www.fronius.com/en/solar-energy/installers-partners/technical-data/all-products/system-monitoring/open-interfaces/modbus-tcp). The libsunspec library currently supports string inverters with up to two 2 strings, and support for Modbus compatible smartmeters and batteries could be added later if needed (don't have such devices for testing). The example folder contains basic demo programs how to use the library. The full API documentation of all classes, methods and namespaces is provided [here]((https://ahpohl.github.io/libsunspec/))
 
-The library is written in plain C++ and implements the basic functions to communicate with the inverter. It depends only on [libmodbus](https://libmodbus.org/) for low level methods and supports cross compilation on x86_64 for aarch64.
-
-# Documentation
-
-The library API documentation including some basic examples is located [here](https://ahpohl.github.io/libsunspec/).
+The library is written in plain C++ and implements the basic functions to communicate with the inverter, meter or storage device. It depends only on [libmodbus](https://libmodbus.org/) for low level methods.
 
 # Compilation
 
-With a suitable [toolchain](https://archlinuxarm.org/wiki/Distcc_Cross-Compiling) installed for the aarch64 architecture, cross compilation is done like this:
+With a suitable [toolchain](https://archlinuxarm.org/wiki/Distcc_Cross-Compiling), (cross)-compilation of the library is done like this:
 
 ```
-make CROSS_COMPILE=aarch install
+make CROSS_COMPILE=aarch64 examples
 ```
-
-# Related projects
-
-* [libfronius](https://github.com/mhei/libfronius) by Michael Heimpold, only supports the old Fronius protocol
 
 # Changelog
 
