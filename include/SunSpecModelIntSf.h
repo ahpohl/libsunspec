@@ -323,18 +323,75 @@ namespace NameplateRegisterMap
 
 	/** Maximum RMS AC current level scale factor */
 	struct { int16_t  res = 0; const uint16_t reg = 40135-1; const uint16_t nb = 1; } ARtg_SF;
+
+	/** Minimum power factor capability of the inverter in quadrant 1.
+
+	    @returns power factor Q1 [cos(phi)]
+	*/
 	struct { int16_t  res = 0; const uint16_t reg = 40136-1; const uint16_t nb = 1; } PFRtgQ1;
+
+	/** Minimum power factor capability of the inverter in quadrant 2.
+
+		@note not supported
+	    @returns power factor Q2 [cos(phi)]
+	*/
 	struct { int16_t  res = 0; const uint16_t reg = 40137-1; const uint16_t nb = 1; } PFRtgQ2;
+
+	/** Minimum power factor capability of the inverter in quadrant 3.
+
+		@note not supported
+	    @returns power factor Q3 [cos(phi)]
+	*/
 	struct { int16_t  res = 0; const uint16_t reg = 40138-1; const uint16_t nb = 1; } PFRtgQ3;
+
+	/** Minimum power factor capability of the inverter in quadrant 4.
+
+	    @returns power factor Q4 [cos(phi)]
+	*/
 	struct { int16_t  res = 0; const uint16_t reg = 40139-1; const uint16_t nb = 1; } PFRtgQ4;
+
+	/** Minimum power factor capability scale factor */
 	struct { int16_t  res = 0; const uint16_t reg = 40140-1; const uint16_t nb = 1; } PFRtg_SF;
+
+	/** Nominal energy rating of storage device.
+
+	    @returns energy rating [Wh]
+	*/
 	struct { uint16_t res = 0; const uint16_t reg = 40141-1; const uint16_t nb = 1; } WHRtg;
+
+	/** Nominal energy rating scale factor */
 	struct { int16_t  res = 0; const uint16_t reg = 40142-1; const uint16_t nb = 1; } WHRtg_SF;
+
+	/** The usable capacity of the battery. Maximum charge minus minimum charge
+	    from a technology capability perspective (Amp-hour capacity rating).
+
+		@note not supported
+		@returns capacity [AH]
+	*/
 	struct { uint16_t res = 0; const uint16_t reg = 40143-1; const uint16_t nb = 1; } AhrRtg;
+
+	/** Scale factor for amp-hour rating.
+
+	 	@note not supported
+	*/
 	struct { int16_t  res = 0; const uint16_t reg = 40144-1; const uint16_t nb = 1; } AhrRtg_SF;
+
+	/** Maximum rate of energy transfer into the storage device
+
+	 	@returns transfer power [W]
+	*/
 	struct { uint16_t res = 0; const uint16_t reg = 40145-1; const uint16_t nb = 1; } MaxChaRte;
+
+	/** Charge rate scale factor */
 	struct { int16_t  res = 0; const uint16_t reg = 40146-1; const uint16_t nb = 1; } MaxChaRte_SF;
+
+	/** Maximum rate of energy transfer out of the storage device.
+
+	 	@returns transfer power [W]
+	*/
 	struct { uint16_t res = 0; const uint16_t reg = 40147-1; const uint16_t nb = 1; } MaxDisChaRte;
+
+	/** Discharge rate scale factor */
 	struct { int16_t  res = 0; const uint16_t reg = 40148-1; const uint16_t nb = 1; } MaxDisChaRte_SF;
 };
 

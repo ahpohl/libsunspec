@@ -13,6 +13,12 @@ With a suitable [toolchain](https://archlinuxarm.org/wiki/Distcc_Cross-Compiling
 make CROSS_COMPILE=aarch64 examples
 ```
 
+For cross-compilation you need libmodbus for the target architecture:
+```
+./configure --host=aarch64 --prefix=/$HOME/git/libsunspec/modbus CC=aarch64-unknown-linux-gnu-gcc
+make install
+```
+
 # Changelog
 
 All notable changes and releases are documented in the [CHANGELOG](CHANGELOG.md).
