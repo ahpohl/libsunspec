@@ -1,8 +1,8 @@
-/** @example multi-mppt.cpp
+/** @example nameplate.cpp
 
     Demonstration of a SunSpec compatible Fronius inverter.
 
-    Multi MPPT register map
+    Nameplate register map
 
     Connection in ModBus RTU serial mode.
 */
@@ -34,8 +34,11 @@ int main(int argc, char *argv[])
   std::ios::fmtflags old_settings = std::cout.flags();
   std::cout.setf(std::ios::fixed, std::ios::floatfield);
 
+
+
   for (int string_id = 1; string_id < 3; ++string_id)
   {
+	  std::cout << "String " << string_id << ":" << std::endl;
 	  std::cout << "String " << string_id << ":" << std::endl;
 	  double dc_current;
 	  if (!inverter->GetDcCurrent(dc_current, string_id))

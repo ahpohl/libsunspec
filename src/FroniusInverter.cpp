@@ -5,6 +5,9 @@ bool FroniusInverter::IsSunSpecInverter(void)
 	if (!IsCommonRegisterMap()) {
 		return false;
 	}
+	if (!IsNameplateRegisterMap()) {
+		return false;
+	}
 	if (!IsInverterRegisterMap()) {
 		return false;
 	}

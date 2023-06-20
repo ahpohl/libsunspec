@@ -7,14 +7,14 @@
 
 #include "CommonModel.h"
 #include "InverterModel.h"
+#include "NameplateModel.h"
 #include "MultiMpptModel.h"
 #include "FroniusRegister.h"
 
 class FroniusInverter: public CommonModel, public InverterModel,
-	public MultiMpptModel, public FroniusRegister
+	public NameplateModel, public MultiMpptModel, public FroniusRegister
 {
 public:
-
 	/** Checks if device is a SunSpec compatible inverter */
 	bool IsSunSpecInverter(void);
 };
