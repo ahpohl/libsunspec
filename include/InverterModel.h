@@ -61,6 +61,26 @@ public:
 
 	/** AC lifetime energy production [Wh] */
 	bool GetAcEnergyLifetime(double &res);
+
+	/** Operating state */
+	bool GetState(uint16_t &state);
+
+	/** Vendor defined operating state */
+	bool GetStateVendor(uint16_t &state);
+
+	/** Event flags */
+	bool GetEventFlags(uint32_t &flag1, uint32_t &flag2);
+
+	/** Vendor defined event flags */
+	bool GetEventFlagsVendor(uint32_t &flag1, uint32_t &flag2, uint32_t &flag3, uint32_t &flag4);
+
+private:
+	struct StateEvt {
+		uint16_t St; uint16_t StVnd;
+	    uint32_t Evt1; uint32_t Evt2;
+	    uint32_t EvtVnd1; uint32_t EvtVnd2; uint32_t EvtVnd3; uint32_t EvtVnd4;
+		std::string StStr; std::string StVndStr; std::string EvtStr; std::string EvtVndStr;
+	} StateEvt;
 };
 
 #endif /* INVERTERMODEL_H_ */

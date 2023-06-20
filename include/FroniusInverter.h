@@ -5,6 +5,8 @@
 #ifndef FRONIUSINVERTER_H_
 #define FRONIUSINVERTER_H_
 
+#include <string>
+
 #include "CommonModel.h"
 #include "InverterModel.h"
 #include "NameplateModel.h"

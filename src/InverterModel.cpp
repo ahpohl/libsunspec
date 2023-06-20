@@ -234,3 +234,63 @@ bool InverterModel::GetAcEnergyLifetime(double &res)
 
 	return true;
 }
+
+bool InverterModel::GetState(uint16_t &state)
+{
+	if (!GetRegister(I10X_St.res, I10X_St.reg, I10X_St.nb)) {
+		return false;
+	}
+	state = I10X_St.res;
+
+	return true;
+}
+
+bool InverterModel::GetStateVendor(uint16_t &state)
+{
+	if (!GetRegister(I10X_StVnd.res, I10X_StVnd.reg, I10X_StVnd.nb)) {
+		return false;
+	}
+	state = I10X_StVnd.res;
+
+	return true;
+}
+
+bool InverterModel::GetEventFlags(uint32_t &flag1, uint32_t &flag2)
+{
+	if (!GetRegister(I10X_Evt1.res, I10X_Evt1.reg, I10X_Evt1.nb)) {
+		return false;
+	}
+	flag1 = I10X_Evt1.res;
+
+	if (!GetRegister(I10X_Evt2.res, I10X_Evt2.reg, I10X_Evt2.nb)) {
+		return false;
+	}
+	flag2 = I10X_Evt2.res;
+
+	return true;
+}
+
+bool InverterModel::GetEventFlagsVendor(uint32_t &flag1, uint32_t &flag2, uint32_t &flag3, uint32_t &flag4)
+{
+	if (!GetRegister(I10X_EvtVnd1.res, I10X_EvtVnd1.reg, I10X_EvtVnd1.nb)) {
+		return false;
+	}
+	flag1 = I10X_EvtVnd1.res;
+
+	if (!GetRegister(I10X_EvtVnd2.res, I10X_EvtVnd2.reg, I10X_EvtVnd2.nb)) {
+		return false;
+	}
+	flag2 = I10X_EvtVnd2.res;
+
+	if (!GetRegister(I10X_EvtVnd3.res, I10X_EvtVnd3.reg, I10X_EvtVnd3.nb)) {
+		return false;
+	}
+	flag3 = I10X_EvtVnd3.res;
+
+	if (!GetRegister(I10X_EvtVnd4.res, I10X_EvtVnd4.reg,I10X_EvtVnd4.nb)) {
+		return false;
+	}
+	flag4 = I10X_EvtVnd4.res;
+
+	return true;
+}
