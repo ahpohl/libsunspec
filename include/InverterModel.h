@@ -7,8 +7,9 @@
 #define INVERTERMODEL_H_
 
 #include "SunSpec.h"
+#include "StateEvents.h"
 
-class InverterModel: virtual public SunSpec
+class InverterModel: virtual public SunSpec, public StateEvents
 {
 public:
 	/** Checks if device has a SunSpec inverter register map */
@@ -65,7 +66,13 @@ public:
 	/** Set events and flags */
 	bool SetStateEvt(void);
 
+	/** Get events and flags */
+	StateEvt_t GetStateEvt(void);
+
 private:
+	/** Operating state and flags */
+	struct StateEvt_t StateEvt;
+
 	/** Operating state */
 	bool GetState(uint16_t &state);
 
@@ -77,14 +84,6 @@ private:
 
 	/** Vendor defined event flags */
 	bool GetEventFlagsVendor(uint32_t &flag1, uint32_t &flag2, uint32_t &flag3, uint32_t &flag4);
-
-	/** Hold operating state and flags and their string representations */
-	struct StateEvt {
-		uint16_t St; uint16_t StVnd;
-	    uint32_t Evt1; uint32_t Evt2;
-	    uint32_t EvtVnd1; uint32_t EvtVnd2; uint32_t EvtVnd3; uint32_t EvtVnd4;
-		std::string StStr; std::string StVndStr; std::string EvtStr; std::string EvtVndStr;
-	} StateEvt;
 };
 
 #endif /* INVERTERMODEL_H_ */

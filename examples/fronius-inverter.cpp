@@ -30,6 +30,23 @@ int main(int argc, char *argv[])
 	  return EXIT_FAILURE;
   }
 
+  FroniusInverter::StateEvt_t state_evt = inverter->GetStateEvt();
+  std::cout << "Vendor flags: "
+		  << state_evt.EvtVnd1 << " "
+		  << state_evt.EvtVnd2 << " "
+		  << state_evt.EvtVnd3 << " "
+		  << state_evt.EvtVnd4 << std::endl;
+
+  std::cout << "Flags: "
+		  << state_evt.Evt1 << " "
+		  << state_evt.Evt2 << std::endl;
+
+  std::cout << "Vendor operating state: "
+		  << state_evt.StVnd << std::endl;
+
+  std::cout << "Operating state: "
+  		  << state_evt.St << std::endl;
+
   std::ios::fmtflags old_settings = std::cout.flags();
   std::cout.setf(std::ios::fixed, std::ios::floatfield);
 

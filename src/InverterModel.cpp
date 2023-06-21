@@ -313,3 +313,8 @@ bool InverterModel::SetStateEvt(void)
 
 	return true;
 }
+
+StateEvents::StateEvt_t InverterModel::GetStateEvt(void)
+{
+	return StateEvt;
+}
