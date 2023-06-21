@@ -62,6 +62,10 @@ public:
 	/** AC lifetime energy production [Wh] */
 	bool GetAcEnergyLifetime(double &res);
 
+	/** Set events and flags */
+	bool SetStateEvt(void);
+
+private:
 	/** Operating state */
 	bool GetState(uint16_t &state);
 
@@ -74,7 +78,7 @@ public:
 	/** Vendor defined event flags */
 	bool GetEventFlagsVendor(uint32_t &flag1, uint32_t &flag2, uint32_t &flag3, uint32_t &flag4);
 
-private:
+	/** Hold operating state and flags and their string representations */
 	struct StateEvt {
 		uint16_t St; uint16_t StVnd;
 	    uint32_t Evt1; uint32_t Evt2;

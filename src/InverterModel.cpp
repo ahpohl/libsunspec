@@ -294,3 +294,22 @@ bool InverterModel::GetEventFlagsVendor(uint32_t &flag1, uint32_t &flag2, uint32
 
 	return true;
 }
+
+bool InverterModel::SetStateEvt(void)
+{
+	if (!GetState(StateEvt.St)) {
+		return false;
+	}
+	if (!GetStateVendor(StateEvt.StVnd)) {
+		return false;
+	}
+	if (!GetEventFlags(StateEvt.Evt1, StateEvt.Evt2)) {
+		return false;
+	}
+	if (!GetEventFlagsVendor(StateEvt.EvtVnd1, StateEvt.EvtVnd2, StateEvt.EvtVnd3,
+			StateEvt.EvtVnd4)) {
+		return false;
+	}
+
+	return true;
+}
