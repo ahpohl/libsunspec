@@ -30,14 +30,39 @@ int main(int argc, char *argv[])
 	  return EXIT_FAILURE;
   }
 
+<<<<<<< HEAD
   FroniusInverter::StateEvt_t state_evt = inverter->GetStateEvtFlags();
   std::cout << "Inverter state: "
 		  << state_evt.StStr << " ("
 		  << state_evt.St << ")" << std::endl;
+=======
+  FroniusInverter::StateEvt_t state_evt = inverter->GetStateEvt();
+  std::cout << "Vendor flag: "
+		  << state_evt.EvtVndStr << "("
+		  << state_evt.EvtVnd1 << " "
+		  << state_evt.EvtVnd2 << " "
+		  << state_evt.EvtVnd3 << " "
+		  << state_evt.EvtVnd4 << ")" << std::endl;
+>>>>>>> branch 'master' of gitadmin@odroidc4.fritz.box:/var/lib/git_repos/libsunspec.git
 
+<<<<<<< HEAD
   if (!(state_evt.EvtStr.empty())) {
 	  std::cout << "Event: " << state_evt.EvtStr << std::endl;
   }
+=======
+  std::cout << "Flag: "
+		  << state_evt.EvtStr << "("
+		  << state_evt.Evt1 << " "
+		  << state_evt.Evt2 << ")" << std::endl;
+
+  std::cout << "Vendor operating state: "
+		  << state_evt.StVndStr << "("
+		  << state_evt.StVnd << ")" << std::endl;
+
+  std::cout << "Operating state: "
+		  << state_evt.StStr << "("
+  		  << state_evt.St << ")" << std::endl;
+>>>>>>> branch 'master' of gitadmin@odroidc4.fritz.box:/var/lib/git_repos/libsunspec.git
 
   std::ios::fmtflags old_settings = std::cout.flags();
   std::cout.setf(std::ios::fixed, std::ios::floatfield);

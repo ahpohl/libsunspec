@@ -122,7 +122,7 @@ bool StateEvents::SetEventStr(StateEvt_t &state_evt)
 		return false;
 	}
 
-	if (!state_evt.Evt1) {
+	if (!state_evt.Evt2) {
 		return true;
 	} else if ((state_evt.Evt2 >> 0) & 1) {
 		state_evt.EvtStr = "No SolarNet communication";
@@ -192,7 +192,7 @@ bool StateEvents::SetEventStr(StateEvt_t &state_evt)
 		return false;
 	}
 
-	if (!state_evt.Evt1) {
+	if (!state_evt.Evt3) {
 		return true;
 	} else if ((state_evt.Evt3 >> 0) & 1) {
 		state_evt.EvtStr = "Time error";
