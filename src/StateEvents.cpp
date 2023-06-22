@@ -119,126 +119,84 @@ bool StateEvents::SetEventVendor(StateEvt_t &state_evt)
 	} else {
 		return false;
 	}
-
 	if ((state_evt.EvtVnd2 >> 0) & 1) {
-		state_evt.EvtVndStr = "";
+		state_evt.EvtVndStr = "No SolarNet communication";
 	} else if ((state_evt.EvtVnd2 >> 1) & 1) {
-		state_evt.EvtVndStr = "";
+		state_evt.EvtVndStr = "Inverter address incorrect";
 	} else if ((state_evt.EvtVnd2 >> 2) & 1) {
-		state_evt.EvtVndStr = "";
+		state_evt.EvtVndStr = "24h no feed in";
 	} else if ((state_evt.EvtVnd2 >> 3) & 1) {
-		state_evt.EvtVndStr = "";
+		state_evt.EvtVndStr = "Faulty plug connections";
 	} else if ((state_evt.EvtVnd2 >> 4) & 1) {
-		state_evt.EvtVndStr = "";
+		state_evt.EvtVndStr = "Incorrect phase allocation";
 	} else if ((state_evt.EvtVnd2 >> 5) & 1) {
-		state_evt.EvtVndStr = "";
+		state_evt.EvtVndStr = "Grid conductor open or supply phase has failed";
 	} else if ((state_evt.EvtVnd2 >> 6) & 1) {
-		state_evt.EvtVndStr = "";
+		state_evt.EvtVndStr = "Incompatible or old software";
 	} else if ((state_evt.EvtVnd2 >> 7) & 1) {
-		state_evt.EvtVndStr = "";
+		state_evt.EvtVndStr = "Power derating due to overtemperature";
 	} else if ((state_evt.EvtVnd2 >> 8) & 1) {
-		state_evt.EvtVndStr = "";
+		state_evt.EvtVndStr = "Jumper set incorrectly";
 	} else if ((state_evt.EvtVnd2 >> 9) & 1) {
-		state_evt.EvtVndStr = "";
+		state_evt.EvtVndStr = "Incompatible feature";
 	} else if ((state_evt.EvtVnd2 >> 10) & 1) {
-		state_evt.EvtVndStr = "";
+		state_evt.EvtVndStr = "Defective ventilator/air vents blocked";
 	} else if ((state_evt.EvtVnd2 >> 11) & 1) {
-		state_evt.EvtVndStr = "";
+		state_evt.EvtVndStr = "Power reduction on error";
 	} else if ((state_evt.EvtVnd2 >> 12) & 1) {
-		state_evt.EvtVndStr = "";
+		state_evt.EvtVndStr = "Arc detected";
 	} else if ((state_evt.EvtVnd2 >> 13) & 1) {
-		state_evt.EvtVndStr = "";
+		state_evt.EvtVndStr = "AFCI self test failed";
 	} else if ((state_evt.EvtVnd2 >> 14) & 1) {
-		state_evt.EvtVndStr = "";
+		state_evt.EvtVndStr = "Current sensor error";
 	} else if ((state_evt.EvtVnd2 >> 15) & 1) {
-		state_evt.EvtVndStr = "";
+		state_evt.EvtVndStr = "DC switch fault";
 	} else if ((state_evt.EvtVnd2 >> 16) & 1) {
-		state_evt.EvtVndStr = "";
+		state_evt.EvtVndStr = "AFCI defective";
 	} else if ((state_evt.EvtVnd2 >> 17) & 1) {
-		state_evt.EvtVndStr = "";
+		state_evt.EvtVndStr = "AFCI manual test successful";
 	} else if ((state_evt.EvtVnd2 >> 18) & 1) {
-		state_evt.EvtVndStr = "";
+		state_evt.EvtVndStr = "Power stack supply missing";
 	} else if ((state_evt.EvtVnd2 >> 19) & 1) {
-		state_evt.EvtVndStr = "";
+		state_evt.EvtVndStr = "AFCI communication stopped";
 	} else if ((state_evt.EvtVnd2 >> 20) & 1) {
-		state_evt.EvtVndStr = "";
+		state_evt.EvtVndStr = "AFCI manual test failed";
 	} else if ((state_evt.EvtVnd2 >> 21) & 1) {
-		state_evt.EvtVndStr = "";
+		state_evt.EvtVndStr = "AC polarity reversed";
 	} else if ((state_evt.EvtVnd2 >> 22) & 1) {
-		state_evt.EvtVndStr = "";
+		state_evt.EvtVndStr = "AC measurement device fault";
 	} else if ((state_evt.EvtVnd2 >> 23) & 1) {
-		state_evt.EvtVndStr = "";
+		state_evt.EvtVndStr = "Flash fault";
 	} else if ((state_evt.EvtVnd2 >> 24) & 1) {
-		state_evt.EvtVndStr = "";
+		state_evt.EvtVndStr = "General error";
 	} else if ((state_evt.EvtVnd2 >> 25) & 1) {
-		state_evt.EvtVndStr = "";
+		state_evt.EvtVndStr = "Grounding fault";
 	} else if ((state_evt.EvtVnd2 >> 26) & 1) {
-		state_evt.EvtVndStr = "";
+		state_evt.EvtVndStr = "Power limitation fault";
 	} else if ((state_evt.EvtVnd2 >> 27) & 1) {
-		state_evt.EvtVndStr = "";
+		state_evt.EvtVndStr = "External NO contact open";
 	} else if ((state_evt.EvtVnd2 >> 28) & 1) {
-		state_evt.EvtVndStr = "";
+		state_evt.EvtVndStr = "External overvoltage protection has tripped";
 	} else if ((state_evt.EvtVnd2 >> 29) & 1) {
-		state_evt.EvtVndStr = "";
+		state_evt.EvtVndStr = "Internal processor program status";
 	} else if ((state_evt.EvtVnd2 >> 30) & 1) {
-		state_evt.EvtVndStr = "";
+		state_evt.EvtVndStr = "SolarNet issue";
 	} else if ((state_evt.EvtVnd2 >> 31) & 1) {
-		state_evt.EvtVndStr = "";
+		state_evt.EvtVndStr = "Supply voltage fault";
 	} else {
 		return false;
 	}
-
-
 	if ((state_evt.EvtVnd3 >> 0) & 1) {
-		state_evt.EvtVndStr = "";
+		state_evt.EvtVndStr = "Time error";
 	} else if ((state_evt.EvtVnd3 >> 1) & 1) {
-		state_evt.EvtVndStr = "";
+		state_evt.EvtVndStr = "USB error";
 	} else if ((state_evt.EvtVnd3 >> 2) & 1) {
-		state_evt.EvtVndStr = "";
+		state_evt.EvtVndStr = "DC high";
 	} else if ((state_evt.EvtVnd3 >> 3) & 1) {
-		state_evt.EvtVndStr = "";
+		state_evt.EvtVndStr = "Init error";
 	} else {
 		return false;
 	}
 
 	return true;
 }
-
-/*
-No SolarNet communication
-Inverter address incorrect
-24h no feed in
-Faulty plug connections
-Incorrect phase allocation
-Grid conductor open or supply phase has failed
-Incompatible or old software
-Power Derating Due To Overtemperature
-Jumper set incorrectly
-Incompatible feature
-Defective ventilator/air vents blocked
-Power reduction on error
-Arc Detected
-AFCI Self Test Failed
-Current Sensor Error
-DC switch fault
-AFCI Defective
-AFCI Manual Test Successful
-Power Stack Supply Missing
-AFCI Communication Stopped
-AFCI Manual Test Failed
-AC polarity reversed
-AC measurement device fault
-Flash fault
-General error
-Grounding fault
-Power limitation fault
-External NO contact open
-External overvoltage protection has tripped
-Internal processor program status
-SolarNet issue
-Supply voltage fault
-Time error
-USB error
-DC high
-Init error
-*/
