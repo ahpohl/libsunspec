@@ -31,21 +31,25 @@ int main(int argc, char *argv[])
   }
 
   FroniusInverter::StateEvt_t state_evt = inverter->GetStateEvt();
-  std::cout << "Vendor flags: "
+  std::cout << "Vendor flag: "
+		  << state_evt.EvtVndStr << "("
 		  << state_evt.EvtVnd1 << " "
 		  << state_evt.EvtVnd2 << " "
 		  << state_evt.EvtVnd3 << " "
-		  << state_evt.EvtVnd4 << std::endl;
+		  << state_evt.EvtVnd4 << ")" << std::endl;
 
-  std::cout << "Flags: "
+  std::cout << "Flag: "
+		  << state_evt.EvtStr << "("
 		  << state_evt.Evt1 << " "
-		  << state_evt.Evt2 << std::endl;
+		  << state_evt.Evt2 << ")" << std::endl;
 
   std::cout << "Vendor operating state: "
-		  << state_evt.StVnd << std::endl;
+		  << state_evt.StVndStr << "("
+		  << state_evt.StVnd << ")" << std::endl;
 
   std::cout << "Operating state: "
-  		  << state_evt.St << std::endl;
+		  << state_evt.StStr << "("
+  		  << state_evt.St << ")" << std::endl;
 
   std::ios::fmtflags old_settings = std::cout.flags();
   std::cout.setf(std::ios::fixed, std::ios::floatfield);

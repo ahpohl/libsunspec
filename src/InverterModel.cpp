@@ -311,6 +311,16 @@ bool InverterModel::SetStateEvt(void)
 		return false;
 	}
 
+	if (!SetStateVendor(StateEvt)) {
+		ErrorMessage = "Invalid vendor state.";
+		return false;
+	}
+
+	if (!SetEventVendor(StateEvt)) {
+		ErrorMessage = "Invalid vendor event.";
+		return false;
+	}
+
 	return true;
 }
 
