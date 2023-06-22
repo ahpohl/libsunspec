@@ -243,7 +243,7 @@ namespace InverterRegisterMap
 	/** Vendor defined event flags (bits 32-63) */
 	struct { uint32_t res = 0; const uint16_t reg = 40116-1; const uint16_t nb = 2; } I10X_EvtVnd2;
 
-	/** Vendor defined event flags (bits 63-95) */
+	/** Vendor defined event flags (bits 64-95) */
 	struct { uint32_t res = 0; const uint16_t reg = 40118-1; const uint16_t nb = 2; } I10X_EvtVnd3;
 
 	/** Vendor defined event flags (bits 96-127) */

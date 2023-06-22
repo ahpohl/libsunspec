@@ -27,7 +27,7 @@ public:
 
 	/** Continuous VAR capability of the inverter.
 
-	    @returns reactive power [VAr]
+	    @param res reactive power [VAr]
 	    @param quadrant quadrant [1-4]
 	*/
 	bool GetPowerReactiveMax(double &res, const int quadrant);
@@ -40,7 +40,7 @@ public:
 
 	/** Minimum power factor capability of the inverter.
 
-	    @returns power factor [cos(phi)]
+	    @param res power factor [cos(phi)]
 	    @param quadrant quadrant [1-4]
 	*/
 	bool GetPowerFactorMin(double &res, const int quadrant);

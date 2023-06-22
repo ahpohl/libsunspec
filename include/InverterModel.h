@@ -64,15 +64,9 @@ public:
 	bool GetAcEnergyLifetime(double &res);
 
 	/** Read state and event flags */
-	bool ReadStateEvtFlags(void);
-
-	/** Get state and event flags */
-	StateEvt_t GetStateEvtFlags(void);
+	bool GetStateEvtFlags(StateEvt_t &state_evt);
 
 private:
-	/** Operating state and flags */
-	struct StateEvt_t StateEvt;
-
 	/** Read inverter operating state */
 	bool ReadState(uint16_t &state);
 

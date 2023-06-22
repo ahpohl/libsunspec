@@ -270,27 +270,22 @@ bool InverterModel::ReadEventFlags(uint32_t &flag1, uint32_t &flag2, uint32_t &f
 	return true;
 }
 
-bool InverterModel::ReadStateEvtFlags(void)
+bool InverterModel::GetStateEvtFlags(StateEvt_t &state_evt)
 {
-	if (!ReadState(StateEvt.St)) {
+	if (!ReadState(state_evt.St)) {
 		return false;
 	}
-	if (!ReadEventFlags(StateEvt.Evt1, StateEvt.Evt2, StateEvt.Evt3, StateEvt.Evt4)) {
+	if (!ReadEventFlags(state_evt.Evt1, state_evt.Evt2, state_evt.Evt3, state_evt.Evt4)) {
 		return false;
 	}
-	if (!SetStateStr(StateEvt)) {
+	if (!SetStateStr(state_evt)) {
 		ErrorMessage = "Invalid operating state.";
 		return false;
 	}
-	if (!SetEventStr(StateEvt)) {
+	if (!SetEventStr(state_evt)) {
 		ErrorMessage = "Invalid event flags.";
 		return false;
 	}
 
 	return true;
-}
-
-StateEvents::StateEvt_t InverterModel::GetStateEvtFlags(void)
-{
-	return StateEvt;
 }

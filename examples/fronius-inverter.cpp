@@ -30,11 +30,13 @@ int main(int argc, char *argv[])
 	  return EXIT_FAILURE;
   }
 
-  FroniusInverter::StateEvt_t state_evt = inverter->GetStateEvtFlags();
-  std::cout << "Inverter state: "
-		  << state_evt.StStr << " ("
+  FroniusInverter::StateEvt_t state_evt;
+  if (!inverter->GetStateEvtFlags(state_evt)) {
+	  std::cout << inverter->GetErrorMessage() << std::endl;
+	  return EXIT_FAILURE;
+  }
+  std::cout << "Inverter state: " << state_evt.StStr << " ("
 		  << state_evt.St << ")" << std::endl;
-
   if (!(state_evt.EvtStr.empty())) {
 	  std::cout << "Event: " << state_evt.EvtStr << std::endl;
   }

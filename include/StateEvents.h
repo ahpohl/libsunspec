@@ -12,14 +12,21 @@
 class StateEvents
 {
 public:
-	/** Operating state and event flags  */
+	/** Operating state and event flags */
 	struct StateEvt_t {
+		/// Vendor defined operating state
 		uint16_t St;
+		/// State as text
 		std::string StStr;
+		/// Vendor defined event flags (bits 0-31)
 	    uint32_t Evt1;
+	    /// Vendor defined event flags (bits 32-63)
 	    uint32_t Evt2;
+	    /// Vendor defined event flags (bits 64-95)
 	    uint32_t Evt3;
+	    /// Vendor defined event flags (bits 96-127)
 	    uint32_t Evt4;
+	    /// Event as text
 		std::string EvtStr;
 	};
 
