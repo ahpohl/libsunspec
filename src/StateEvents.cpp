@@ -52,7 +52,9 @@ bool StateEvents::SetStateVendor(StateEvt_t &state_evt)
 
 bool StateEvents::SetEventVendor(StateEvt_t &state_evt)
 {
-	if ((state_evt.EvtVnd1 >> 0) & 1) {
+	if (!state_evt.EvtVnd1) {
+		return true;
+	} else if ((state_evt.EvtVnd1 >> 0) & 1) {
 		state_evt.EvtVndStr = "DC Insulation fault";
 	} else if ((state_evt.EvtVnd1 >> 1) & 1) {
 		state_evt.EvtVndStr = "Grid error";
@@ -119,7 +121,10 @@ bool StateEvents::SetEventVendor(StateEvt_t &state_evt)
 	} else {
 		return false;
 	}
-	if ((state_evt.EvtVnd2 >> 0) & 1) {
+
+	if (!state_evt.EvtVnd1) {
+		return true;
+	} else if ((state_evt.EvtVnd2 >> 0) & 1) {
 		state_evt.EvtVndStr = "No SolarNet communication";
 	} else if ((state_evt.EvtVnd2 >> 1) & 1) {
 		state_evt.EvtVndStr = "Inverter address incorrect";
@@ -186,7 +191,10 @@ bool StateEvents::SetEventVendor(StateEvt_t &state_evt)
 	} else {
 		return false;
 	}
-	if ((state_evt.EvtVnd3 >> 0) & 1) {
+
+	if (!state_evt.EvtVnd1) {
+		return true;
+	} else if ((state_evt.EvtVnd3 >> 0) & 1) {
 		state_evt.EvtVndStr = "Time error";
 	} else if ((state_evt.EvtVnd3 >> 1) & 1) {
 		state_evt.EvtVndStr = "USB error";
