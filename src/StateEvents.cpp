@@ -26,7 +26,7 @@ bool StateEvents::SetStateStr(StateEvt_t &state_evt)
 		state_evt.StStr = "One or more faults exist";
 		break;
 	case static_cast<uint16_t>(OpState::I_STATUS_STANDBY):
-		state_evt.StStr = "Standby (service on unit)*might be in Events";
+		state_evt.StStr = "Standby (service on unit) *might be in Events";
 		break;
 	case static_cast<uint16_t>(OpState::I_STATUS_NO_BUSINIT):
 		state_evt.StStr = "No SolarNet communication";
@@ -63,7 +63,7 @@ bool StateEvents::SetEventStr(StateEvt_t &state_evt)
 	} else if ((state_evt.Evt1 >> 3) & 1) {
 		state_evt.EvtStr = "Overcurrent DC";
 	} else if ((state_evt.Evt1 >> 4) & 1) {
-		state_evt.EvtStr = "Over-temperature";
+		state_evt.EvtStr = "Overtemperature";
 	} else if ((state_evt.Evt1 >> 5) & 1) {
 		state_evt.EvtStr = "Power low";
 	} else if ((state_evt.Evt1 >> 6) & 1) {
