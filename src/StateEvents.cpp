@@ -26,7 +26,7 @@ bool StateEvents::SetStateStr(StateEvt_t &state_evt)
 		state_evt.StStr = "One or more faults exist";
 		break;
 	case static_cast<uint16_t>(OpState::I_STATUS_STANDBY):
-		state_evt.StStr = "Standby (service on unit) *might be in Events";
+		state_evt.StStr = "Standby";
 		break;
 	case static_cast<uint16_t>(OpState::I_STATUS_NO_BUSINIT):
 		state_evt.StStr = "No SolarNet communication";
