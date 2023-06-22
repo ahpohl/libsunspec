@@ -237,16 +237,6 @@ bool InverterModel::GetAcEnergyLifetime(double &res)
 
 bool InverterModel::ReadState(uint16_t &state)
 {
-	if (!GetRegister(I10X_St.res, I10X_St.reg, I10X_St.nb)) {
-		return false;
-	}
-	state = I10X_St.res;
-
-	return true;
-}
-
-bool InverterModel::ReadStateVendor(uint16_t &state)
-{
 	if (!GetRegister(I10X_StVnd.res, I10X_StVnd.reg, I10X_StVnd.nb)) {
 		return false;
 	}
@@ -255,22 +245,7 @@ bool InverterModel::ReadStateVendor(uint16_t &state)
 	return true;
 }
 
-bool InverterModel::ReadEventFlags(uint32_t &flag1, uint32_t &flag2)
-{
-	if (!GetRegister(I10X_Evt1.res, I10X_Evt1.reg, I10X_Evt1.nb)) {
-		return false;
-	}
-	flag1 = I10X_Evt1.res;
-
-	if (!GetRegister(I10X_Evt2.res, I10X_Evt2.reg, I10X_Evt2.nb)) {
-		return false;
-	}
-	flag2 = I10X_Evt2.res;
-
-	return true;
-}
-
-bool InverterModel::ReadEventFlagsVendor(uint32_t &flag1, uint32_t &flag2, uint32_t &flag3, uint32_t &flag4)
+bool InverterModel::ReadEventFlags(uint32_t &flag1, uint32_t &flag2, uint32_t &flag3, uint32_t &flag4)
 {
 	if (!GetRegister(I10X_EvtVnd1.res, I10X_EvtVnd1.reg, I10X_EvtVnd1.nb)) {
 		return false;
@@ -295,28 +270,27 @@ bool InverterModel::ReadEventFlagsVendor(uint32_t &flag1, uint32_t &flag2, uint3
 	return true;
 }
 
-bool InverterModel::SetStateEvt(void)
+bool InverterModel::ReadStateEvtFlags(void)
 {
-	if (!ReadStateVendor(StateEvt.StVnd)) {
+	if (!ReadState(StateEvt.St)) {
 		return false;
 	}
-	if (!ReadEventFlagsVendor(StateEvt.EvtVnd1, StateEvt.EvtVnd2, StateEvt.EvtVnd3,
-			StateEvt.EvtVnd4)) {
+	if (!ReadEventFlags(StateEvt.Evt1, StateEvt.Evt2, StateEvt.Evt3, StateEvt.Evt4)) {
 		return false;
 	}
-	if (!SetStateVendorStr(StateEvt)) {
-		ErrorMessage = "Invalid vendor state.";
+	if (!SetStateStr(StateEvt)) {
+		ErrorMessage = "Invalid operating state.";
 		return false;
 	}
-	if (!SetEventVendorStr(StateEvt)) {
-		ErrorMessage = "Invalid vendor event.";
+	if (!SetEventStr(StateEvt)) {
+		ErrorMessage = "Invalid event flags.";
 		return false;
 	}
 
 	return true;
 }
 
-StateEvents::StateEvtVendor_t InverterModel::GetStateEvt(void)
+StateEvents::StateEvt_t InverterModel::GetStateEvtFlags(void)
 {
 	return StateEvt;
 }
