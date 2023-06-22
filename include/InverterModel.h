@@ -67,23 +67,23 @@ public:
 	bool SetStateEvt(void);
 
 	/** Get events and flags */
-	StateEvt_t GetStateEvt(void);
+	StateEvtVendor_t GetStateEvt(void);
 
 private:
 	/** Operating state and flags */
-	struct StateEvt_t StateEvt;
+	struct StateEvtVendor_t StateEvt;
 
 	/** Operating state */
-	bool GetState(uint16_t &state);
+	bool ReadState(uint16_t &state);
 
 	/** Vendor defined operating state */
-	bool GetStateVendor(uint16_t &state);
+	bool ReadStateVendor(uint16_t &state);
 
 	/** Event flags */
-	bool GetEventFlags(uint32_t &flag1, uint32_t &flag2);
+	bool ReadEventFlags(uint32_t &flag1, uint32_t &flag2);
 
 	/** Vendor defined event flags */
-	bool GetEventFlagsVendor(uint32_t &flag1, uint32_t &flag2, uint32_t &flag3, uint32_t &flag4);
+	bool ReadEventFlagsVendor(uint32_t &flag1, uint32_t &flag2, uint32_t &flag3, uint32_t &flag4);
 };
 
 #endif /* INVERTERMODEL_H_ */

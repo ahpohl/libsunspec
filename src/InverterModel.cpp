@@ -235,7 +235,7 @@ bool InverterModel::GetAcEnergyLifetime(double &res)
 	return true;
 }
 
-bool InverterModel::GetState(uint16_t &state)
+bool InverterModel::ReadState(uint16_t &state)
 {
 	if (!GetRegister(I10X_St.res, I10X_St.reg, I10X_St.nb)) {
 		return false;
@@ -245,7 +245,7 @@ bool InverterModel::GetState(uint16_t &state)
 	return true;
 }
 
-bool InverterModel::GetStateVendor(uint16_t &state)
+bool InverterModel::ReadStateVendor(uint16_t &state)
 {
 	if (!GetRegister(I10X_StVnd.res, I10X_StVnd.reg, I10X_StVnd.nb)) {
 		return false;
@@ -255,7 +255,7 @@ bool InverterModel::GetStateVendor(uint16_t &state)
 	return true;
 }
 
-bool InverterModel::GetEventFlags(uint32_t &flag1, uint32_t &flag2)
+bool InverterModel::ReadEventFlags(uint32_t &flag1, uint32_t &flag2)
 {
 	if (!GetRegister(I10X_Evt1.res, I10X_Evt1.reg, I10X_Evt1.nb)) {
 		return false;
@@ -270,7 +270,7 @@ bool InverterModel::GetEventFlags(uint32_t &flag1, uint32_t &flag2)
 	return true;
 }
 
-bool InverterModel::GetEventFlagsVendor(uint32_t &flag1, uint32_t &flag2, uint32_t &flag3, uint32_t &flag4)
+bool InverterModel::ReadEventFlagsVendor(uint32_t &flag1, uint32_t &flag2, uint32_t &flag3, uint32_t &flag4)
 {
 	if (!GetRegister(I10X_EvtVnd1.res, I10X_EvtVnd1.reg, I10X_EvtVnd1.nb)) {
 		return false;
@@ -297,26 +297,18 @@ bool InverterModel::GetEventFlagsVendor(uint32_t &flag1, uint32_t &flag2, uint32
 
 bool InverterModel::SetStateEvt(void)
 {
-	if (!GetState(StateEvt.St)) {
+	if (!ReadStateVendor(StateEvt.StVnd)) {
 		return false;
 	}
-	if (!GetStateVendor(StateEvt.StVnd)) {
-		return false;
-	}
-	if (!GetEventFlags(StateEvt.Evt1, StateEvt.Evt2)) {
-		return false;
-	}
-	if (!GetEventFlagsVendor(StateEvt.EvtVnd1, StateEvt.EvtVnd2, StateEvt.EvtVnd3,
+	if (!ReadEventFlagsVendor(StateEvt.EvtVnd1, StateEvt.EvtVnd2, StateEvt.EvtVnd3,
 			StateEvt.EvtVnd4)) {
 		return false;
 	}
-
-	if (!SetStateVendor(StateEvt)) {
+	if (!SetStateVendorStr(StateEvt)) {
 		ErrorMessage = "Invalid vendor state.";
 		return false;
 	}
-
-	if (!SetEventVendor(StateEvt)) {
+	if (!SetEventVendorStr(StateEvt)) {
 		ErrorMessage = "Invalid vendor event.";
 		return false;
 	}
@@ -324,7 +316,7 @@ bool InverterModel::SetStateEvt(void)
 	return true;
 }
 
-StateEvents::StateEvt_t InverterModel::GetStateEvt(void)
+StateEvents::StateEvtVendor_t InverterModel::GetStateEvt(void)
 {
 	return StateEvt;
 }

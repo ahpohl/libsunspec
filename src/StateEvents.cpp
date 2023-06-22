@@ -1,6 +1,6 @@
 #include "StateEvents.h"
 
-bool StateEvents::SetStateVendor(StateEvt_t &state_evt)
+bool StateEvents::SetStateVendorStr(StateEvtVendor_t &state_evt)
 {
 	switch (state_evt.StVnd) {
 
@@ -50,7 +50,7 @@ bool StateEvents::SetStateVendor(StateEvt_t &state_evt)
 	return true;
 }
 
-bool StateEvents::SetEventVendor(StateEvt_t &state_evt)
+bool StateEvents::SetEventVendorStr(StateEvtVendor_t &state_evt)
 {
 	if (!state_evt.EvtVnd1) {
 		return true;

@@ -12,30 +12,26 @@
 class StateEvents
 {
 public:
-	/** Operating state and flags and their string representations */
-	struct StateEvt_t {
-		uint16_t St;
+	/** Vendor operating state and event flags  */
+	struct StateEvtVendor_t {
 		uint16_t StVnd;
-	    uint32_t Evt1;
-	    uint32_t Evt2;
+		std::string StVndStr;
 	    uint32_t EvtVnd1;
 	    uint32_t EvtVnd2;
 	    uint32_t EvtVnd3;
 	    uint32_t EvtVnd4;
-		std::string StStr;
-		std::string StVndStr;
-		std::string EvtStr;
 		std::string EvtVndStr;
 	};
 
-	/** */
-	bool SetStateVendor(StateEvt_t &state_evt);
+protected:
+	/** Set state flag string representation */
+	bool SetStateVendorStr(StateEvtVendor_t &state_evt);
 
-	/** */
-	bool SetEventVendor(StateEvt_t &state_evt);
+	/** Set event flags string representation */
+	bool SetEventVendorStr(StateEvtVendor_t &state_evt);
 
 private:
-	/** */
+	/** Vendor states */
 	enum class StatesVendor : uint16_t {
 		I_STATUS_OFF = 1,
 		I_STATUS_SLEEPING,
