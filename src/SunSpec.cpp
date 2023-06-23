@@ -62,6 +62,12 @@ bool SunSpec::ConnectModbusRtu(std::string device, int baud_rate)
 	if (!SetModBusAddress()) {
 		return false;
 	}
+
+	if (modbus_set_response_timeout(Ctx, 0, 500000) == -1) {
+	    ErrorMessage = std::string("Setting timeout failed: ")
+	    	+ modbus_strerror(errno) + " (" + std::to_string(errno) + ")";
+	}
+
 	return true;
 }
 

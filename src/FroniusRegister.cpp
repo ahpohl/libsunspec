@@ -4,6 +4,17 @@
 
 using namespace FroniusRegisterMap;
 
+bool FroniusRegister::GetActiveStateCode(uint16_t &code)
+{
+	if (!GetRegister(F_Active_State_Code.res, F_Active_State_Code.reg, F_Active_State_Code.nb))
+	{
+		return false;
+	}
+	code = F_Active_State_Code.res;
+
+	return true;
+}
+
 bool FroniusRegister::GetSitePower(double &res)
 {
 	if (!GetRegister(F_Site_Power.res, F_Site_Power.reg, F_Site_Power.nb))
@@ -47,3 +58,6 @@ bool FroniusRegister::GetSiteEnergyTotal(double &res)
 
 	return true;
 }
+
+
+

@@ -11,6 +11,12 @@
 class FroniusRegister: virtual public SunSpec
 {
 public:
+	/** Get current active state code of inverter
+
+	    @returns state code
+	*/
+	bool GetActiveStateCode(uint16_t &code);
+
 	/** Total power (site sum) of all connected inverters.
 
 	    @returns power [W]
