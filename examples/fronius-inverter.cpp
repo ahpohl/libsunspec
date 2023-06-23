@@ -44,6 +44,16 @@ int main(int argc, char *argv[])
 	  std::cout << "Vendor event: " << state_evt.EvtVndStr << std::endl;
   }
 
+  FroniusInverter::StateCode_t state_code;
+  if (!inverter->GetStateCode(state_code)) {
+	  std::cout << inverter->GetErrorMessage() << std::endl;
+	  return EXIT_FAILURE;
+  }
+  if (!(state_code.StStr.empty())) {
+    std::cout << "State code: " << state_code.StStr << " (" << state_code.St << ")" << std::endl;
+    std::cout << "Model: " << state_code.Model << std::endl;
+  }
+
   std::ios::fmtflags old_settings = std::cout.flags();
   std::cout.setf(std::ios::fixed, std::ios::floatfield);
 
