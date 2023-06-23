@@ -237,6 +237,16 @@ bool InverterModel::GetAcEnergyLifetime(double &res)
 
 bool InverterModel::ReadState(uint16_t &state)
 {
+	if (!GetRegister(I10X_St.res, I10X_St.reg, I10X_St.nb)) {
+		return false;
+	}
+	state = I10X_St.res;
+
+	return true;
+}
+
+bool InverterModel::ReadStateVendor(uint16_t &state)
+{
 	if (!GetRegister(I10X_StVnd.res, I10X_StVnd.reg, I10X_StVnd.nb)) {
 		return false;
 	}
@@ -245,7 +255,22 @@ bool InverterModel::ReadState(uint16_t &state)
 	return true;
 }
 
-bool InverterModel::ReadEventFlags(uint32_t &flag1, uint32_t &flag2, uint32_t &flag3, uint32_t &flag4)
+bool InverterModel::ReadEventFlags(uint32_t &flag1, uint32_t &flag2)
+{
+	if (!GetRegister(I10X_Evt1.res, I10X_Evt1.reg, I10X_Evt1.nb)) {
+		return false;
+	}
+	flag1 = I10X_Evt1.res;
+
+	if (!GetRegister(I10X_Evt2.res, I10X_Evt2.reg, I10X_Evt2.nb)) {
+		return false;
+	}
+	flag2 = I10X_Evt2.res;
+
+	return true;
+}
+
+bool InverterModel::ReadEventFlagsVendor(uint32_t &flag1, uint32_t &flag2, uint32_t &flag3, uint32_t &flag4)
 {
 	if (!GetRegister(I10X_EvtVnd1.res, I10X_EvtVnd1.reg, I10X_EvtVnd1.nb)) {
 		return false;
@@ -272,18 +297,17 @@ bool InverterModel::ReadEventFlags(uint32_t &flag1, uint32_t &flag2, uint32_t &f
 
 bool InverterModel::GetStateEvtFlags(StateEvt_t &state_evt)
 {
-	if (!ReadState(state_evt.St)) {
+	if (!ReadStateVendor(state_evt.St)) {
 		return false;
 	}
-	if (!ReadEventFlags(state_evt.Evt1, state_evt.Evt2, state_evt.Evt3, state_evt.Evt4)) {
+	if (!ReadEventFlags(state_evt.Evt1, state_evt.Evt2)) {
 		return false;
 	}
-	if (!SetStateStr(state_evt)) {
-		ErrorMessage = "Invalid operating state.";
+	if (!ReadEventFlagsVendor(state_evt.EvtVnd1, state_evt.EvtVnd2, state_evt.EvtVnd3, state_evt.EvtVnd4)) {
 		return false;
 	}
-	if (!SetEventStr(state_evt)) {
-		ErrorMessage = "Invalid event flags.";
+	if (!SetStateEventsStr(state_evt)) {
+		ErrorMessage = "Invalid operating state and/or event flag.";
 		return false;
 	}
 

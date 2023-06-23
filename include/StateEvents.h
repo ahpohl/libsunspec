@@ -14,28 +14,31 @@ class StateEvents
 public:
 	/** Operating state and event flags */
 	struct StateEvt_t {
-		/// Vendor defined operating state
+		/// Operating state
 		uint16_t St;
 		/// State as text
 		std::string StStr;
-		/// Vendor defined event flags (bits 0-31)
+		/// Event flags (bits 0-31)
 	    uint32_t Evt1;
-	    /// Vendor defined event flags (bits 32-63)
+	    /// Event flags (bits 32-63)
 	    uint32_t Evt2;
-	    /// Vendor defined event flags (bits 64-95)
-	    uint32_t Evt3;
-	    /// Vendor defined event flags (bits 96-127)
-	    uint32_t Evt4;
 	    /// Event as text
 		std::string EvtStr;
+		/// Vendor defined event flags (bits 0-31)
+	    uint32_t EvtVnd1;
+	    /// Vendor defined event flags (bits 32-63)
+	    uint32_t EvtVnd2;
+	    /// Vendor defined event flags (bits 64-95)
+	    uint32_t EvtVnd3;
+	    /// Vendor defined event flags (bits 96-127)
+	    uint32_t EvtVnd4;
+	    /// Event as text
+		std::string EvtVndStr;
 	};
 
 protected:
-	/** Set state flag string */
-	bool SetStateStr(StateEvt_t &state_evt);
-
-	/** Set event flags string */
-	bool SetEventStr(StateEvt_t &state_evt);
+	/** Set state and event flag strings */
+	bool SetStateEventsStr(StateEvt_t &state_evt);
 
 private:
 	/** Operating states */

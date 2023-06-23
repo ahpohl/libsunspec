@@ -40,6 +40,9 @@ int main(int argc, char *argv[])
   if (!(state_evt.EvtStr.empty())) {
 	  std::cout << "Event: " << state_evt.EvtStr << std::endl;
   }
+  if (!(state_evt.EvtVndStr.empty())) {
+	  std::cout << "Vendor event: " << state_evt.EvtVndStr << std::endl;
+  }
 
   std::ios::fmtflags old_settings = std::cout.flags();
   std::cout.setf(std::ios::fixed, std::ios::floatfield);
