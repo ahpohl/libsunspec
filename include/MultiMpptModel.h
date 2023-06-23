@@ -44,7 +44,7 @@ public:
 
 	/** Timestamp
 
-		@param ts timestamp [seconds since 01-Jan-2000 00:00 UTC]
+		@param ts timestamp [seconds since 01-Jan-2000 00:00 localtime]
 		@param string_id string 1 (default) or string 2
 	*/
 	bool GetTimestamp(unsigned int &ts, const int string_id = 1);

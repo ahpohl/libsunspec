@@ -506,7 +506,7 @@ namespace MultiMpptRegisterMap
 	*/
 	struct { uint32_t res = 0; const uint16_t reg = 40296-1; const uint16_t nb = 2; } I160_2_DCWH;
 
-	/** Timestamp [s] */
+	/** Timestamp since 01-Jan-2000 00:00 [localtime] [s] */
 	struct { uint32_t res = 0; const uint16_t reg = 40298-1; const uint16_t nb = 2; } I160_2_Tms;
 
 	/** Temperature [°C] */

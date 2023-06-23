@@ -34,11 +34,8 @@ int main(int argc, char *argv[])
   std::ios::fmtflags old_settings = std::cout.flags();
   std::cout.setf(std::ios::fixed, std::ios::floatfield);
 
-
-
   for (int string_id = 1; string_id < 3; ++string_id)
   {
-	  std::cout << "String " << string_id << ":" << std::endl;
 	  std::cout << "String " << string_id << ":" << std::endl;
 	  double dc_current;
 	  if (!inverter->GetDcCurrent(dc_current, string_id))
@@ -75,19 +72,19 @@ int main(int argc, char *argv[])
 	  }
 	  std::cout.precision(2);
 	  std::cout << "  DC energy lifetime: " << dc_energy << " kWh" << std::endl;
-
-	  unsigned int ts;
-	  if (!inverter->GetTimestamp(ts, string_id))
-	  {
-		  std::cout << inverter->GetErrorMessage() << std::endl;
-		  return EXIT_FAILURE;
-	  }
-	  std::cout.precision(0);
-	  std::cout << "  Timestamp: " << (ts + 946684800) << " secs since epoch" << std::endl;
   }
 
-  double now = std::chrono::duration_cast<std::chrono::seconds>(std::chrono::system_clock::now().time_since_epoch()).count();
-  std::cout << "Timestamp now: " << now << std::endl;
+  unsigned int ts;
+  if (!inverter->GetTimestamp(ts, 1))
+  {
+	  std::cout << inverter->GetErrorMessage() << std::endl;
+	  return EXIT_FAILURE;
+  }
+  std::cout.precision(0);
+  std::cout << "Timestamp inverter: " << (ts + 946684800) << " secs since epoch" << std::endl;
+
+  unsigned int now = std::chrono::duration_cast<std::chrono::seconds>(std::chrono::system_clock::now().time_since_epoch()).count();
+  std::cout << "Timestamp system: " << now << " secs since epoch" << std::endl;
 
   std::cout.flags(old_settings);
   return EXIT_SUCCESS;
