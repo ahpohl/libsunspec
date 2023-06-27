@@ -411,7 +411,7 @@ namespace ExtendedRegisterMap
 	struct { uint16_t res = 0; const uint16_t reg = 40183-1; const uint16_t nb = 1; } I122_L;
 
 	/** PV inverter present/available status.
-	 *
+
 	    Bit 0: Connected
 		Bit 1: Available
 		Bit 2: Operating
@@ -437,49 +437,49 @@ namespace ExtendedRegisterMap
 
 	/** AC lifetime active (real) energy output.
 
-	    @returns res lifetime energy [Wh]
+	    @returns lifetime energy [Wh]
 	*/
 	struct { uint64_t res = 0; const uint16_t reg = 40187-1; const uint16_t nb = 4; } I122_ActWh;
 
 	/** AC lifetime apparent energy output.
 
 		@note not supported
-	    @returns res apparent energy [VAh]
+	    @returns apparent energy [VAh]
 	*/
 	struct { uint64_t res = 0; const uint16_t reg = 40191-1; const uint16_t nb = 4; } I122_ActVAh;
 
 	/** AC lifetime reactive energy output in quadrant 1.
 
 	    @note not supported
-	    @returns res reactive energy Q1 [VArh]
+	    @returns reactive energy Q1 [VArh]
 	*/
 	struct { uint64_t res = 0; const uint16_t reg = 40195-1; const uint16_t nb = 4; } I122_ActVArhQ1;
 
 	/** AC lifetime reactive energy output in quadrant 2.
 
 	    @note not supported
-	    @returns res reactive energy Q2 [VArh]
+	    @returns reactive energy Q2 [VArh]
 	*/
 	struct { uint64_t res = 0; const uint16_t reg = 40199-1; const uint16_t nb = 4; } I122_ActVArhQ2;
 
 	/** AC lifetime reactive energy output in quadrant 3.
 
 	    @note not supported
-	    @returns res reactive energy Q3 [VArh]
+	    @returns reactive energy Q3 [VArh]
 	*/
 	struct { uint64_t res = 0; const uint16_t reg = 40203-1; const uint16_t nb = 4; } I122_ActVArhQ3;
 
 	/** AC lifetime reactive energy output in quadrant 4.
 
 	    @note not supported
-	    @returns res reactive energy Q4 [VArh]
+	    @returns reactive energy Q4 [VArh]
 	*/
 	struct { uint64_t res = 0; const uint16_t reg = 40207-1; const uint16_t nb = 4; } I122_ActVArhQ4;
 
 	/** Amount of VARs available without impacting output.
 
 	    @note not supported
-	    @returns res reactive energy [VArh]
+	    @returns reactive energy [VArh]
 	*/
 	struct { int16_t  res = 0; const uint16_t reg = 40211-1; const uint16_t nb = 1; } I122_VArAval;
 
@@ -492,7 +492,7 @@ namespace ExtendedRegisterMap
 	/** Amount of power available.
 
 		@note not supported
-	    @returns res power [W]
+	    @returns available power [W]
 	*/
 	struct { uint16_t res = 0; const uint16_t reg = 40213-1; const uint16_t nb = 1; } I122_WAval;
 
@@ -525,7 +525,7 @@ namespace ExtendedRegisterMap
 
 	/** Timestamp
 
-	    @returns res seconds since 01-01-2000 00:00 UTC
+	    @returns seconds since 01-01-2000 00:00 UTC
 	*/
 	struct { uint32_t res = 0; const uint16_t reg = 40223-1; const uint16_t nb = 2; } I122_Tms;
 
@@ -538,7 +538,7 @@ namespace ExtendedRegisterMap
 	/** Isolation resistance
 
 		@note not supported
-	    @returns res riso [Ohm]
+	    @returns riso [Ohm]
 	*/
 	struct { uint16_t res = 0; const uint16_t reg = 40226-1; const uint16_t nb = 1; } I112_Ris;
 
@@ -727,79 +727,447 @@ namespace FroniusRegisterMap
 /** @brief Register description of the Meter specific registers */
 namespace MeterRegisterMap
 {
+    /** Uniquely identifies this as a SunSpec Meter Modbus Map
+
+	    201: single phase
+	    202: split phase
+	    203: three phase
+    */
     struct { uint16_t res = 0; const uint16_t reg = 40070-1; const uint16_t nb = 1; } M20X_ID;
+
+    /** Length of meter model block
+
+        @returns 105
+    */
     struct { uint16_t res = 0; const uint16_t reg = 40071-1; const uint16_t nb = 1; } M20X_L;
+
+    /** AC total current value
+
+        @returns current [A]
+    */
     struct { int16_t  res = 0; const uint16_t reg = 40072-1; const uint16_t nb = 1; } M20X_A;
+
+    /** AC phase-A current value
+
+        @returns current [A]
+    */
     struct { int16_t  res = 0; const uint16_t reg = 40073-1; const uint16_t nb = 1; } M20X_AphA;
+
+    /** AC phase-B current value
+
+        @returns current [A]
+    */
     struct { int16_t  res = 0; const uint16_t reg = 40074-1; const uint16_t nb = 1; } M20X_AphB;
+
+    /** AC phase-C current value
+
+        @returns current [A]
+    */
     struct { int16_t  res = 0; const uint16_t reg = 40075-1; const uint16_t nb = 1; } M20X_AphC;
+
+    /** AC current scale factor */
     struct { int16_t  res = 0; const uint16_t reg = 40076-1; const uint16_t nb = 1; } M20X_A_SF;
+
+    /** Length of meter model block
+
+        @returns 105
+    */
     struct { int16_t  res = 0; const uint16_t reg = 40077-1; const uint16_t nb = 1; } M20X_PhV;
+
+    /** Length of meter model block
+
+        @returns 105
+    */
     struct { int16_t  res = 0; const uint16_t reg = 40078-1; const uint16_t nb = 1; } M20X_PhVphA;
+
+    /** Length of meter model block
+
+        @returns 105
+    */
     struct { int16_t  res = 0; const uint16_t reg = 40079-1; const uint16_t nb = 1; } M20X_PhVphB;
+
+    /** Length of meter model block
+
+        @returns 105
+    */
     struct { int16_t  res = 0; const uint16_t reg = 40080-1; const uint16_t nb = 1; } M20X_PhVphC;
+
+    /** Length of meter model block
+
+        @returns 105
+    */
     struct { int16_t  res = 0; const uint16_t reg = 40081-1; const uint16_t nb = 1; } M20X_PPV;
+
+    /** Length of meter model block
+
+        @returns 105
+    */
     struct { int16_t  res = 0; const uint16_t reg = 40082-1; const uint16_t nb = 1; } M20X_PPVphAB;
+
+    /** Length of meter model block
+
+        @returns 105
+    */
     struct { int16_t  res = 0; const uint16_t reg = 40083-1; const uint16_t nb = 1; } M20X_PPVphBC;
+
+    /** Length of meter model block
+
+        @returns 105
+    */
     struct { int16_t  res = 0; const uint16_t reg = 40084-1; const uint16_t nb = 1; } M20X_PPVphCA;
+
+    /** Length of meter model block
+
+        @returns 105
+    */
     struct { int16_t  res = 0; const uint16_t reg = 40085-1; const uint16_t nb = 1; } M20X_V_SF;
+
+    /** Length of meter model block
+
+        @returns 105
+    */
     struct { int16_t  res = 0; const uint16_t reg = 40086-1; const uint16_t nb = 1; } M20X_Hz;
+
+    /** Length of meter model block
+
+        @returns 105
+    */
     struct { int16_t  res = 0; const uint16_t reg = 40087-1; const uint16_t nb = 1; } M20X_Hz_SF;
+
+    /** Length of meter model block
+
+        @returns 105
+    */
     struct { int16_t  res = 0; const uint16_t reg = 40088-1; const uint16_t nb = 1; } M20X_W;
+
+    /** Length of meter model block
+
+        @returns 105
+    */
     struct { int16_t  res = 0; const uint16_t reg = 40089-1; const uint16_t nb = 1; } M20X_WphA;
+
+    /** Length of meter model block
+
+        @returns 105
+    */
     struct { int16_t  res = 0; const uint16_t reg = 40090-1; const uint16_t nb = 1; } M20X_WphB;
+
+    /** Length of meter model block
+
+        @returns 105
+    */
     struct { int16_t  res = 0; const uint16_t reg = 40091-1; const uint16_t nb = 1; } M20X_WphC;
+
+    /** Length of meter model block
+
+        @returns 105
+    */
     struct { int16_t  res = 0; const uint16_t reg = 40092-1; const uint16_t nb = 1; } M20X_W_SF;
+
+    /** Length of meter model block
+
+        @returns 105
+    */
     struct { int16_t  res = 0; const uint16_t reg = 40093-1; const uint16_t nb = 1; } M20X_VA;
+
+    /** Length of meter model block
+
+        @returns 105
+    */
     struct { int16_t  res = 0; const uint16_t reg = 40094-1; const uint16_t nb = 1; } M20X_VAphA;
+
+    /** Length of meter model block
+
+        @returns 105
+    */
     struct { int16_t  res = 0; const uint16_t reg = 40095-1; const uint16_t nb = 1; } M20X_VAphB;
+
+    /** Length of meter model block
+
+        @returns 105
+    */
     struct { int16_t  res = 0; const uint16_t reg = 40096-1; const uint16_t nb = 1; } M20X_VAphC;
+
+    /** Length of meter model block
+
+        @returns 105
+    */
     struct { int16_t  res = 0; const uint16_t reg = 40097-1; const uint16_t nb = 1; } M20X_VA_SF;
+
+    /** Length of meter model block
+
+        @returns 105
+    */
     struct { int16_t  res = 0; const uint16_t reg = 40098-1; const uint16_t nb = 1; } M20X_VAR;
+
+    /** Length of meter model block
+
+        @returns 105
+    */
     struct { int16_t  res = 0; const uint16_t reg = 40099-1; const uint16_t nb = 1; } M20X_VARphA;
+
+    /** Length of meter model block
+
+        @returns 105
+    */
     struct { int16_t  res = 0; const uint16_t reg = 40100-1; const uint16_t nb = 1; } M20X_VARphB;
+
+    /** Length of meter model block
+
+        @returns 105
+    */
     struct { int16_t  res = 0; const uint16_t reg = 40101-1; const uint16_t nb = 1; } M20X_VARphC;
+
+    /** Length of meter model block
+
+        @returns 105
+    */
     struct { int16_t  res = 0; const uint16_t reg = 40102-1; const uint16_t nb = 1; } M20X_VAR_SF;
+
+    /** Length of meter model block
+
+        @returns 105
+    */
     struct { int16_t  res = 0; const uint16_t reg = 40103-1; const uint16_t nb = 1; } M20X_PF;
+
+    /** Length of meter model block
+
+        @returns 105
+    */
     struct { int16_t  res = 0; const uint16_t reg = 40104-1; const uint16_t nb = 1; } M20X_PFphA;
+
+    /** Length of meter model block
+
+        @returns 105
+    */
     struct { int16_t  res = 0; const uint16_t reg = 40105-1; const uint16_t nb = 1; } M20X_PFphB;
+
+    /** Length of meter model block
+
+        @returns 105
+    */
     struct { int16_t  res = 0; const uint16_t reg = 40106-1; const uint16_t nb = 1; } M20X_PFphC;
+
+    /** Length of meter model block
+
+        @returns 105
+    */
     struct { int16_t  res = 0; const uint16_t reg = 40107-1; const uint16_t nb = 1; } M20X_PF_SF;
+
+    /** Length of meter model block
+
+        @returns 105
+    */
     struct { uint32_t res = 0; const uint16_t reg = 40108-1; const uint16_t nb = 2; } M20X_TotWhExp;
+
+    /** Length of meter model block
+
+        @returns 105
+    */
     struct { uint32_t res = 0; const uint16_t reg = 40110-1; const uint16_t nb = 2; } M20X_TotWhExpPhA;
+
+    /** Length of meter model block
+
+        @returns 105
+    */
     struct { uint32_t res = 0; const uint16_t reg = 40112-1; const uint16_t nb = 2; } M20X_TotWhExpPhB;
+
+    /** Length of meter model block
+
+        @returns 105
+    */
     struct { uint32_t res = 0; const uint16_t reg = 40114-1; const uint16_t nb = 2; } M20X_TotWhExpPhC;
+
+    /** Length of meter model block
+
+        @returns 105
+    */
     struct { uint32_t res = 0; const uint16_t reg = 40116-1; const uint16_t nb = 2; } M20X_TotWhImp;
+
+    /** Length of meter model block
+
+        @returns 105
+    */
     struct { uint32_t res = 0; const uint16_t reg = 40118-1; const uint16_t nb = 2; } M20X_TotWhImpPhA;
+
+    /** Length of meter model block
+
+        @returns 105
+    */
     struct { uint32_t res = 0; const uint16_t reg = 40120-1; const uint16_t nb = 2; } M20X_TotWhImpPhB;
+
+    /** Length of meter model block
+
+        @returns 105
+    */
     struct { uint32_t res = 0; const uint16_t reg = 40122-1; const uint16_t nb = 2; } M20X_TotWhImpPhC;
+
+    /** Length of meter model block
+
+        @returns 105
+    */
     struct { int16_t  res = 0; const uint16_t reg = 40124-1; const uint16_t nb = 1; } M20X_TotWh_SF;
+
+    /** Length of meter model block
+
+        @returns 105
+    */
     struct { uint32_t res = 0; const uint16_t reg = 40125-1; const uint16_t nb = 2; } M20X_TotVAhExp;
+
+    /** Length of meter model block
+
+        @returns 105
+    */
     struct { uint32_t res = 0; const uint16_t reg = 40127-1; const uint16_t nb = 2; } M20X_TotVAhExpPhA;
+
+    /** Length of meter model block
+
+        @returns 105
+    */
     struct { uint32_t res = 0; const uint16_t reg = 40129-1; const uint16_t nb = 2; } M20X_TotVAhExpPhB;
+
+    /** Length of meter model block
+
+        @returns 105
+    */
     struct { uint32_t res = 0; const uint16_t reg = 40131-1; const uint16_t nb = 2; } M20X_TotVAhExpPhC;
+
+    /** Length of meter model block
+
+        @returns 105
+    */
     struct { uint32_t res = 0; const uint16_t reg = 40133-1; const uint16_t nb = 2; } M20X_TotVAhImp;
+
+    /** Length of meter model block
+
+        @returns 105
+    */
     struct { uint32_t res = 0; const uint16_t reg = 40135-1; const uint16_t nb = 2; } M20X_TotVAhImpPhA;
+
+    /** Length of meter model block
+
+        @returns 105
+    */
     struct { uint32_t res = 0; const uint16_t reg = 40137-1; const uint16_t nb = 2; } M20X_TotVAhImpPhB;
+
+    /** Length of meter model block
+
+        @returns 105
+    */
     struct { uint32_t res = 0; const uint16_t reg = 40139-1; const uint16_t nb = 2; } M20X_TotVAhImpPhC;
+
+    /** Length of meter model block
+
+        @returns 105
+    */
     struct { int16_t  res = 0; const uint16_t reg = 40141-1; const uint16_t nb = 1; } M20X_TotVAh_SF;
+
+    /** Length of meter model block
+
+        @returns 105
+    */
     struct { uint32_t res = 0; const uint16_t reg = 40142-1; const uint16_t nb = 2; } M20X_TotVArhImpQ1;
+
+    /** Length of meter model block
+
+        @returns 105
+    */
     struct { uint32_t res = 0; const uint16_t reg = 40144-1; const uint16_t nb = 2; } M20X_TotVArhImpQ1phA;
+
+    /** Length of meter model block
+
+        @returns 105
+    */
     struct { uint32_t res = 0; const uint16_t reg = 40146-1; const uint16_t nb = 2; } M20X_TotVArhImpQ1phB;
+
+    /** Length of meter model block
+
+        @returns 105
+    */
     struct { uint32_t res = 0; const uint16_t reg = 40148-1; const uint16_t nb = 2; } M20X_TotVArhImpQ1phC;
+
+    /** Length of meter model block
+
+        @returns 105
+    */
     struct { uint32_t res = 0; const uint16_t reg = 40150-1; const uint16_t nb = 2; } M20X_TotVArhImpQ2;
+
+    /** Length of meter model block
+
+        @returns 105
+    */
     struct { uint32_t res = 0; const uint16_t reg = 40152-1; const uint16_t nb = 2; } M20X_TotVArhImpQ2phA;
+
+    /** Length of meter model block
+
+        @returns 105
+    */
     struct { uint32_t res = 0; const uint16_t reg = 40154-1; const uint16_t nb = 2; } M20X_TotVArhImpQ2phB;
+
+    /** Length of meter model block
+
+        @returns 105
+    */
     struct { uint32_t res = 0; const uint16_t reg = 40156-1; const uint16_t nb = 2; } M20X_TotVArhImpQ2phC;
+
+    /** Length of meter model block
+
+        @returns 105
+    */
     struct { uint32_t res = 0; const uint16_t reg = 40158-1; const uint16_t nb = 2; } M20X_TotVArhExpQ3;
+
+    /** Length of meter model block
+
+        @returns 105
+    */
     struct { uint32_t res = 0; const uint16_t reg = 40160-1; const uint16_t nb = 2; } M20X_TotVArhExpQ3phA;
+
+    /** Length of meter model block
+
+        @returns 105
+    */
     struct { uint32_t res = 0; const uint16_t reg = 40162-1; const uint16_t nb = 2; } M20X_TotVArhExpQ3phB;
+
+    /** Length of meter model block
+
+        @returns 105
+    */
     struct { uint32_t res = 0; const uint16_t reg = 40164-1; const uint16_t nb = 2; } M20X_TotVArhExpQ3phC;
+
+    /** Length of meter model block
+
+        @returns 105
+    */
     struct { uint32_t res = 0; const uint16_t reg = 40166-1; const uint16_t nb = 2; } M20X_TotVArhExpQ4;
+
+    /** Length of meter model block
+
+        @returns 105
+    */
     struct { uint32_t res = 0; const uint16_t reg = 40168-1; const uint16_t nb = 2; } M20X_TotVArhExpQ4phA;
+
+    /** Length of meter model block
+
+        @returns 105
+    */
     struct { uint32_t res = 0; const uint16_t reg = 40170-1; const uint16_t nb = 2; } M20X_TotVArhExpQ4phB;
+
+    /** Length of meter model block
+
+        @returns 105
+    */
     struct { uint32_t res = 0; const uint16_t reg = 40172-1; const uint16_t nb = 2; } M20X_TotVArhExpQ4phC;
+
+    /** Length of meter model block
+
+        @returns 105
+    */
     struct { int16_t  res = 0; const uint16_t reg = 40174-1; const uint16_t nb = 1; } M20X_TotVArh_SF;
+
+    /** Length of meter model block
+
+        @returns 105
+    */
     struct { uint32_t res = 0; const uint16_t reg = 40175-1; const uint16_t nb = 2; } M20X_Evt;
 };
 
