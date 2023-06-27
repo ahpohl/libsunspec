@@ -253,7 +253,7 @@ namespace InverterRegisterMap
 /** @brief Register description of the Nameplate SunSpec model */
 namespace NameplateRegisterMap
 {
-/** Uniquely identifies this as a SunSpec Nameplate Model
+    /** Uniquely identifies this as a SunSpec Nameplate Model
 
 		@returns 120
 	*/
@@ -394,6 +394,160 @@ namespace NameplateRegisterMap
 	/** Discharge rate scale factor */
 	struct { int16_t  res = 0; const uint16_t reg = 40148-1; const uint16_t nb = 1; } I120_MaxDisChaRte_SF;
 };
+
+/** @brief Register description of the Extended SunSpec model */
+namespace ExtendedRegisterMap
+{
+	/** Uniquely identifies this as a SunSpec Extended (Measurements_Status) Model
+
+		@returns 122
+	*/
+	struct { uint16_t res = 0; const uint16_t reg = 40182-1; const uint16_t nb = 1; } I122_ID;
+
+	/** Length of Extended Model block.
+
+		@returns 44
+	*/
+	struct { uint16_t res = 0; const uint16_t reg = 40183-1; const uint16_t nb = 1; } I122_L;
+
+	/** PV inverter present/available status.
+	 *
+	    Bit 0: Connected
+		Bit 1: Available
+		Bit 2: Operating
+		Bit 3: Test
+	*/
+	struct { uint16_t res = 0; const uint16_t reg = 40184-1; const uint16_t nb = 1; } I122_PVConn;
+
+	/** Storage inverter present/available status.
+
+	    bit 0: Connected
+		bit 1: Available
+		bit 2: Operating
+		bit 3: Test
+	*/
+	struct { uint16_t res = 0; const uint16_t reg = 40185-1; const uint16_t nb = 1; } I122_StorConn;
+
+	/** ECP connection status
+
+	    0: Disconnected
+		1: Connected
+	*/
+	struct { uint16_t res = 0; const uint16_t reg = 40186-1; const uint16_t nb = 1; } I122_ECPConn;
+
+	/** AC lifetime active (real) energy output.
+
+	    @returns res lifetime energy [Wh]
+	*/
+	struct { uint64_t res = 0; const uint16_t reg = 40187-1; const uint16_t nb = 4; } I122_ActWh;
+
+	/** AC lifetime apparent energy output.
+
+		@note not supported
+	    @returns res apparent energy [VAh]
+	*/
+	struct { uint64_t res = 0; const uint16_t reg = 40191-1; const uint16_t nb = 4; } I122_ActVAh;
+
+	/** AC lifetime reactive energy output in quadrant 1.
+
+	    @note not supported
+	    @returns res reactive energy Q1 [VArh]
+	*/
+	struct { uint64_t res = 0; const uint16_t reg = 40195-1; const uint16_t nb = 4; } I122_ActVArhQ1;
+
+	/** AC lifetime reactive energy output in quadrant 2.
+
+	    @note not supported
+	    @returns res reactive energy Q2 [VArh]
+	*/
+	struct { uint64_t res = 0; const uint16_t reg = 40199-1; const uint16_t nb = 4; } I122_ActVArhQ2;
+
+	/** AC lifetime reactive energy output in quadrant 3.
+
+	    @note not supported
+	    @returns res reactive energy Q3 [VArh]
+	*/
+	struct { uint64_t res = 0; const uint16_t reg = 40203-1; const uint16_t nb = 4; } I122_ActVArhQ3;
+
+	/** AC lifetime reactive energy output in quadrant 4.
+
+	    @note not supported
+	    @returns res reactive energy Q4 [VArh]
+	*/
+	struct { uint64_t res = 0; const uint16_t reg = 40207-1; const uint16_t nb = 4; } I122_ActVArhQ4;
+
+	/** Amount of VARs available without impacting output.
+
+	    @note not supported
+	    @returns res reactive energy [VArh]
+	*/
+	struct { int16_t  res = 0; const uint16_t reg = 40211-1; const uint16_t nb = 1; } I122_VArAval;
+
+	/** Scale factor for available VARs.
+
+	    @note not supported
+	*/
+	struct { int16_t  res = 0; const uint16_t reg = 40212-1; const uint16_t nb = 1; } I122_VArAval_SF;
+
+	/** Amount of power available.
+
+		@note not supported
+	    @returns res power [W]
+	*/
+	struct { uint16_t res = 0; const uint16_t reg = 40213-1; const uint16_t nb = 1; } I122_WAval;
+
+	/** Scale factor for available power.
+
+	    @note not supported
+	*/
+	struct { int16_t  res = 0; const uint16_t reg = 40214-1; const uint16_t nb = 1; } I122_WAval_SF;
+
+	/** Bit Mask indicating set point limit(s) reached.
+        Bits are persistent and must be cleared by the controller.
+
+        @note not supported.
+	*/
+	struct { uint32_t res = 0; const uint16_t reg = 40215-1; const uint16_t nb = 2; } I122_StSetLimMsk;
+
+	/** Bit Mask indicating which inverter controls are currently active.
+
+	    Bit 0: FixedW
+		Bit 1: FixedVAR
+		Bit 2: FixedPF
+	*/
+	struct { uint32_t res = 0; const uint16_t reg = 40217-1; const uint16_t nb = 2; } I122_StActCtl;
+
+	/** Source of time synchronization.
+
+	    @returns RTC
+	*/
+	struct { std::string str;  const uint16_t reg = 40219-1; const uint16_t nb = 4; } I122_TmSrc;
+
+	/** Timestamp
+
+	    @returns res seconds since 01-01-2000 00:00 UTC
+	*/
+	struct { uint32_t res = 0; const uint16_t reg = 40223-1; const uint16_t nb = 2; } I122_Tms;
+
+	/** Bit Mask indicating which voltage ride through modes are currently active.
+
+	    @note not supported
+	*/
+	struct { uint16_t res = 0; const uint16_t reg = 40225-1; const uint16_t nb = 1; } I122_RtSt;
+
+	/** Isolation resistance
+
+		@note not supported
+	    @returns res riso [Ohm]
+	*/
+	struct { uint16_t res = 0; const uint16_t reg = 40226-1; const uint16_t nb = 1; } I112_Ris;
+
+	/** Scale factor for Isolation resistance
+
+	    @note not supported
+	*/
+	struct { int16_t  res = 0; const uint16_t reg = 40227-1; const uint16_t nb = 1; } I122_Ris_SF;
+}
 
 /** @brief Register description of the Multi MPPT SunSpec model */
 namespace MultiMpptRegisterMap

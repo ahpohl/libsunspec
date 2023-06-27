@@ -51,7 +51,6 @@ int main(int argc, char *argv[])
   }
   if (!(state_code.StStr.empty())) {
     std::cout << "State code: " << state_code.StStr << " (" << state_code.St << ")" << std::endl;
-    std::cout << "Model: " << state_code.Model << std::endl;
   }
 
   std::ios::fmtflags old_settings = std::cout.flags();

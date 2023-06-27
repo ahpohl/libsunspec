@@ -72,19 +72,16 @@ int main(int argc, char *argv[])
 	  }
 	  std::cout.precision(2);
 	  std::cout << "  DC energy lifetime: " << dc_energy << " kWh" << std::endl;
-  }
 
-  unsigned int ts;
-  if (!inverter->GetTimestamp(ts, 1))
-  {
-	  std::cout << inverter->GetErrorMessage() << std::endl;
-	  return EXIT_FAILURE;
+	  double dc_temp;
+	  if (!inverter->GetDcTemperature(dc_temp, string_id))
+	  {
+		  std::cout << inverter->GetErrorMessage() << std::endl;
+		  return EXIT_FAILURE;
+	  }
+	  std::cout.precision(2);
+	  std::cout << "  Temperature: " << dc_temp << " °C" << std::endl;
   }
-  std::cout.precision(0);
-  std::cout << "Timestamp inverter: " << (ts + 946684800) << " secs since epoch" << std::endl;
-
-  unsigned int now = std::chrono::duration_cast<std::chrono::seconds>(std::chrono::system_clock::now().time_since_epoch()).count();
-  std::cout << "Timestamp system: " << now << " secs since epoch" << std::endl;
 
   std::cout.flags(old_settings);
   return EXIT_SUCCESS;
