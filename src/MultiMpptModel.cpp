@@ -134,26 +134,3 @@ bool MultiMpptModel::GetDcEnergyLifetime(double &res, const int string_id)
 
 	return true;
 }
-
-bool MultiMpptModel::GetDcTemperature(double &res, const int string_id)
-{
-	switch(string_id) {
-	case 1:
-		if (!GetRegister(I160_1_Tmp.res, I160_1_Tmp.reg, I160_1_Tmp.nb)) {
-			return false;
-		}
-		res = static_cast<double>(I160_1_Tmp.res);
-		break;
-	case 2:
-		if (!GetRegister(I160_2_Tmp.res, I160_2_Tmp.reg, I160_2_Tmp.nb)) {
-			return false;
-		}
-		res = static_cast<double>(I160_2_Tmp.res);
-		break;
-	default:
-		ErrorMessage = std::string("Invalid string ID (") + std::to_string(string_id) + ")";
-		return false;
-	}
-
-	return true;
-}

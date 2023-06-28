@@ -41,13 +41,6 @@ public:
 		@param string_id string 1 (default) or string 2
 	*/
 	bool GetDcEnergyLifetime(double &res, const int string_id = 1);
-
-	/** Temperature
-
-		@param res temperature [°C]
-		@param string_id string 1 (default) or string 2
-	*/
-	bool GetDcTemperature(double &res, const int string_id = 1);
 };
 
 #endif /* MULTIMPPTMODEL_H_ */
