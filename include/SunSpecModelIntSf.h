@@ -741,433 +741,271 @@ namespace MeterRegisterMap
     */
     struct { uint16_t res = 0; const uint16_t reg = 40071-1; const uint16_t nb = 1; } M20X_L;
 
-    /** AC total current value
-
-        @returns current [A]
-    */
+    /** AC total current [A] */
     struct { int16_t  res = 0; const uint16_t reg = 40072-1; const uint16_t nb = 1; } M20X_A;
 
-    /** AC phase-A current value
-
-        @returns current [A]
-    */
+    /** AC phase-A current [A] */
     struct { int16_t  res = 0; const uint16_t reg = 40073-1; const uint16_t nb = 1; } M20X_AphA;
 
-    /** AC phase-B current value
-
-        @returns current [A]
-    */
+    /** AC phase-B current [A] */
     struct { int16_t  res = 0; const uint16_t reg = 40074-1; const uint16_t nb = 1; } M20X_AphB;
 
-    /** AC phase-C current value
-
-        @returns current [A]
-    */
+    /** AC phase-C current [A] */
     struct { int16_t  res = 0; const uint16_t reg = 40075-1; const uint16_t nb = 1; } M20X_AphC;
 
     /** AC current scale factor */
     struct { int16_t  res = 0; const uint16_t reg = 40076-1; const uint16_t nb = 1; } M20X_A_SF;
 
-    /** Length of meter model block
-
-        @returns 105
-    */
+    /** AC voltage average phase-to-neutral [V] */
     struct { int16_t  res = 0; const uint16_t reg = 40077-1; const uint16_t nb = 1; } M20X_PhV;
 
-    /** Length of meter model block
-
-        @returns 105
-    */
+    /** AC voltage phase-A-to-neutral [V] */
     struct { int16_t  res = 0; const uint16_t reg = 40078-1; const uint16_t nb = 1; } M20X_PhVphA;
 
-    /** Length of meter model block
-
-        @returns 105
-    */
+    /** AC voltage phase-B-to-neutral [V] */
     struct { int16_t  res = 0; const uint16_t reg = 40079-1; const uint16_t nb = 1; } M20X_PhVphB;
 
-    /** Length of meter model block
-
-        @returns 105
-    */
+    /** AC voltage phase-C-to-neutral [V] */
     struct { int16_t  res = 0; const uint16_t reg = 40080-1; const uint16_t nb = 1; } M20X_PhVphC;
 
-    /** Length of meter model block
-
-        @returns 105
-    */
+    /** AC voltage average phase-to-phase [V] */
     struct { int16_t  res = 0; const uint16_t reg = 40081-1; const uint16_t nb = 1; } M20X_PPV;
 
-    /** Length of meter model block
-
-        @returns 105
-    */
+    /** AC voltage phase-AB [V] */
     struct { int16_t  res = 0; const uint16_t reg = 40082-1; const uint16_t nb = 1; } M20X_PPVphAB;
 
-    /** Length of meter model block
-
-        @returns 105
-    */
+    /** AC voltage phase-BC [V] */
     struct { int16_t  res = 0; const uint16_t reg = 40083-1; const uint16_t nb = 1; } M20X_PPVphBC;
 
-    /** Length of meter model block
-
-        @returns 105
-    */
+    /** AC voltage phase-CA [V] */
     struct { int16_t  res = 0; const uint16_t reg = 40084-1; const uint16_t nb = 1; } M20X_PPVphCA;
 
-    /** Length of meter model block
-
-        @returns 105
-    */
+    /** Voltage scale factor */
     struct { int16_t  res = 0; const uint16_t reg = 40085-1; const uint16_t nb = 1; } M20X_V_SF;
 
-    /** Length of meter model block
-
-        @returns 105
-    */
+    /** AC frequency [Hz] */
     struct { int16_t  res = 0; const uint16_t reg = 40086-1; const uint16_t nb = 1; } M20X_Hz;
 
-    /** Length of meter model block
-
-        @returns 105
-    */
+    /** Frequency scale factor */
     struct { int16_t  res = 0; const uint16_t reg = 40087-1; const uint16_t nb = 1; } M20X_Hz_SF;
 
-    /** Length of meter model block
-
-        @returns 105
-    */
+    /** AC power total [W] */
     struct { int16_t  res = 0; const uint16_t reg = 40088-1; const uint16_t nb = 1; } M20X_W;
 
-    /** Length of meter model block
-
-        @returns 105
-    */
+    /** AC power phase-A [W] */
     struct { int16_t  res = 0; const uint16_t reg = 40089-1; const uint16_t nb = 1; } M20X_WphA;
 
-    /** Length of meter model block
-
-        @returns 105
-    */
+    /** AC power phase-B [W] */
     struct { int16_t  res = 0; const uint16_t reg = 40090-1; const uint16_t nb = 1; } M20X_WphB;
 
-    /** Length of meter model block
-
-        @returns 105
-    */
+    /** AC power phase-C [W] */
     struct { int16_t  res = 0; const uint16_t reg = 40091-1; const uint16_t nb = 1; } M20X_WphC;
 
-    /** Length of meter model block
-
-        @returns 105
-    */
+    /** Power scale factor */
     struct { int16_t  res = 0; const uint16_t reg = 40092-1; const uint16_t nb = 1; } M20X_W_SF;
 
-    /** Length of meter model block
-
-        @returns 105
-    */
+    /** AC apparent power total [VA] */
     struct { int16_t  res = 0; const uint16_t reg = 40093-1; const uint16_t nb = 1; } M20X_VA;
 
-    /** Length of meter model block
-
-        @returns 105
-    */
+    /** AC apparent power phase-A [VA] */
     struct { int16_t  res = 0; const uint16_t reg = 40094-1; const uint16_t nb = 1; } M20X_VAphA;
 
-    /** Length of meter model block
-
-        @returns 105
-    */
+    /** AC apparent power phase-B [VA] */
     struct { int16_t  res = 0; const uint16_t reg = 40095-1; const uint16_t nb = 1; } M20X_VAphB;
 
-    /** Length of meter model block
-
-        @returns 105
-    */
+    /** AC apparent power phase-C [VA] */
     struct { int16_t  res = 0; const uint16_t reg = 40096-1; const uint16_t nb = 1; } M20X_VAphC;
 
-    /** Length of meter model block
-
-        @returns 105
-    */
+    /** Apparent power scale factor */
     struct { int16_t  res = 0; const uint16_t reg = 40097-1; const uint16_t nb = 1; } M20X_VA_SF;
 
-    /** Length of meter model block
-
-        @returns 105
-    */
+    /** AC reactive power total [VAr] */
     struct { int16_t  res = 0; const uint16_t reg = 40098-1; const uint16_t nb = 1; } M20X_VAR;
 
-    /** Length of meter model block
-
-        @returns 105
-    */
+    /** AC reactive power phase-A [VAr] */
     struct { int16_t  res = 0; const uint16_t reg = 40099-1; const uint16_t nb = 1; } M20X_VARphA;
 
-    /** Length of meter model block
-
-        @returns 105
-    */
+    /** AC reactive power phase-B [VAr] */
     struct { int16_t  res = 0; const uint16_t reg = 40100-1; const uint16_t nb = 1; } M20X_VARphB;
 
-    /** Length of meter model block
-
-        @returns 105
-    */
+    /** AC reactive power phase-C [VAr] */
     struct { int16_t  res = 0; const uint16_t reg = 40101-1; const uint16_t nb = 1; } M20X_VARphC;
 
-    /** Length of meter model block
-
-        @returns 105
-    */
+    /** Reactive power scale factor */
     struct { int16_t  res = 0; const uint16_t reg = 40102-1; const uint16_t nb = 1; } M20X_VAR_SF;
 
-    /** Length of meter model block
-
-        @returns 105
-    */
+    /** Power factor [%] */
     struct { int16_t  res = 0; const uint16_t reg = 40103-1; const uint16_t nb = 1; } M20X_PF;
 
-    /** Length of meter model block
-
-        @returns 105
-    */
+    /** Power factor phase-A [%] */
     struct { int16_t  res = 0; const uint16_t reg = 40104-1; const uint16_t nb = 1; } M20X_PFphA;
 
-    /** Length of meter model block
-
-        @returns 105
-    */
+    /** Power factor phase-B [%] */
     struct { int16_t  res = 0; const uint16_t reg = 40105-1; const uint16_t nb = 1; } M20X_PFphB;
 
-    /** Length of meter model block
-
-        @returns 105
-    */
+    /** Power factor phase-C [%] */
     struct { int16_t  res = 0; const uint16_t reg = 40106-1; const uint16_t nb = 1; } M20X_PFphC;
 
-    /** Length of meter model block
-
-        @returns 105
-    */
+    /** Power factor scale factor */
     struct { int16_t  res = 0; const uint16_t reg = 40107-1; const uint16_t nb = 1; } M20X_PF_SF;
 
-    /** Length of meter model block
-
-        @returns 105
-    */
+    /** Total energy exported [Wh] */
     struct { uint32_t res = 0; const uint16_t reg = 40108-1; const uint16_t nb = 2; } M20X_TotWhExp;
 
-    /** Length of meter model block
-
-        @returns 105
-    */
+    /** Total energy exported phase-A [Wh] */
     struct { uint32_t res = 0; const uint16_t reg = 40110-1; const uint16_t nb = 2; } M20X_TotWhExpPhA;
 
-    /** Length of meter model block
-
-        @returns 105
-    */
+    /** Total energy exported phase-B [Wh] */
     struct { uint32_t res = 0; const uint16_t reg = 40112-1; const uint16_t nb = 2; } M20X_TotWhExpPhB;
 
-    /** Length of meter model block
-
-        @returns 105
-    */
+    /** Total energy exported phase-C [Wh] */
     struct { uint32_t res = 0; const uint16_t reg = 40114-1; const uint16_t nb = 2; } M20X_TotWhExpPhC;
 
-    /** Length of meter model block
-
-        @returns 105
-    */
+    /** Total energy imported [Wh] */
     struct { uint32_t res = 0; const uint16_t reg = 40116-1; const uint16_t nb = 2; } M20X_TotWhImp;
 
-    /** Length of meter model block
-
-        @returns 105
-    */
+    /** Total energy imported phase-A [Wh] */
     struct { uint32_t res = 0; const uint16_t reg = 40118-1; const uint16_t nb = 2; } M20X_TotWhImpPhA;
 
-    /** Length of meter model block
-
-        @returns 105
-    */
+    /** Total energy imported phase-B [Wh] */
     struct { uint32_t res = 0; const uint16_t reg = 40120-1; const uint16_t nb = 2; } M20X_TotWhImpPhB;
 
-    /** Length of meter model block
-
-        @returns 105
-    */
+    /** Total energy imported phase-C [Wh] */
     struct { uint32_t res = 0; const uint16_t reg = 40122-1; const uint16_t nb = 2; } M20X_TotWhImpPhC;
 
-    /** Length of meter model block
-
-        @returns 105
-    */
+    /** Total energy scale factor */
     struct { int16_t  res = 0; const uint16_t reg = 40124-1; const uint16_t nb = 1; } M20X_TotWh_SF;
 
-    /** Length of meter model block
-
-        @returns 105
-    */
+    /** Total apparent energy exported [VAh] */
     struct { uint32_t res = 0; const uint16_t reg = 40125-1; const uint16_t nb = 2; } M20X_TotVAhExp;
 
-    /** Length of meter model block
-
-        @returns 105
-    */
+    /** Total apparent energy exported phase-A [VAh] */
     struct { uint32_t res = 0; const uint16_t reg = 40127-1; const uint16_t nb = 2; } M20X_TotVAhExpPhA;
 
-    /** Length of meter model block
-
-        @returns 105
-    */
+    /** Total apparent energy exported phase-B [VAh] */
     struct { uint32_t res = 0; const uint16_t reg = 40129-1; const uint16_t nb = 2; } M20X_TotVAhExpPhB;
 
-    /** Length of meter model block
-
-        @returns 105
-    */
+    /** Total apparent energy exported phase-C [VAh] */
     struct { uint32_t res = 0; const uint16_t reg = 40131-1; const uint16_t nb = 2; } M20X_TotVAhExpPhC;
 
-    /** Length of meter model block
-
-        @returns 105
-    */
+    /** Total apparent energy imported [VAh] */
     struct { uint32_t res = 0; const uint16_t reg = 40133-1; const uint16_t nb = 2; } M20X_TotVAhImp;
 
-    /** Length of meter model block
-
-        @returns 105
-    */
+    /** Total apparent energy imported phase-A [VAh] */
     struct { uint32_t res = 0; const uint16_t reg = 40135-1; const uint16_t nb = 2; } M20X_TotVAhImpPhA;
 
-    /** Length of meter model block
-
-        @returns 105
-    */
+    /** Total apparent energy imported phase-B [VAh] */
     struct { uint32_t res = 0; const uint16_t reg = 40137-1; const uint16_t nb = 2; } M20X_TotVAhImpPhB;
 
-    /** Length of meter model block
-
-        @returns 105
-    */
+    /** Total apparent energy imported phase-C [VAh] */
     struct { uint32_t res = 0; const uint16_t reg = 40139-1; const uint16_t nb = 2; } M20X_TotVAhImpPhC;
 
-    /** Length of meter model block
-
-        @returns 105
-    */
+    /** Total apparent energy scale factor */
     struct { int16_t  res = 0; const uint16_t reg = 40141-1; const uint16_t nb = 1; } M20X_TotVAh_SF;
 
-    /** Length of meter model block
+    /** Total reactive energy imported Q1 [VArh]
 
-        @returns 105
+		@note register not supported
     */
     struct { uint32_t res = 0; const uint16_t reg = 40142-1; const uint16_t nb = 2; } M20X_TotVArhImpQ1;
 
-    /** Length of meter model block
+    /** Total reactive energy imported Q1 phase-A [VArh]
 
-        @returns 105
+		@note register not supported
     */
     struct { uint32_t res = 0; const uint16_t reg = 40144-1; const uint16_t nb = 2; } M20X_TotVArhImpQ1phA;
 
-    /** Length of meter model block
+    /** Total reactive energy imported Q1 phase-B [VArh]
 
-        @returns 105
+		@note register not supported
     */
     struct { uint32_t res = 0; const uint16_t reg = 40146-1; const uint16_t nb = 2; } M20X_TotVArhImpQ1phB;
 
-    /** Length of meter model block
+    /** Total reactive energy imported Q1 phase-C [VArh]
 
-        @returns 105
+		@note register not supported
     */
     struct { uint32_t res = 0; const uint16_t reg = 40148-1; const uint16_t nb = 2; } M20X_TotVArhImpQ1phC;
 
-    /** Length of meter model block
+    /** Total reactive energy imported Q2 [VArh]
 
-        @returns 105
+		@note register not supported
     */
     struct { uint32_t res = 0; const uint16_t reg = 40150-1; const uint16_t nb = 2; } M20X_TotVArhImpQ2;
 
-    /** Length of meter model block
+    /** Total reactive energy imported Q2 phase-A [VArh]
 
-        @returns 105
+		@note register not supported
     */
     struct { uint32_t res = 0; const uint16_t reg = 40152-1; const uint16_t nb = 2; } M20X_TotVArhImpQ2phA;
 
-    /** Length of meter model block
+    /** Total reactive energy imported Q2 phase-B [VArh]
 
-        @returns 105
+		@note register not supported
     */
     struct { uint32_t res = 0; const uint16_t reg = 40154-1; const uint16_t nb = 2; } M20X_TotVArhImpQ2phB;
 
-    /** Length of meter model block
+    /** Total reactive energy imported Q2 phase-C [VArh]
 
-        @returns 105
+		@note register not supported
     */
     struct { uint32_t res = 0; const uint16_t reg = 40156-1; const uint16_t nb = 2; } M20X_TotVArhImpQ2phC;
 
-    /** Length of meter model block
+    /** Total reactive energy exported Q3 [VArh]
 
-        @returns 105
+		@note register not supported
     */
     struct { uint32_t res = 0; const uint16_t reg = 40158-1; const uint16_t nb = 2; } M20X_TotVArhExpQ3;
 
-    /** Length of meter model block
+    /** Total reactive energy exported Q3 phase-A [VArh]
 
-        @returns 105
+		@note register not supported
     */
     struct { uint32_t res = 0; const uint16_t reg = 40160-1; const uint16_t nb = 2; } M20X_TotVArhExpQ3phA;
 
-    /** Length of meter model block
+    /** Total reactive energy exported Q3 phase-B [VArh]
 
-        @returns 105
+		@note register not supported
     */
     struct { uint32_t res = 0; const uint16_t reg = 40162-1; const uint16_t nb = 2; } M20X_TotVArhExpQ3phB;
 
-    /** Length of meter model block
+    /** Total reactive energy exported Q3 phase-C [VArh]
 
-        @returns 105
+		@note register not supported
     */
     struct { uint32_t res = 0; const uint16_t reg = 40164-1; const uint16_t nb = 2; } M20X_TotVArhExpQ3phC;
 
-    /** Length of meter model block
+    /** Total reactive energy exported Q4 [VArh]
 
-        @returns 105
+		@note register not supported
     */
     struct { uint32_t res = 0; const uint16_t reg = 40166-1; const uint16_t nb = 2; } M20X_TotVArhExpQ4;
 
-    /** Length of meter model block
+    /** Total reactive energy exported Q4 phase-A [VArh]
 
-        @returns 105
+		@note register not supported
     */
     struct { uint32_t res = 0; const uint16_t reg = 40168-1; const uint16_t nb = 2; } M20X_TotVArhExpQ4phA;
 
-    /** Length of meter model block
+    /** Total reactive energy exported Q4 phase-B [VArh]
 
-        @returns 105
+		@note register not supported
     */
     struct { uint32_t res = 0; const uint16_t reg = 40170-1; const uint16_t nb = 2; } M20X_TotVArhExpQ4phB;
 
-    /** Length of meter model block
+    /** Total reactive energy exported Q4 phase-C [VArh]
 
-        @returns 105
+		@note register not supported
     */
     struct { uint32_t res = 0; const uint16_t reg = 40172-1; const uint16_t nb = 2; } M20X_TotVArhExpQ4phC;
 
-    /** Length of meter model block
+    /** Total reactive energy scale factor
 
-        @returns 105
+     	@note register not supported
     */
     struct { int16_t  res = 0; const uint16_t reg = 40174-1; const uint16_t nb = 1; } M20X_TotVArh_SF;
 
-    /** Length of meter model block
-
-        @returns 105
-    */
+    /** Events */
     struct { uint32_t res = 0; const uint16_t reg = 40175-1; const uint16_t nb = 2; } M20X_Evt;
 };
 

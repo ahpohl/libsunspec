@@ -40,7 +40,7 @@ int main(int argc, char *argv[])
   if (!(state_evt.EvtStr.empty())) {
 	  std::cout << "Event: " << state_evt.EvtStr << std::endl;
   }
-  if (!(state_evt.EvtVndStr.empty())) {
+  if ((!state_evt.EvtVndStr.empty())) {
 	  std::cout << "Vendor event: " << state_evt.EvtVndStr << std::endl;
   }
 
