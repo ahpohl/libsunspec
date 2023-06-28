@@ -11,6 +11,9 @@ bool FroniusInverter::IsSunSpecInverter(void)
 	if (!IsInverterRegisterMap()) {
 		return false;
 	}
+	if (!IsExtendedRegisterMap()) {
+		return false;
+	}
 	if (!IsMultiMpptRegisterMap()) {
 		return false;
 	}

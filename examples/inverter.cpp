@@ -25,7 +25,7 @@ int main(int argc, char *argv[])
     return EXIT_FAILURE;
   }
 
-  if (!inverter->IsSunSpecInverter()) {
+  if (!inverter->IsInverterRegisterMap()) {
 	  std::cout << inverter->GetErrorMessage() << std::endl;
 	  return EXIT_FAILURE;
   }

@@ -10,7 +10,15 @@
 
 class ExtendedModel: virtual public SunSpec
 {
+public:
+	/** Checks if device has a SunSpec extended register map */
+	bool IsExtendedRegisterMap(void);
 
+	/** Timestamp seconds since the unix Epoch
+
+	    @note The inverter timezone needs to be set to Etc (GMT)
+	*/
+	bool GetTimestamp(long int &ts);
 };
 
 #endif /* EXTENDEDMODEL_H_ */

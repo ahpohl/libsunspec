@@ -435,68 +435,58 @@ namespace ExtendedRegisterMap
 	*/
 	struct { uint16_t res = 0; const uint16_t reg = 40186-1; const uint16_t nb = 1; } I122_ECPConn;
 
-	/** AC lifetime active (real) energy output.
-
-	    @returns lifetime energy [Wh]
-	*/
+	/** AC lifetime active (real) energy output [Wh] */
 	struct { uint64_t res = 0; const uint16_t reg = 40187-1; const uint16_t nb = 4; } I122_ActWh;
 
-	/** AC lifetime apparent energy output.
+	/** AC lifetime apparent energy output [VAh]
 
 		@note not supported
-	    @returns apparent energy [VAh]
 	*/
 	struct { uint64_t res = 0; const uint16_t reg = 40191-1; const uint16_t nb = 4; } I122_ActVAh;
 
-	/** AC lifetime reactive energy output in quadrant 1.
+	/** AC lifetime reactive energy output in quadrant 1 [VArh]
 
 	    @note not supported
-	    @returns reactive energy Q1 [VArh]
 	*/
 	struct { uint64_t res = 0; const uint16_t reg = 40195-1; const uint16_t nb = 4; } I122_ActVArhQ1;
 
-	/** AC lifetime reactive energy output in quadrant 2.
+	/** AC lifetime reactive energy output in quadrant 2 [VArh]
 
 	    @note not supported
-	    @returns reactive energy Q2 [VArh]
 	*/
 	struct { uint64_t res = 0; const uint16_t reg = 40199-1; const uint16_t nb = 4; } I122_ActVArhQ2;
 
-	/** AC lifetime reactive energy output in quadrant 3.
+	/** AC lifetime reactive energy output in quadrant 3 [VArh]
 
 	    @note not supported
-	    @returns reactive energy Q3 [VArh]
 	*/
 	struct { uint64_t res = 0; const uint16_t reg = 40203-1; const uint16_t nb = 4; } I122_ActVArhQ3;
 
-	/** AC lifetime reactive energy output in quadrant 4.
+	/** AC lifetime reactive energy output in quadrant 4 [VArh]
 
 	    @note not supported
-	    @returns reactive energy Q4 [VArh]
 	*/
 	struct { uint64_t res = 0; const uint16_t reg = 40207-1; const uint16_t nb = 4; } I122_ActVArhQ4;
 
-	/** Amount of VARs available without impacting output.
+	/** Amount of VARs available without impacting output [VArh]
 
 	    @note not supported
-	    @returns reactive energy [VArh]
 	*/
 	struct { int16_t  res = 0; const uint16_t reg = 40211-1; const uint16_t nb = 1; } I122_VArAval;
 
-	/** Scale factor for available VARs.
+	/** Scale factor for available VARs
 
 	    @note not supported
 	*/
 	struct { int16_t  res = 0; const uint16_t reg = 40212-1; const uint16_t nb = 1; } I122_VArAval_SF;
 
-	/** Amount of power available.
+	/** Amount of power available [W]
 
 		@note not supported
-	    @returns available power [W]
 	*/
 	struct { uint16_t res = 0; const uint16_t reg = 40213-1; const uint16_t nb = 1; } I122_WAval;
 
-	/** Scale factor for available power.
+	/** Scale factor for available power
 
 	    @note not supported
 	*/
@@ -523,10 +513,7 @@ namespace ExtendedRegisterMap
 	*/
 	struct { std::string str;  const uint16_t reg = 40219-1; const uint16_t nb = 4; } I122_TmSrc;
 
-	/** Timestamp
-
-	    @returns seconds since 01-01-2000 00:00 UTC
-	*/
+	/** Timestamp seconds since 01-01-2000 00:00 UTC */
 	struct { uint32_t res = 0; const uint16_t reg = 40223-1; const uint16_t nb = 2; } I122_Tms;
 
 	/** Bit Mask indicating which voltage ride through modes are currently active.
@@ -535,10 +522,9 @@ namespace ExtendedRegisterMap
 	*/
 	struct { uint16_t res = 0; const uint16_t reg = 40225-1; const uint16_t nb = 1; } I122_RtSt;
 
-	/** Isolation resistance
+	/** Isolation resistance Riso [Ohm]
 
 		@note not supported
-	    @returns riso [Ohm]
 	*/
 	struct { uint16_t res = 0; const uint16_t reg = 40226-1; const uint16_t nb = 1; } I112_Ris;
 
@@ -590,7 +576,7 @@ namespace MultiMpptRegisterMap
 
 	/** Timestamp Period
 
-	    @note Not supported
+	    @note not supported
 	*/
 	struct { uint16_t res = 0; const uint16_t reg = 40263-1; const uint16_t nb = 1; } I160_TmsPer;
 
@@ -617,11 +603,11 @@ namespace MultiMpptRegisterMap
 
 	/** DC lifetime energy [Wh]
 
-	    @note Not supported for Fronius Hybrid inverters
+	    @note not supported for Fronius Hybrid inverters
 	*/
 	struct { uint32_t res = 0; const uint16_t reg = 40276-1; const uint16_t nb = 2; } I160_1_DCWH;
 
-	/** Timestamp [s] */
+	/** Timestamp since 01-Jan-2000 00:00 UTC */
 	struct { uint32_t res = 0; const uint16_t reg = 40278-1; const uint16_t nb = 2; } I160_1_Tms;
 
 	/** Temperature [°C] */
@@ -633,43 +619,64 @@ namespace MultiMpptRegisterMap
 	/** Module events */
 	struct { uint32_t res = 0; const uint16_t reg = 40282-1; const uint16_t nb = 2; } I160_1_DCEvt;
 
-	/** Input ID
+	/** Input ID string 2
 
 		@returns 2
 	*/
 	struct { uint16_t res = 0; const uint16_t reg = 40284-1; const uint16_t nb = 1; } I160_2_ID;
 
-	/** Input ID string
+	/** Input ID string 2
 
-		@returns String 2
+		@returns "String 2" or "not supported"
 	*/
 	struct { std::string str;  const uint16_t reg = 40285-1; const uint16_t nb = 8; } I160_2_IDStr;
 
-	/** DC current [A] */
+	/** DC current [A] string 2
+
+	    @note not supported if only one DC input.
+	*/
 	struct { uint16_t res = 0; const uint16_t reg = 40293-1; const uint16_t nb = 1; } I160_2_DCA;
 
-	/** DC voltage [V] */
+	/** DC voltage [V] string 2
+
+	    @note not supported if only one DC input.
+	*/
 	struct { uint16_t res = 0; const uint16_t reg = 40294-1; const uint16_t nb = 1; } I160_2_DCV;
 
-	/** DC power [V] */
+	/** DC power [V] string 2
+
+	    @note not supported if only one DC input.
+	*/
 	struct { uint16_t res = 0; const uint16_t reg = 40295-1; const uint16_t nb = 1; } I160_2_DCW;
 
-	/** DC lifetime energy [Wh]
+	/** DC lifetime energy [Wh] string 2
 
-	    @note Not supported for Fronius Hybrid inverters
+	    @note not supported for Fronius Hybrid inverters
 	*/
 	struct { uint32_t res = 0; const uint16_t reg = 40296-1; const uint16_t nb = 2; } I160_2_DCWH;
 
-	/** Timestamp since 01-Jan-2000 00:00 [localtime] [s] */
+	/** Timestamp since 01-Jan-2000 00:00 UTC string 2
+
+	    @note not supported if only one DC input.
+	*/
 	struct { uint32_t res = 0; const uint16_t reg = 40298-1; const uint16_t nb = 2; } I160_2_Tms;
 
-	/** Temperature [°C] */
+	/** Temperature [°C] string 2
+
+	    @note not supported if only one DC input.
+	*/
 	struct { int16_t  res = 0; const uint16_t reg = 40300-1; const uint16_t nb = 1; } I160_2_Tmp;
 
-	/** Operating state */
+	/** Operating state string 2
+
+	    @note not supported if only one DC input.
+	*/
 	struct { uint16_t res = 0; const uint16_t reg = 40301-1; const uint16_t nb = 1; } I160_2_DCSt;
 
-	/** Module events */
+	/** Module events string 2
+
+	    @note not supported if only one DC input.
+	*/
 	struct { uint32_t res = 0; const uint16_t reg = 40302-1; const uint16_t nb = 2; } I160_2_DCEvt;
 };
 

@@ -15,34 +15,34 @@ public:
 	/** Checks if device has a SunSpec inverter register map */
 	bool IsInverterRegisterMap(void);
 
-	/** AC total current value [A] */
+	/** AC total current [A] */
 	bool GetAcCurrentTotal(double &res);
 
-	/** AC phase-A current value [A] */
+	/** AC phase-A current [A] */
 	bool GetAcCurrentPhaseA(double &res);
 
-	/** AC phase-B current value [A] */
+	/** AC phase-B current [A] */
 	bool GetAcCurrentPhaseB(double &res);
 
-	/** AC phase-C current value [A] */
+	/** AC phase-C current [A] */
 	bool GetAcCurrentPhaseC(double &res);
 
-	/** AC phase-AB voltage value [V] */
+	/** AC phase-AB voltage [V] */
 	bool GetAcVoltagePhaseAB(double &res);
 
-	/** AC phase-BC voltage value [V] */
+	/** AC phase-BC voltage [V] */
 	bool GetAcVoltagePhaseBC(double &res);
 
-	/** AC phase-CA voltage [V] value */
+	/** AC phase-CA voltage [V] */
 	bool GetAcVoltagePhaseCA(double &res);
 
-	/** AC voltage phase-A-to-neutral value [V] */
+	/** AC voltage phase-A-to-neutral [V] */
 	bool GetAcVoltagePhaseA(double &res);
 
-	/** AC voltage phase-B-to-neutral value [V] */
+	/** AC voltage phase-B-to-neutral [V] */
 	bool GetAcVoltagePhaseB(double &res);
 
-	/** AC voltage phase-C-to-neutral value [V] */
+	/** AC voltage phase-C-to-neutral [V] */
 	bool GetAcVoltagePhaseC(double &res);
 
 	/** AC power value [W] */
