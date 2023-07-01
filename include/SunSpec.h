@@ -1,7 +1,7 @@
 /**
 	@brief   Base class for SunSpec compatible inverters, meters and batteries.
 
-             Supports both ModBus TCP and ModBus RTU protocols.
+             Supports both Modbus TCP and Modbus RTU protocols.
 
 	@author  Alexander Pohl <alex@ahpohl.com>
 */
@@ -28,7 +28,7 @@ public:
     /** Create a libmodbus context for TCP/IPv4
 
         The ConnectModbusTcp() function shall allocate and initialize a modbus_t structure
-        to communicate with a ModBus TCP IPv4 server.
+        to communicate with a Modbus TCP IPv4 server.
 
         @param ip_address IP address of the server to which the client wants to establish a connection
         @param port port argument is the TCP port to use
@@ -45,33 +45,33 @@ public:
 	*/
 	bool ConnectModbusRtu(std::string device, int baud_rate = 9600);
 
-	/**  Set/clear debug flag of the ModBus context (very verbose) */
+	/**  Set/clear debug flag of the Modbus context (very verbose) */
 	void SetModbusDebug(const bool &debug);
 
-	/** Sets the ModBus device address (slave ID)
+	/** Sets the Modbus device address (slave ID)
 
-	    The SetModBusAddress() function sets the slave number in the libmodbus context. It is usually only required
+	    The SetModbusAddress() function sets the slave number in the libmodbus context. It is usually only required
 	    to set the slave ID in RTU. The meaning of this ID will be different if your program acts as client (master)
 	    or server (slave).
 
-        As RTU client, SetModBusAddress() sets the ID of the remote device you want to communicate. Be sure to set the
-        slave ID before issuing any ModBus requests on the serial bus. If you communicate with several servers
+        As RTU client, SetModbusAddress() sets the ID of the remote device you want to communicate. Be sure to set the
+        slave ID before issuing any Modbus requests on the serial bus. If you communicate with several servers
         (slaves), you can set the slave ID of the remote device before each request.
 
 	    In TCP, the slave number is only required if the message must reach a device on a serial network.
 
-	    @param slave_id ModBus device address (1-247), default (1)
+	    @param slave_id Modbus device address (1-247), default (1)
 	*/
-	bool SetModBusAddress(const int slave_id = 1);
+	bool SetModbusAddress(const int slave_id = 1);
 
-	/** Reads ModBus device address (slave ID)
+	/** Reads Modbus device address (slave ID)
 
 	    @returns: 1-247
 	*/
-	bool GetModBusAddress(int &slave_id);
+	bool GetModbusAddress(int &slave_id);
 
 protected:
-	/** Get a ModBus register and convert to number or string
+	/** Get a Modbus register and convert to number or string
 
 	    Method automatically converts the raw register value(s) to the destination format
 	    specified in the res parameter. Supported register types are:
@@ -87,16 +87,16 @@ protected:
 	std::string ErrorMessage;
 
 private:
-	/** Structure that holds the ModBus connection */
+	/** Structure that holds the Modbus connection */
 	modbus_t *Ctx;
 
-	/** Read raw ModBus registers from the device
+	/** Read raw Modbus registers from the device
 
 	    @returns pointer to an array with the register values
 	*/
 	uint16_t *ReadRegister(const uint16_t &address, const uint16_t &size);
 
-	/** Convert raw ModBus registers to usable values
+	/** Convert raw Modbus registers to usable values
 
 	    @returns number or string (template T)
 	*/

@@ -1,10 +1,3 @@
-/*
- * ExtendedModel.cpp
- *
- *  Created on: Jun 25, 2023
- *      Author: alex
- */
-
 #include "ExtendedModel.h"
 #include "SunSpecModelIntSf.h"
 
@@ -37,7 +30,7 @@ bool ExtendedModel::GetTimestamp(long int &ts)
 	if (!GetRegister(I122_Tms.res, I122_Tms.reg, I122_Tms.nb)) {
 		return false;
 	}
-	ts = static_cast<unsigned long int>(I122_Tms.res) + 946684800;
+	ts = static_cast<unsigned long int>(I122_Tms.res) + 946684800ul;
 
 	return true;
 }

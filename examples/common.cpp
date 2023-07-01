@@ -4,7 +4,7 @@
 
     Common register map
 
-    Connection in ModBus RTU serial mode.
+    Connection in Modbus RTU serial mode.
 */
 
 #include <FroniusInverter.h>
@@ -71,12 +71,12 @@ int main(int argc, char *argv[])
   std::cout << "Serial: " << serial_nb << std::endl;
 
   int address;
-  if (!inverter->GetModBusAddress(address))
+  if (!inverter->GetModbusAddress(address))
   {
 	  std::cout << inverter->GetErrorMessage() << std::endl;
 	  return EXIT_FAILURE;
   }
-  std::cout << "ModBus address (slave ID): " << address << std::endl;
+  std::cout << "Modbus address (slave ID): " << address << std::endl;
 
   return EXIT_SUCCESS;
 }

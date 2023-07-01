@@ -4,7 +4,7 @@
 
     Extended (Measurements_Status) register map
 
-    Connection in ModBus RTU serial mode.
+    Connection in Modbus RTU serial mode.
 */
 
 #include <FroniusInverter.h>
@@ -13,7 +13,6 @@
 #include <memory>
 #include <chrono>
 #include <ctime>
-
 
 int main(int argc, char *argv[])
 {
@@ -35,15 +34,33 @@ int main(int argc, char *argv[])
   std::ios::fmtflags old_settings = std::cout.flags();
   std::cout.setf(std::ios::fixed, std::ios::floatfield);
 
-  long int ts;
-  if (!inverter->GetTimestamp(ts))
+  long int rawtime;
+  if (!inverter->GetTimestamp(rawtime))
   {
 	  std::cout << inverter->GetErrorMessage() << std::endl;
 	  return EXIT_FAILURE;
   }
   std::cout.precision(0);
-  std::cout << "Inverter time: " << std::asctime(std::localtime(&ts)) << ts
-		  	<< " seconds since the Epoch" << std::endl;
+  std::cout << "Unix timestamp: " << rawtime << std::endl;
+
+  struct tm ts;
+  char buf[80];
+
+  ts = *(std::gmtime(&rawtime));
+  std::strftime(buf, sizeof(buf), "%a %Y-%m-%d %H:%M:%S %Z", &ts);
+  std::cout << buf << std::endl;
+
+  ts = *(std::localtime(&rawtime));
+  std::strftime(buf, sizeof(buf), "%a %Y-%m-%d %H:%M:%S %Z", &ts);
+  std::cout << buf << std::endl;
+
+
+  /*
+  Raw time: 741530225
+  Unix timestamp: 1688215025
+  Sat 2023-07-01 12:37:05 GMT
+  Sat 2023-07-01 14:37:05 CEST
+  */
 
   std::cout.flags(old_settings);
   return EXIT_SUCCESS;

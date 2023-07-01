@@ -4,7 +4,7 @@
 
     Fronius specific register map
 
-    Connection in ModBus RTU serial mode.
+    Connection in Modbus RTU serial mode.
 */
 
 #include <FroniusInverter.h>

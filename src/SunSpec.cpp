@@ -59,7 +59,7 @@ bool SunSpec::ConnectModbusRtu(std::string device, int baud_rate)
 	    	+ modbus_strerror(errno) + " (" + std::to_string(errno) + ")";
 		return false;
 	}
-	if (!SetModBusAddress()) {
+	if (!SetModbusAddress()) {
 		return false;
 	}
 
@@ -76,7 +76,7 @@ void SunSpec::SetModbusDebug(const bool &debug)
 	modbus_set_debug(Ctx, debug);
 }
 
-bool SunSpec::SetModBusAddress(const int slave_id)
+bool SunSpec::SetModbusAddress(const int slave_id)
 {
 	if ( (slave_id < 1) || (slave_id > 247) ) {
 	    ErrorMessage = std::string("Invalid slave ID (") + std::to_string(slave_id) + "). ID must be in the range (1-247)";
@@ -89,7 +89,7 @@ bool SunSpec::SetModBusAddress(const int slave_id)
 	return true;
 }
 
-bool SunSpec::GetModBusAddress(int &slave_id)
+bool SunSpec::GetModbusAddress(int &slave_id)
 {
 	if (!GetRegister(C001_DA.res, C001_DA.reg, C001_DA.nb)) {
 		return false;
