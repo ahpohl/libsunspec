@@ -27,7 +27,7 @@ bool InverterModel::IsInverterRegisterMap(void)
 	return true;
 }
 
-bool InverterModel::GetAcCurrentTotal(double &res)
+bool InverterModel::GetAcCurrent(double &res)
 {
 	if (!GetRegister(I10X_A.res, I10X_A.reg, I10X_A.nb)) {
 		return false;
@@ -40,119 +40,112 @@ bool InverterModel::GetAcCurrentTotal(double &res)
 	return true;
 }
 
-bool InverterModel::GetAcCurrentPhaseA(double &res)
+bool InverterModel::GetAcCurrentPhase(double &res, const char &ph)
 {
-	if (!GetRegister(I10X_AphA.res, I10X_AphA.reg, I10X_AphA.nb)) {
+	switch (ph) {
+	case 'A':
+		if (!GetRegister(I10X_AphA.res, I10X_AphA.reg, I10X_AphA.nb)) {
+			return false;
+		}
+		if (!GetRegister(I10X_A_SF.res, I10X_A_SF.reg, I10X_A_SF.nb)) {
+			return false;
+		}
+		res = static_cast<double>(I10X_AphA.res) * pow(10, I10X_A_SF.res);
+		break;
+	case 'B':
+		if (!GetRegister(I10X_AphB.res, I10X_AphB.reg, I10X_AphB.nb)) {
+			return false;
+		}
+		if (!GetRegister(I10X_A_SF.res, I10X_A_SF.reg, I10X_A_SF.nb)) {
+			return false;
+		}
+		res = static_cast<double>(I10X_AphB.res) * pow(10, I10X_A_SF.res);
+		break;
+	case 'C':
+		if (!GetRegister(I10X_AphC.res, I10X_AphC.reg, I10X_AphC.nb)) {
+			return false;
+		}
+		if (!GetRegister(I10X_A_SF.res, I10X_A_SF.reg, I10X_A_SF.nb)) {
+			return false;
+		}
+		res = static_cast<double>(I10X_AphC.res) * pow(10, I10X_A_SF.res);
+		break;
+	default:
+		ErrorMessage = "Invalid phase " + ph;
 		return false;
 	}
-	if (!GetRegister(I10X_A_SF.res, I10X_A_SF.reg, I10X_A_SF.nb)) {
-		return false;
-	}
-	res = static_cast<double>(I10X_AphA.res) * pow(10, I10X_A_SF.res);
 
 	return true;
 }
 
-bool InverterModel::GetAcCurrentPhaseB(double &res)
+bool InverterModel::GetAcVoltage(double &res, const char &ph)
 {
-	if (!GetRegister(I10X_AphB.res, I10X_AphB.reg, I10X_AphB.nb)) {
+	switch (ph) {
+	case 'A':
+		if (!GetRegister(I10X_PhVphA.res, I10X_PhVphA.reg, I10X_PhVphA.nb)) {
+			return false;
+		}
+		if (!GetRegister(I10X_V_SF.res, I10X_V_SF.reg, I10X_V_SF.nb)) {
+			return false;
+		}
+		res = static_cast<double>(I10X_PhVphA.res) * pow(10, I10X_V_SF.res);
+		break;
+	case 'B':
+		if (!GetRegister(I10X_PhVphB.res, I10X_PhVphB.reg, I10X_PhVphB.nb)) {
+			return false;
+		}
+		if (!GetRegister(I10X_V_SF.res, I10X_V_SF.reg, I10X_V_SF.nb)) {
+			return false;
+		}
+		res = static_cast<double>(I10X_PhVphB.res) * pow(10, I10X_V_SF.res);
+		break;
+	case 'C':
+		if (!GetRegister(I10X_PhVphC.res, I10X_PhVphC.reg, I10X_PhVphC.nb)) {
+			return false;
+		}
+		if (!GetRegister(I10X_V_SF.res, I10X_V_SF.reg, I10X_V_SF.nb)) {
+			return false;
+		}
+		res = static_cast<double>(I10X_PhVphC.res) * pow(10, I10X_V_SF.res);
+		break;
+	default:
+		ErrorMessage = "Invalid phase " + ph;
 		return false;
 	}
-	if (!GetRegister(I10X_A_SF.res, I10X_A_SF.reg, I10X_A_SF.nb)) {
-		return false;
-	}
-	res = static_cast<double>(I10X_AphB.res) * pow(10, I10X_A_SF.res);
 
 	return true;
 }
 
-bool InverterModel::GetAcCurrentPhaseC(double &res)
+bool InverterModel::GetAcVoltagePhaseToPhase(double &res, const std::string &ph_pair)
 {
-	if (!GetRegister(I10X_AphC.res, I10X_AphC.reg, I10X_AphC.nb)) {
+	if (ph_pair == "AB") {
+		if (!GetRegister(I10X_PPVphAB.res, I10X_PPVphAB.reg, I10X_PPVphAB.nb)) {
+			return false;
+		}
+		if (!GetRegister(I10X_V_SF.res, I10X_V_SF.reg, I10X_V_SF.nb)) {
+			return false;
+		}
+		res = static_cast<double>(I10X_PPVphAB.res) * pow(10, I10X_V_SF.res);
+	} else if (ph_pair == "BC") {
+		if (!GetRegister(I10X_PPVphBC.res, I10X_PPVphBC.reg, I10X_PPVphBC.nb)) {
+			return false;
+		}
+		if (!GetRegister(I10X_V_SF.res, I10X_V_SF.reg, I10X_V_SF.nb)) {
+			return false;
+		}
+		res = static_cast<double>(I10X_PPVphBC.res) * pow(10, I10X_V_SF.res);
+	} else if (ph_pair == "CA") {
+		if (!GetRegister(I10X_PPVphCA.res, I10X_PPVphCA.reg, I10X_PPVphCA.nb)) {
+			return false;
+		}
+		if (!GetRegister(I10X_V_SF.res, I10X_V_SF.reg, I10X_V_SF.nb)) {
+			return false;
+		}
+		res = static_cast<double>(I10X_PPVphCA.res) * pow(10, I10X_V_SF.res);
+	} else {
+		ErrorMessage = "Invalid phase pair " + ph_pair;
 		return false;
 	}
-	if (!GetRegister(I10X_A_SF.res, I10X_A_SF.reg, I10X_A_SF.nb)) {
-		return false;
-	}
-	res = static_cast<double>(I10X_AphC.res) * pow(10, I10X_A_SF.res);
-
-	return true;
-}
-
-bool InverterModel::GetAcVoltagePhaseAB(double &res)
-{
-	if (!GetRegister(I10X_PPVphAB.res, I10X_PPVphAB.reg, I10X_PPVphAB.nb)) {
-		return false;
-	}
-	if (!GetRegister(I10X_V_SF.res, I10X_V_SF.reg, I10X_V_SF.nb)) {
-		return false;
-	}
-	res = static_cast<double>(I10X_PPVphAB.res) * pow(10, I10X_V_SF.res);
-
-	return true;
-}
-
-bool InverterModel::GetAcVoltagePhaseBC(double &res)
-{
-	if (!GetRegister(I10X_PPVphBC.res, I10X_PPVphBC.reg, I10X_PPVphBC.nb)) {
-		return false;
-	}
-	if (!GetRegister(I10X_V_SF.res, I10X_V_SF.reg, I10X_V_SF.nb)) {
-		return false;
-	}
-	res = static_cast<double>(I10X_PPVphBC.res) * pow(10, I10X_V_SF.res);
-
-	return true;
-}
-
-bool InverterModel::GetAcVoltagePhaseCA(double &res)
-{
-	if (!GetRegister(I10X_PPVphCA.res, I10X_PPVphCA.reg, I10X_PPVphCA.nb)) {
-		return false;
-	}
-	if (!GetRegister(I10X_V_SF.res, I10X_V_SF.reg, I10X_V_SF.nb)) {
-		return false;
-	}
-	res = static_cast<double>(I10X_PPVphCA.res) * pow(10, I10X_V_SF.res);
-
-	return true;
-}
-
-bool InverterModel::GetAcVoltagePhaseA(double &res)
-{
-	if (!GetRegister(I10X_PhVphA.res, I10X_PhVphA.reg, I10X_PhVphA.nb)) {
-		return false;
-	}
-	if (!GetRegister(I10X_V_SF.res, I10X_V_SF.reg, I10X_V_SF.nb)) {
-		return false;
-	}
-	res = static_cast<double>(I10X_PhVphA.res) * pow(10, I10X_V_SF.res);
-
-	return true;
-}
-
-bool InverterModel::GetAcVoltagePhaseB(double &res)
-{
-	if (!GetRegister(I10X_PhVphB.res, I10X_PhVphB.reg, I10X_PhVphB.nb)) {
-		return false;
-	}
-	if (!GetRegister(I10X_V_SF.res, I10X_V_SF.reg, I10X_V_SF.nb)) {
-		return false;
-	}
-	res = static_cast<double>(I10X_PhVphB.res) * pow(10, I10X_V_SF.res);
-
-	return true;
-}
-
-bool InverterModel::GetAcVoltagePhaseC(double &res)
-{
-	if (!GetRegister(I10X_PhVphC.res, I10X_PhVphC.reg, I10X_PhVphC.nb)) {
-		return false;
-	}
-	if (!GetRegister(I10X_V_SF.res, I10X_V_SF.reg, I10X_V_SF.nb)) {
-		return false;
-	}
-	res = static_cast<double>(I10X_PhVphC.res) * pow(10, I10X_V_SF.res);
 
 	return true;
 }

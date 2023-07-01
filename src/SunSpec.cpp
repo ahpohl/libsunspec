@@ -24,7 +24,7 @@ std::string SunSpec::GetErrorMessage(void) const
 	return ErrorMessage;
 }
 
-bool SunSpec::ConnectModbusTcp(std::string ip_addr, int port)
+bool SunSpec::ConnectModbusTcp(const std::string &ip_addr, const int &port)
 {
 	if (ip_addr.empty()) {
 	    ErrorMessage = "IP address argument empty";
@@ -43,7 +43,7 @@ bool SunSpec::ConnectModbusTcp(std::string ip_addr, int port)
 	return true;
 }
 
-bool SunSpec::ConnectModbusRtu(std::string device, int baud_rate)
+bool SunSpec::ConnectModbusRtu(const std::string &device, const int &baud_rate)
 {
 	if (device.empty()) {
 	    ErrorMessage = "Serial device argument empty";
@@ -76,7 +76,7 @@ void SunSpec::SetModbusDebug(const bool &debug)
 	modbus_set_debug(Ctx, debug);
 }
 
-bool SunSpec::SetModbusAddress(const int slave_id)
+bool SunSpec::SetModbusAddress(const int &slave_id)
 {
 	if ( (slave_id < 1) || (slave_id > 247) ) {
 	    ErrorMessage = std::string("Invalid slave ID (") + std::to_string(slave_id) + "). ID must be in the range (1-247)";
@@ -163,3 +163,15 @@ template bool SunSpec::GetRegister(uint16_t &, const uint16_t &, const uint16_t 
 template bool SunSpec::GetRegister(uint32_t &, const uint16_t &, const uint16_t &);
 template bool SunSpec::GetRegister(uint64_t &, const uint16_t &, const uint16_t &);
 template bool SunSpec::GetRegister(std::string &, const uint16_t &, const uint16_t &);
+
+bool SunSpec::SetRegister(const uint16_t &value, const uint16_t &reg_addr)
+{
+	int rc = modbus_write_register(Ctx, reg_addr, value);
+	if (rc == -1) {
+	    ErrorMessage = std::string("Write register ") + std::to_string(reg_addr) + " failed: "
+	    	+ modbus_strerror(errno) + " (" + std::to_string(errno) + ")";
+		return false;
+	}
+
+	return true;
+}

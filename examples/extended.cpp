@@ -40,27 +40,14 @@ int main(int argc, char *argv[])
 	  std::cout << inverter->GetErrorMessage() << std::endl;
 	  return EXIT_FAILURE;
   }
-  std::cout.precision(0);
-  std::cout << "Unix timestamp: " << rawtime << std::endl;
+  std::cout << "Inverter time:" << std::endl;
+  std::cout << "  " << std::put_time(std::gmtime(&rawtime), "%a %Y-%m-%d %H:%M:%S %Z") << std::endl;
+  std::cout << "  " << std::put_time(std::localtime(&rawtime), "%a %Y-%m-%d %H:%M:%S %Z") << std::endl;
 
-  struct tm ts;
-  char buf[80];
-
-  ts = *(std::gmtime(&rawtime));
-  std::strftime(buf, sizeof(buf), "%a %Y-%m-%d %H:%M:%S %Z", &ts);
-  std::cout << buf << std::endl;
-
-  ts = *(std::localtime(&rawtime));
-  std::strftime(buf, sizeof(buf), "%a %Y-%m-%d %H:%M:%S %Z", &ts);
-  std::cout << buf << std::endl;
-
-
-  /*
-  Raw time: 741530225
-  Unix timestamp: 1688215025
-  Sat 2023-07-01 12:37:05 GMT
-  Sat 2023-07-01 14:37:05 CEST
-  */
+  std::cout << "System time:" << std::endl;
+  std::time_t t = std::time(nullptr);
+  std::cout << "  " << std::put_time(std::gmtime(&t), "%a %Y-%m-%d %H:%M:%S %Z") << std::endl;
+  std::cout << "  " << std::put_time(std::localtime(&t), "%a %Y-%m-%d %H:%M:%S %Z") << std::endl;
 
   std::cout.flags(old_settings);
   return EXIT_SUCCESS;

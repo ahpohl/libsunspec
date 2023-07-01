@@ -33,7 +33,7 @@ public:
         @param ip_address IP address of the server to which the client wants to establish a connection
         @param port port argument is the TCP port to use
     */
-	bool ConnectModbusTcp(std::string ip_address, int port = 502);
+	bool ConnectModbusTcp(const std::string &ip_address, const int &port = 502);
 
 	/** Create a libmodbus context for RTU serial
 
@@ -43,7 +43,7 @@ public:
 	    @param device device specifies the name of the serial port
 	    @param baud_rate baud rate (9600 or 19200)
 	*/
-	bool ConnectModbusRtu(std::string device, int baud_rate = 9600);
+	bool ConnectModbusRtu(const std::string &device, const int &baud_rate = 9600);
 
 	/**  Set/clear debug flag of the Modbus context (very verbose) */
 	void SetModbusDebug(const bool &debug);
@@ -62,7 +62,7 @@ public:
 
 	    @param slave_id Modbus device address (1-247), default (1)
 	*/
-	bool SetModbusAddress(const int slave_id = 1);
+	bool SetModbusAddress(const int &slave_id = 1);
 
 	/** Reads Modbus device address (slave ID)
 
@@ -82,6 +82,9 @@ protected:
 	*/
 	template <typename T>
 	bool GetRegister(T &res, const uint16_t &reg_addr, const uint16_t &size);
+
+	/** Set a single Modbus register (function 0x06) */
+	bool SetRegister(const uint16_t &value, const uint16_t &reg_addr);
 
 	/** String to hold the error message */
 	std::string ErrorMessage;

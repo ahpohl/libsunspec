@@ -16,34 +16,28 @@ public:
 	bool IsInverterRegisterMap(void);
 
 	/** AC total current [A] */
-	bool GetAcCurrentTotal(double &res);
+	bool GetAcCurrent(double &res);
 
-	/** AC phase-A current [A] */
-	bool GetAcCurrentPhaseA(double &res);
+	/** AC phase current
 
-	/** AC phase-B current [A] */
-	bool GetAcCurrentPhaseB(double &res);
+	    param res current [A]
+	    param ph phase A, B or C (default A)
+	*/
+	bool GetAcCurrentPhase(double &res, const char &ph = 'A');
 
-	/** AC phase-C current [A] */
-	bool GetAcCurrentPhaseC(double &res);
+	/** AC voltage phase-to-neutral
 
-	/** AC phase-AB voltage [V] */
-	bool GetAcVoltagePhaseAB(double &res);
+	    param res voltage [V]
+	    param ph phase A, B or C (default A)
+	*/
+	bool GetAcVoltage(double &res, const char &ph = 'A');
 
-	/** AC phase-BC voltage [V] */
-	bool GetAcVoltagePhaseBC(double &res);
+	/** AC phase-to-phase voltage
 
-	/** AC phase-CA voltage [V] */
-	bool GetAcVoltagePhaseCA(double &res);
-
-	/** AC voltage phase-A-to-neutral [V] */
-	bool GetAcVoltagePhaseA(double &res);
-
-	/** AC voltage phase-B-to-neutral [V] */
-	bool GetAcVoltagePhaseB(double &res);
-
-	/** AC voltage phase-C-to-neutral [V] */
-	bool GetAcVoltagePhaseC(double &res);
+	    param res voltage [V]
+	    param ph_pair phase AB, BC or CA
+	*/
+	bool GetAcVoltagePhaseToPhase(double &res, const std::string &ph_pair);
 
 	/** AC power value [W] */
 	bool GetAcPower(double &res);

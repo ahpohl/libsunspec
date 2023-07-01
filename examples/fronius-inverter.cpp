@@ -30,6 +30,13 @@ int main(int argc, char *argv[])
 	  return EXIT_FAILURE;
   }
 
+  FroniusInverter::ModelType_t model;
+  if (!inverter->GetModelType(model)) {
+	  std::cout << inverter->GetErrorMessage() << std::endl;
+	  return EXIT_FAILURE;
+  }
+  std::cout << "Model Type: " << model.TypeStr << " (" << model.Type << ")" << std::endl;
+
   FroniusInverter::StateEvt_t state_evt;
   if (!inverter->GetStateEvtFlags(state_evt)) {
 	  std::cout << inverter->GetErrorMessage() << std::endl;

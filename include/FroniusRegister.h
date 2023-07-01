@@ -17,6 +17,22 @@ public:
 	*/
 	bool GetActiveStateCode(uint16_t &code);
 
+	/** SunSpec model type */
+	struct ModelType_t {
+		int Type;
+		std::string TypeStr;
+	};
+
+	/** Get type of SunSpec model used for inverter and meter data. */
+	bool GetModelType(struct ModelType_t &model);
+
+	/** Set type of SunSpec model used for inverter and meter data.
+
+	    @param value 1: floating point
+	                 2: integer + scale factor (default)
+	*/
+	bool SetModelType(const int &value = 2);
+
 	/** Total power (site sum) of all connected inverters.
 
 	    @returns power [W]

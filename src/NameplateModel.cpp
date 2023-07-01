@@ -143,16 +143,3 @@ bool NameplateModel::GetPowerFactorMin(double &res, const int quadrant)
 
 	return true;
 }
-
-bool NameplateModel::GetStorageEnergyMax(double &res)
-{
-	if (!GetRegister(I120_WHRtg.res, I120_WHRtg.reg, I120_WHRtg.nb)) {
-		return false;
-	}
-	if (!GetRegister(I120_WHRtg_SF.res, I120_WHRtg_SF.reg, I120_WHRtg_SF.nb)) {
-		return false;
-	}
-	res = static_cast<double>(I120_WHRtg.res) * pow(10, I120_WHRtg_SF.res);
-
-	return true;
-}

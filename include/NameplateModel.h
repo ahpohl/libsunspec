@@ -44,12 +44,6 @@ public:
 	    @param quadrant quadrant [1-4]
 	*/
 	bool GetPowerFactorMin(double &res, const int quadrant);
-
-	/** Nominal energy rating of storage device.
-
-	    @returns energy rating [Wh]
-	*/
-	bool GetStorageEnergyMax(double &res);
 };
 
 #endif /* NAMEPLATEMODEL_H_ */

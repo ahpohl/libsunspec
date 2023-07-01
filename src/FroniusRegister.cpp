@@ -15,6 +15,43 @@ bool FroniusRegister::GetActiveStateCode(uint16_t &code)
 	return true;
 }
 
+bool FroniusRegister::GetModelType(struct ModelType_t &model)
+{
+	if (!GetRegister(F_ModelType.res, F_ModelType.reg, F_ModelType.nb))
+	{
+		return false;
+	}
+	model.Type = F_ModelType.res;
+
+	switch (model.Type) {
+	case 1:
+		model.TypeStr = "floating point";
+		break;
+	case 2:
+		model.TypeStr = "integer + scale factor";
+		break;
+	default:
+		ErrorMessage = "Invalid model type (" + std::to_string(model.Type) + ")";
+		return false;
+	}
+	return true;
+}
+
+bool FroniusRegister::SetModelType(const int &value)
+{
+	if ( !((value == 1) || (value == 2)) ) {
+		ErrorMessage = "Invalid model type (" + std::to_string(value) + ")";
+		return false;
+	}
+	if (!SetRegister(value, F_ModelType.reg)) {
+		return false;
+	}
+	if (!SetRegister(6, F_ModelType.reg)) {
+		return false;
+	}
+	return true;
+}
+
 bool FroniusRegister::GetSitePower(double &res)
 {
 	if (!GetRegister(F_Site_Power.res, F_Site_Power.reg, F_Site_Power.nb))
@@ -58,6 +95,3 @@ bool FroniusRegister::GetSiteEnergyTotal(double &res)
 
 	return true;
 }
-
-
-

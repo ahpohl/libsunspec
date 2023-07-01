@@ -87,15 +87,6 @@ int main(int argc, char *argv[])
 	  std::cout << " Quadrant " << quadrant << ": " << power_factor_min << " cos(phi)" << std::endl;
   }
 
-  double storage_energy_max;
-  if (!inverter->GetStorageEnergyMax(storage_energy_max))
-  {
-  	  std::cout << inverter->GetErrorMessage() << std::endl;
-  	  return EXIT_FAILURE;
-  }
-  std::cout.precision(0);
-  std::cout << "Max battery capacity: " << storage_energy_max << " Wh" << std::endl;
-
   std::cout.flags(old_settings);
   return EXIT_SUCCESS;
 }
