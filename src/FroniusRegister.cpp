@@ -15,6 +15,14 @@ bool FroniusRegister::GetActiveStateCode(uint16_t &code)
 	return true;
 }
 
+bool FroniusRegister::ResetEventFlags(void)
+{
+	if (!SetRegister(0xFFFF, F_Reset_All_Event_Flags.reg)) {
+		return false;
+	}
+	return true;
+}
+
 bool FroniusRegister::GetModelType(struct ModelType_t &model)
 {
 	if (!GetRegister(F_ModelType.res, F_ModelType.reg, F_ModelType.nb))

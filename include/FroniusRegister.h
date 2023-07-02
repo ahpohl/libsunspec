@@ -17,9 +17,14 @@ public:
 	*/
 	bool GetActiveStateCode(uint16_t &code);
 
+	/** Reset all event flags and active state code */
+	bool ResetEventFlags(void);
+
 	/** SunSpec model type */
 	struct ModelType_t {
+		/** SunSpec model type */
 		int Type;
+		/** Model type as string */
 		std::string TypeStr;
 	};
 

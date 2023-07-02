@@ -6,28 +6,25 @@ using namespace CommonRegisterMap;
 
 bool CommonModel::IsCommonRegisterMap(void)
 {
-	uint32_t sid;
-	if (!GetRegister(sid, C001_SID.reg, C001_SID.nb)) {
+	if (!GetRegister(C001_SID.res, C001_SID.reg, C001_SID.nb)) {
 		return false;
 	}
-	if ( sid != 0x53756e53 ) {
+	if ( C001_SID.res != 0x53756e53 ) {
 		ErrorMessage = "Device is not compatible with the ModBus SunSpec protocol.";
 		return false;
 	}
-	uint16_t id;
-	if (!GetRegister(id, C001_ID.reg, C001_ID.nb)) {
+	if (!GetRegister(C001_ID.res, C001_ID.reg, C001_ID.nb)) {
 		return false;
 	}
-	if ( id != 1 ) {
-		ErrorMessage = std::string("Invalid ID of Common Model block (") + std::to_string(id) + ")";
+	if ( C001_ID.res != 1 ) {
+		ErrorMessage = std::string("Invalid ID of Common Model block (") + std::to_string(C001_ID.res) + ")";
 		return false;
 	}
-	uint16_t length;
-	if (!GetRegister(length, C001_L.reg, C001_L.nb)) {
+	if (!GetRegister(C001_L.res, C001_L.reg, C001_L.nb)) {
 		return false;
 	}
-	if ( length != 65 ) {
-		ErrorMessage = std::string("Invalid length of Common Model block (") + std::to_string(length) + ")";
+	if ( C001_L.res != 65 ) {
+		ErrorMessage = std::string("Invalid length of Common Model block (") + std::to_string(C001_L.res) + ")";
 		return false;
 	}
 

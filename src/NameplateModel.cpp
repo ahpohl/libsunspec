@@ -7,20 +7,18 @@ using namespace NameplateRegisterMap;
 
 bool NameplateModel::IsNameplateRegisterMap(void)
 {
-	uint16_t id;
-	if (!GetRegister(id, I120_ID.reg, I120_ID.nb)) {
+	if (!GetRegister(I120_ID.res, I120_ID.reg, I120_ID.nb)) {
 		return false;
 	}
-	if ( !(id == 120) ) {
-		ErrorMessage = std::string("Invalid ID of Nameplate Model block (") + std::to_string(id) + ")";
+	if ( !(I120_ID.res == 120) ) {
+		ErrorMessage = std::string("Invalid ID of Nameplate Model block (") + std::to_string(I120_ID.res) + ")";
 		return false;
 	}
-	uint16_t length;
-	if (!GetRegister(length, I120_L.reg, I120_L.nb)) {
+	if (!GetRegister(I120_L.res, I120_L.reg, I120_L.nb)) {
 		return false;
 	}
-	if ( length != 26 ) {
-		ErrorMessage = std::string("Invalid length of Nameplate Model block (") + std::to_string(length) + ")";
+	if ( I120_L.res != 26 ) {
+		ErrorMessage = std::string("Invalid length of Nameplate Model block (") + std::to_string(I120_L.res) + ")";
 		return false;
 	}
 

@@ -25,7 +25,7 @@ int main(int argc, char *argv[])
     return EXIT_FAILURE;
   }
 
-  if (!inverter->IsSunSpecInverter()) {
+  if (!inverter->IsCommonRegisterMap()) {
 	  std::cout << inverter->GetErrorMessage() << std::endl;
 	  return EXIT_FAILURE;
   }
@@ -35,7 +35,20 @@ int main(int argc, char *argv[])
 	  std::cout << inverter->GetErrorMessage() << std::endl;
 	  return EXIT_FAILURE;
   }
-  std::cout << "Model Type: " << model.TypeStr << " (" << model.Type << ")" << std::endl;
+  std::cout << "Model type " << model.TypeStr << " (" << model.Type << ")" << std::endl;
+
+  if (model.Type == 1) {
+	  std::cout << "Switching SunSpec model ..." << std::endl;
+	  if (!inverter->SetModelType()) {
+		  std::cout << inverter->GetErrorMessage() << std::endl;
+		  return EXIT_FAILURE;
+	  }
+	  if (!inverter->GetModelType(model)) {
+		  std::cout << inverter->GetErrorMessage() << std::endl;
+		  return EXIT_FAILURE;
+	  }
+	  std::cout << "Model type " << model.TypeStr << " (" << model.Type << ")" << std::endl;
+  }
 
   FroniusInverter::StateEvt_t state_evt;
   if (!inverter->GetStateEvtFlags(state_evt)) {

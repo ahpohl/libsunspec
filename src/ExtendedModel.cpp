@@ -5,20 +5,18 @@ using namespace ExtendedRegisterMap;
 
 bool ExtendedModel::IsExtendedRegisterMap(void)
 {
-	uint16_t id;
-	if (!GetRegister(id, I122_ID.reg, I122_ID.nb)) {
+	if (!GetRegister(I122_ID.res, I122_ID.reg, I122_ID.nb)) {
 		return false;
 	}
-	if ( !(id == 122) ) {
-		ErrorMessage = std::string("Invalid ID of Extended Model block (") + std::to_string(id) + ")";
+	if ( !(I122_ID.res == 122) ) {
+		ErrorMessage = std::string("Invalid ID of Extended Model block (") + std::to_string(I122_ID.res) + ")";
 		return false;
 	}
-	uint16_t length;
-	if (!GetRegister(length, I122_L.reg, I122_L.nb)) {
+	if (!GetRegister(I122_L.res, I122_L.reg, I122_L.nb)) {
 		return false;
 	}
-	if ( length != 44 ) {
-		ErrorMessage = std::string("Invalid length of Extended Model block (") + std::to_string(length) + ")";
+	if ( I122_L.res != 44 ) {
+		ErrorMessage = std::string("Invalid length of Extended Model block (") + std::to_string(I122_L.res) + ")";
 		return false;
 	}
 

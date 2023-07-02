@@ -11,12 +11,13 @@
 #include "InverterModel.h"
 #include "NameplateModel.h"
 #include "ExtendedModel.h"
+#include "ImmediateModel.h"
 #include "MultiMpptModel.h"
 #include "FroniusRegister.h"
 
 class FroniusInverter: public CommonModel, public InverterModel,
-	public NameplateModel, public ExtendedModel, public MultiMpptModel,
-	public FroniusRegister
+	public NameplateModel, public ExtendedModel, public ImmediateModel,
+	public MultiMpptModel, public FroniusRegister
 {
 public:
 	/** Checks if device is a SunSpec compatible inverter */
@@ -24,8 +25,11 @@ public:
 
 	/** Fronius state code */
 	struct StateCode_t {
+		/** State code */
 		uint16_t St;
+		/** State code as string */
 		std::string StStr;
+		/** Fronius inverter model */
 		std::string Model;
 	};
 

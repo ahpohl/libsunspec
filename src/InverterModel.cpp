@@ -1,26 +1,24 @@
-#include <InverterModel.h>
-#include <SunSpec.h>
-#include <SunSpecModelIntSf.h>
+#include "InverterModel.h"
+#include "SunSpec.h"
+#include "SunSpecModelIntSf.h"
 #include <cmath>
 
 using namespace InverterRegisterMap;
 
 bool InverterModel::IsInverterRegisterMap(void)
 {
-	uint16_t id;
-	if (!GetRegister(id, I10X_ID.reg, I10X_ID.nb)) {
+	if (!GetRegister(I10X_ID.res, I10X_ID.reg, I10X_ID.nb)) {
 		return false;
 	}
-	if ( !((id == 101) || (id == 102) || (id = 103)) ) {
-		ErrorMessage = std::string("Invalid ID of Inverter Model block (") + std::to_string(id) + ")";
+	if ( !((I10X_ID.res == 101) || (I10X_ID.res == 102) || (I10X_ID.res = 103)) ) {
+		ErrorMessage = std::string("Invalid ID of Inverter Model block (") + std::to_string(I10X_ID.res) + ")";
 		return false;
 	}
-	uint16_t length;
-	if (!GetRegister(length, I10X_L.reg, I10X_L.nb)) {
+	if (!GetRegister(I10X_L.res, I10X_L.reg, I10X_L.nb)) {
 		return false;
 	}
-	if ( length != 50 ) {
-		ErrorMessage = std::string("Invalid length of Inverter Model block (") + std::to_string(length) + ")";
+	if ( I10X_L.res != 50 ) {
+		ErrorMessage = std::string("Invalid length of Inverter Model block (") + std::to_string(I10X_L.res) + ")";
 		return false;
 	}
 

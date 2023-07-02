@@ -1,26 +1,24 @@
 #include "MultiMpptModel.h"
-#include <SunSpec.h>
-#include <SunSpecModelIntSf.h>
+#include "SunSpec.h"
+#include "SunSpecModelIntSf.h"
 #include <cmath>
 
 using namespace MultiMpptRegisterMap;
 
 bool MultiMpptModel::IsMultiMpptRegisterMap(void)
 {
-	uint16_t id;
-	if (!GetRegister(id, I160_ID.reg, I160_ID.nb)) {
+	if (!GetRegister(I160_ID.res, I160_ID.reg, I160_ID.nb)) {
 		return false;
 	}
-	if ( id != 160 ) {
-		ErrorMessage = std::string("Invalid ID of Multi MPPT Model block (") + std::to_string(id) + ")";
+	if ( I160_ID.res != 160 ) {
+		ErrorMessage = std::string("Invalid ID of Multi MPPT Model block (") + std::to_string(I160_ID.res) + ")";
 		return false;
 	}
-	uint16_t length;
-	if (!GetRegister(length, I160_L.reg, I160_L.nb)) {
+	if (!GetRegister(I160_L.res, I160_L.reg, I160_L.nb)) {
 		return false;
 	}
-	if ( length != 48 ) {
-		ErrorMessage = std::string("Invalid length of Multi MPPT Model block (") + std::to_string(length) + ")";
+	if ( I160_L.res != 48 ) {
+		ErrorMessage = std::string("Invalid length of Multi MPPT Model block (") + std::to_string(I160_L.res) + ")";
 		return false;
 	}
 

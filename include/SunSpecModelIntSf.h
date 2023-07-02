@@ -3,16 +3,16 @@
 
 #include <cstdint>
 
-/** @brief Register description of the Common SunSpec model */
+/** @brief Register description of the SunSpec Common model */
 namespace CommonRegisterMap
 {
-	/** Well-known value. Uniquely identifies this as a SunSpec ModBus map.
+	/** Uniquely identifies this as a SunSpec ModBus map.
 
 	    @returns 0x53756e53 ('SunS')
 	*/
 	struct { uint32_t res = 0; const uint16_t reg = 40001-1; const uint16_t nb = 2;  } C001_SID;
 
-    /** Well-known value. Uniquely identifies this as a SunSpec Common Model block
+    /** Uniquely identifies this as a SunSpec Common Model block
 
      	@returns 1
     */
@@ -259,7 +259,7 @@ namespace NameplateRegisterMap
 	*/
 	struct { uint16_t res = 0; const uint16_t reg = 40122-1; const uint16_t nb = 1; } I120_ID;
 
-	/** Length of Namespace Model block.
+	/** Length of Nameplate Model block.
 
 	    @returns 26
 	*/
@@ -533,6 +533,159 @@ namespace ExtendedRegisterMap
 	    @note not supported
 	*/
 	struct { int16_t  res = 0; const uint16_t reg = 40227-1; const uint16_t nb = 1; } I122_Ris_SF;
+}
+
+/** @brief Register description of the SunSpec Immediate Controls model */
+namespace ImmediateRegisterMap
+{
+	/** Uniquely identifies this as a SunSpec Immediate Controls model
+
+	    @returns 123
+	*/
+    struct { uint16_t res = 0; const uint16_t reg = 40228-1; const uint16_t nb = 1; } I123_ID;
+
+	/** Length of the SunSpec Immediate Controls model
+
+	    @returns 24
+	*/
+    struct { uint16_t res = 0; const uint16_t reg = 40229-1; const uint16_t nb = 1; } I123_L;
+
+	/** Time window for connect/disconnect [s] */
+    struct { uint16_t res = 0; const uint16_t reg = 40230-1; const uint16_t nb = 1; } I123_Conn_WinTms;
+
+	/** Timeout period for connect/disconnect [s] */
+    struct { uint16_t res = 0; const uint16_t reg = 40231-1; const uint16_t nb = 1; } I123_Conn_RvrtTms;
+
+	/** Connection control
+
+	    0: Disconnected
+        1: Connected
+	*/
+    struct { uint16_t res = 0; const uint16_t reg = 40232-1; const uint16_t nb = 1; } I123_Conn;
+
+	/** Set power output to specified level [%] */
+    struct { uint16_t res = 0; const uint16_t reg = 40233-1; const uint16_t nb = 1; } I123_WMaxLimPct;
+
+	/** Time window for power limit change
+
+	    @returns 0-300 [s]
+
+	*/
+    struct { uint16_t res = 0; const uint16_t reg = 40234-1; const uint16_t nb = 1; } I123_WMaxLimPct_WinTms;
+
+	/** Timeout period for power limit
+
+	    @returns 0-28800 [s]
+	*/
+    struct { uint16_t res = 0; const uint16_t reg = 40235-1; const uint16_t nb = 1; } I123_WMaxLimPct_RvrtTms;
+
+	/** Ramp time for moving from current setpoint to new setpoint
+
+	    @returns 0-65534 [s] (0xFFFF has the same effect as 0x0000)
+	*/
+    struct { uint16_t res = 0; const uint16_t reg = 40236-1; const uint16_t nb = 1; } I123_WMaxLimPct_RmpTms;
+
+	/** Throttle enable/disable control
+
+	    0: Disabled
+        1: Enabled
+	*/
+    struct { uint16_t res = 0; const uint16_t reg = 40237-1; const uint16_t nb = 1; } I123_WMaxLim_Ena;
+
+	/** Set power factor to specific value
+
+	    @returns 0.8 to 1.0 and -0.8 to -0.999 [cos phi]
+	*/
+    struct { int16_t  res = 0; const uint16_t reg = 40238-1; const uint16_t nb = 1; } I123_OutPFSet;
+
+	/** Time window for power factor change
+
+	    @returns 0-300 [s]
+	*/
+    struct { uint16_t res = 0; const uint16_t reg = 40239-1; const uint16_t nb = 1; } I123_OutPFSet_WinTms;
+
+	/** Timeout period for power factor
+
+	    @returns 0-28800 [s]
+	*/
+    struct { uint16_t res = 0; const uint16_t reg = 40240-1; const uint16_t nb = 1; } I123_OutPFSet_RvrtTms;
+
+	/** Ramp time for moving from current setpoint to new setpoint
+
+	    @returns 0-65534 [s] (0xFFFF has the same effect as 0x0000)
+	*/
+    struct { uint16_t res = 0; const uint16_t reg = 40241-1; const uint16_t nb = 1; } I123_OutPFSet_RmpTms;
+
+	/** Fixed power factor enable/disable control
+
+	    0: Disabled
+        1: Enabled
+	*/
+    struct { uint16_t res = 0; const uint16_t reg = 40242-1; const uint16_t nb = 1; } I123_OutPFSet_Ena;
+
+	/** Reactive power in percent of I_WMax
+
+	    @note not supported
+	*/
+    struct { int16_t  res = 0; const uint16_t reg = 40243-1; const uint16_t nb = 1; } I123_VArWMaxPct;
+
+	/** Reactive power in percent of I_VArMax */
+    struct { int16_t  res = 0; const uint16_t reg = 40244-1; const uint16_t nb = 1; } I123_VArMaxPct;
+
+	/** Reactive power in percent of I_VArAval
+
+	    @note not supported
+	*/
+    struct { int16_t  res = 0; const uint16_t reg = 40245-1; const uint16_t nb = 1; } I123_VArAvalPct;
+
+	/** Time window for VAR limit change
+
+	    @returns 0-300 [s]
+	*/
+    struct { uint16_t res = 0; const uint16_t reg = 40246-1; const uint16_t nb = 1; } I123_VArPct_WinTms;
+
+	/** Timeout period for VAR limit
+
+	    @returns 0-28800 [s]
+	*/
+    struct { uint16_t res = 0; const uint16_t reg = 40247-1; const uint16_t nb = 1; } I123_VArPct_RvrtTms;
+
+	/** Ramp time for moving from current setpoint to new setpoint
+
+	    @returns 0-65534 [s] (0xFFFF has the same effect as 0x0000)
+	*/
+    struct { uint16_t res = 0; const uint16_t reg = 40248-1; const uint16_t nb = 1; } I123_VArPct_RmpTms;
+
+	/** VAR limit mode
+
+	    2: VAR limit as a % of VArMax
+	*/
+    struct { uint16_t res = 0; const uint16_t reg = 40249-1; const uint16_t nb = 1; } I123_VArPct_Mod;
+
+	/** Fixed VAR enable/disable control
+
+	    0: Disabled
+        1: Enabled
+	*/
+    struct { uint16_t res = 0; const uint16_t reg = 40250-1; const uint16_t nb = 1; } I123_VArPct_Ena;
+
+	/** Scale factor for power output percent
+
+	    @returns -2
+	*/
+    struct { int16_t  res = 0; const uint16_t reg = 40251-1; const uint16_t nb = 1; } I123_WMaxLimPct_SF;
+
+	/** Scale factor for power factor
+
+	    @returns -3
+	*/
+    struct { int16_t  res = 0; const uint16_t reg = 40252-1; const uint16_t nb = 1; } I123_OutPFSet_SF;
+
+	/** Scale factor for reactive power
+
+	    @returns 0
+	*/
+    struct { int16_t  res = 0; const uint16_t reg = 40253-1; const uint16_t nb = 1; } I123_VArPct_SF;
 }
 
 /** @brief Register description of the Multi MPPT SunSpec model */
