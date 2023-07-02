@@ -24,3 +24,20 @@ bool ImmediateModel::IsImmediateRegisterMap(void)
 	return true;
 }
 
+bool ImmediateModel::GetAcConnection(bool &state)
+{
+	if (!GetRegister(I123_Conn.res, I123_Conn.reg, I123_Conn.nb)) {
+		return false;
+	}
+	state = static_cast<bool>(I123_Conn.res);
+
+	return true;
+}
+
+bool ImmediateModel::SetAcConnection(const bool &state)
+{
+	if (!SetRegister(state, I123_Conn.reg)) {
+		return false;
+	}
+	return true;
+}

@@ -31,6 +31,26 @@ int main(int argc, char *argv[])
 	  return EXIT_FAILURE;
   }
 
+  bool ac_state;
+  if (!inverter->GetAcConnection(ac_state)) {
+	  std::cout << inverter->GetErrorMessage() << std::endl;
+	  return EXIT_FAILURE;
+  }
+  std::cout << "AC grid: " << (ac_state ? "connected" : "disconnected") << std::endl;
+
+  if (!ac_state) {
+	  std::cout << "Starting up ..." << std::endl;
+	  if (!inverter->SetAcConnection(true)) {
+		  std::cout << inverter->GetErrorMessage() << std::endl;
+		  return EXIT_FAILURE;
+	  }
+	  if (!inverter->GetAcConnection(ac_state)) {
+		  std::cout << inverter->GetErrorMessage() << std::endl;
+		  return EXIT_FAILURE;
+	  }
+	  std::cout << "AC grid: " << (ac_state ? "connected" : "disconnected") << std::endl;
+  }
+
   std::ios::fmtflags old_settings = std::cout.flags();
   std::cout.setf(std::ios::fixed, std::ios::floatfield);
 
