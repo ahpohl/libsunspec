@@ -46,13 +46,13 @@ int main(int argc, char *argv[])
   }
   std::cout << "Model: " << model << std::endl;
 
-  std::string option;
-  if (!inverter->GetOptionFwVersion(option))
+  std::string option_fw;
+  if (!inverter->GetOptionFwVersion(option_fw))
   {
 	  std::cout << inverter->GetErrorMessage() << std::endl;
 	  return EXIT_FAILURE;
   }
-  std::cout << "Datamanager FW: " << option << std::endl;
+  std::cout << "Datamanager FW: " << option_fw << std::endl;
 
   std::string device_fw;
   if (!inverter->GetDeviceFwVersion(device_fw))
@@ -62,13 +62,13 @@ int main(int argc, char *argv[])
   }
   std::cout << "Inverter FW: " << device_fw << std::endl;
 
-  std::string serial_nb;
-  if (!inverter->GetDeviceFwVersion(serial_nb))
+  std::string serial;
+  if (!inverter->GetSerialNumber(serial))
   {
 	  std::cout << inverter->GetErrorMessage() << std::endl;
 	  return EXIT_FAILURE;
   }
-  std::cout << "Serial: " << serial_nb << std::endl;
+  std::cout << "Serial: " << serial << std::endl;
 
   int address;
   if (!inverter->GetModbusAddress(address))
