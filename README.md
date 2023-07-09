@@ -14,8 +14,9 @@ make CROSS_COMPILE=aarch64 examples
 ```
 
 For cross-compilation you need libmodbus for the target architecture:
+
 ```
-./configure --host=aarch64 --prefix=/$HOME/git/libsunspec/modbus CC=aarch64-unknown-linux-gnu-gcc
+./configure --prefix=/home/alex/x-tools/aarch64-unknown-linux-gnu/aarch64-unknown-linux-gnu/sysroot/usr --host=aarch64-unknown-linux-gnu
 make install
 ```
 

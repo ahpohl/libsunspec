@@ -34,6 +34,11 @@ EXAMPLE := examples
 # define the C compiler to use
 CPP := g++
 
+# define cross compiler for aarch64 target
+ifeq ($(CROSS_COMPILE),aarch64)
+CPP := aarch64-unknown-linux-gnu-g++
+endif
+
 # define any compile-time flags
 CPPFLAGS = -Wall -Wextra -g -std=c++11 -pthread -fPIC -shared
 
@@ -50,14 +55,6 @@ LFLAGS = -Wl,-soname,$(SHARED_LIB).$(MAJOR_VERSION)
 
 # define any libraries to link into executable:
 LIBS =
-
-# define cross compiler for aarch64 target
-ifeq ($(CROSS_COMPILE),aarch64)
-CPP := aarch64-unknown-linux-gnu-g++
-# use local libmodbus compiled for aarch64
-LFLAGS += -L./modbus/lib
-INCLUDES += -I./modbus/include
-endif
 
 # define src directory
 SRC_DIR = src
