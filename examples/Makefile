@@ -2,7 +2,7 @@
 CPP = g++
 
 # define cross compiler for aarch64 target
-ifeq ($(CROSS_COMPILE),aarch64)
+ifeq ($(CROSS_COMPILE),aarch64-unknown-linux-gnu)
 CPP := aarch64-unknown-linux-gnu-g++
 endif
 
@@ -10,13 +10,13 @@ endif
 CPPFLAGS = -Wall -g -std=c++11 -pthread
 
 # define any directories containing header files other than /usr/include
-INCLUDES = -I../include $(MODBUS_INC)
+INCLUDES = -I../include
 
 # define examples build directory
 BUILD = build
 
 # define library paths in addition to /usr/lib
-LFLAGS = -L../build $(MODBUS_LIB)
+LFLAGS = -L../build
 
 # define any libraries to link into executable:
 LIBS = -Wl,-Bstatic -lsunspec -Wl,-Bdynamic -lmodbus

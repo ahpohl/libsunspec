@@ -35,7 +35,7 @@ EXAMPLE := examples
 CPP := g++
 
 # define cross compiler for aarch64 target
-ifeq ($(CROSS_COMPILE),aarch64)
+ifeq ($(CROSS_COMPILE),aarch64-unknown-linux-gnu)
 CPP := aarch64-unknown-linux-gnu-g++
 endif
 

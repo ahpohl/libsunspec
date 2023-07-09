@@ -7,17 +7,38 @@ The library is written in plain C++ and implements the basic functions to commun
 
 # Compilation
 
-With a suitable [toolchain](https://archlinuxarm.org/wiki/Distcc_Cross-Compiling), (cross)-compilation of the library is done like this:
+## Native compile
+
+The compilation of the library follows the usual `make install` procedure, and the examples can be optionally compiled with `make examples`.
+
+## Cross compilation
+
+The Makefile supports cross compilation for example if the library is used on a Raspberry 3/4 or simialar 64-bit single board computer (currently only ARM 64 bit supported). [Crosstool-NG](https://crosstool-ng.github.io/) provides pre-configured and easy to install toolchains for all kinds of target architectures:
 
 ```
-make CROSS_COMPILE=aarch64 examples
+ct-ng list-samples
+ct-ng aarch64-unknown-linux-gnu
+ct-ng build
 ```
 
-For cross-compilation you need libmodbus for the target architecture:
+The compiled toolchain is copied to the `/home/user/x-tools/aarch64-unknown-linux-gnu` folder. To use the toolchain you need to add the bin folder to your environment:
 
 ```
+export PATH=$PATH:/home/alex/x-tools/aarch64-unknown-linux-gnu/bin
+```
+
+You also need libmodbus and libmosquitto for the target architecture added into the sysroot of the toolchain:
+
+```
+cd libmodbus
 ./configure --prefix=/home/alex/x-tools/aarch64-unknown-linux-gnu/aarch64-unknown-linux-gnu/sysroot/usr --host=aarch64-unknown-linux-gnu
 make install
+```
+
+Finally libsunspec needs to be compiled with the cross-compile variable set :
+
+```
+make CROSS_COMPILE=aarch64-unknown-linux-gnu examples
 ```
 
 # Changelog
