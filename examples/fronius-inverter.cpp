@@ -19,11 +19,14 @@ int main(int argc, char *argv[])
 
   std::unique_ptr<FroniusInverter> inverter(new FroniusInverter());
   
+
   if (!inverter->ConnectModbusRtu(device))
   {
     std::cout << inverter->GetErrorMessage() << std::endl;
     return EXIT_FAILURE;
   }
+
+  inverter->SetModbusDebug(true);
 
   if (!inverter->IsCommonRegisterMap()) {
 	  std::cout << inverter->GetErrorMessage() << std::endl;
