@@ -40,6 +40,9 @@ protected:
 	/** Set state and event flag strings */
 	bool SetStateEventsStr(StateEvt_t &state_evt);
 
+	/** Error message string */
+	std::string ErrorStr;
+
 private:
 	/** Operating states */
 	enum class OpState : uint16_t {

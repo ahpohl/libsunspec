@@ -44,6 +44,7 @@ bool StateEvents::SetStateEventsStr(StateEvt_t &state_evt)
 		state_evt.StStr = "AFCI Event";
 		break;
 	default:
+		ErrorStr = std::string("Invalid operating state (") + std::to_string(state_evt.St) + ")";
 		return false;
 	}
 
@@ -82,6 +83,7 @@ bool StateEvents::SetStateEventsStr(StateEvt_t &state_evt)
 	} else if ((state_evt.Evt1 >> 15) & 1) {
 		state_evt.EvtStr = "Hardware test failure";
 	} else {
+		ErrorStr = std::string("Invalid event flag (") + std::to_string(state_evt.Evt1) + ")";
 		return false;
 	}
 
@@ -152,6 +154,7 @@ bool StateEvents::SetStateEventsStr(StateEvt_t &state_evt)
 	} else if ((state_evt.EvtVnd1 >> 31) & 1) {
 		state_evt.EvtStr = "The buck converter relay does not open at high DC voltage";
 	} else {
+		ErrorStr = std::string("Invalid vendor event flag 1 (") + std::to_string(state_evt.EvtVnd1) + ")";
 		return false;
 	}
 
@@ -222,6 +225,7 @@ bool StateEvents::SetStateEventsStr(StateEvt_t &state_evt)
 	} else if ((state_evt.EvtVnd2 >> 31) & 1) {
 		state_evt.EvtStr = "Supply voltage fault";
 	} else {
+		ErrorStr = std::string("Invalid vendor event flag 2 (") + std::to_string(state_evt.EvtVnd2) + ")";
 		return false;
 	}
 
@@ -236,6 +240,7 @@ bool StateEvents::SetStateEventsStr(StateEvt_t &state_evt)
 	} else if ((state_evt.EvtVnd3 >> 3) & 1) {
 		state_evt.EvtStr = "Init error";
 	} else {
+		ErrorStr = std::string("Invalid vendor event flag 3 (") + std::to_string(state_evt.EvtVnd3) + ")";
 		return false;
 	}
 

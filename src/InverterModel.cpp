@@ -298,7 +298,7 @@ bool InverterModel::GetStateEvtFlags(StateEvt_t &state_evt)
 		return false;
 	}
 	if (!SetStateEventsStr(state_evt)) {
-		ErrorMessage = "Invalid operating state and/or event flag.";
+		ErrorMessage = StateEvents::ErrorStr;
 		return false;
 	}
 
