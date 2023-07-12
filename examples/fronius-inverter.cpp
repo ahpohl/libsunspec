@@ -26,7 +26,7 @@ int main(int argc, char *argv[])
     return EXIT_FAILURE;
   }
 
-  inverter->SetModbusDebug(true);
+  inverter->SetModbusDebug(false);
 
   if (!inverter->IsCommonRegisterMap()) {
 	  std::cout << inverter->GetErrorMessage() << std::endl;

@@ -2,6 +2,8 @@
 #include <string>
 #include <cstring>
 #include <cmath>
+#include <chrono>
+#include <thread>
 #include <modbus/modbus.h>
 #include <SunSpec.h>
 #include <SunSpecModelIntSf.h>
@@ -105,13 +107,13 @@ uint16_t *SunSpec::ReadRegister(const uint16_t &address, const uint16_t &size)
 	if (!tab_reg) {
 		return nullptr;
 	}
-
 	int rc = modbus_read_registers(Ctx, address, size, tab_reg);
 	if (rc == -1) {
 	    ErrorMessage = std::string("Read register ") + std::to_string(address) + " failed: "
 	    	+ modbus_strerror(errno) + " (" + std::to_string(errno) + ")";
 		return nullptr;
 	}
+	std::this_thread::sleep_for(std::chrono::milliseconds(50));
 
 	return tab_reg;
 }
@@ -172,6 +174,7 @@ bool SunSpec::SetRegister(const uint16_t &value, const uint16_t &reg_addr)
 	    	+ modbus_strerror(errno) + " (" + std::to_string(errno) + ")";
 		return false;
 	}
+	std::this_thread::sleep_for(std::chrono::milliseconds(50));
 
 	return true;
 }
