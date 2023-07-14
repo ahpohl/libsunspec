@@ -65,11 +65,6 @@ bool SunSpec::ConnectModbusRtu(const std::string &device, const int &baud_rate)
 		return false;
 	}
 
-	if (modbus_set_response_timeout(Ctx, 0, 500000) == -1) {
-	    ErrorMessage = std::string("Setting timeout failed: ")
-	    	+ modbus_strerror(errno) + " (" + std::to_string(errno) + ")";
-	}
-
 	return true;
 }
 
@@ -98,6 +93,30 @@ bool SunSpec::GetModbusAddress(int &slave_id)
 	}
 	slave_id = static_cast<int>(C001_DA.res);
 
+	return true;
+}
+
+bool SunSpec::SetResponseTimeout(const int &millis)
+{
+	uint32_t sec, usec;
+
+	if (modbus_set_response_timeout(Ctx, sec, usec) == -1) {
+	    ErrorMessage = std::string("Setting response timeout failed: ")
+	    	+ modbus_strerror(errno) + " (" + std::to_string(errno) + ")";
+	    return false;
+	}
+	return true;
+}
+
+bool SunSpec::SetByteTimeout(const int &millis)
+{
+	uint32_t sec, usec;
+
+	if (modbus_set_byte_timeout(Ctx, sec, usec) == -1) {
+	    ErrorMessage = std::string("Setting response timeout failed: ")
+	    	+ modbus_strerror(errno) + " (" + std::to_string(errno) + ")";
+	    return false;
+	}
 	return true;
 }
 
