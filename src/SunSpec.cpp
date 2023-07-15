@@ -111,10 +111,40 @@ bool SunSpec::SetByteTimeout(const int &millis)
 	uint32_t usec = (millis % 1000) * 1000;;
 
 	if (modbus_set_byte_timeout(Ctx, sec, usec) == -1) {
-	    ErrorMessage = std::string("Setting response timeout failed: ")
+	    ErrorMessage = std::string("Setting byte timeout failed: ")
 	    	+ modbus_strerror(errno) + " (" + std::to_string(errno) + ")";
 	    return false;
 	}
+	return true;
+}
+
+bool SunSpec::GetResponseTimeout(int &millis)
+{
+	uint32_t sec = 0;
+	uint32_t usec = 0;
+
+	if (modbus_set_response_timeout(Ctx, sec, usec) == -1) {
+	    ErrorMessage = std::string("Getting response timeout failed: ")
+	    	+ modbus_strerror(errno) + " (" + std::to_string(errno) + ")";
+	    return false;
+	}
+	millis = sec * 1000 + usec / 1000;
+
+	return true;
+}
+
+bool SunSpec::GetByteTimeout(int &millis)
+{
+	uint32_t sec = 0;
+	uint32_t usec = 0;
+
+	if (modbus_set_byte_timeout(Ctx, sec, usec) == -1) {
+	    ErrorMessage = std::string("Getting byte timeout failed: ")
+	    	+ modbus_strerror(errno) + " (" + std::to_string(errno) + ")";
+	    return false;
+	}
+	millis = sec * 1000 + usec / 1000;
+
 	return true;
 }
 

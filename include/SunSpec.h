@@ -74,6 +74,10 @@ public:
 
 	bool SetByteTimeout(const int &millis);
 
+	bool GetResponseTimeout(int &millis);
+
+	bool GetByteTimeout(int &millis);
+
 protected:
 	/** Get a Modbus register and convert to number or string
 
