@@ -207,7 +207,7 @@ namespace InverterRegisterMap
 	/** Coolant or heat sink temperature [°C]
 
 	    @note Not supported
-	 */
+	*/
 	struct { int16_t  res = 0; const uint16_t reg = 40104-1; const uint16_t nb = 1; } I10X_TmpSnk;
 
 	/** Transformer temperature [°C]
