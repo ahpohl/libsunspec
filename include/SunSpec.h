@@ -70,6 +70,10 @@ public:
 	*/
 	bool GetModbusAddress(int &slave_id);
 
+	bool SetResponseTimeout(const int &millis);
+
+	bool SetByteTimeout(const int &millis);
+
 protected:
 	/** Get a Modbus register and convert to number or string
 

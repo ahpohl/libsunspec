@@ -6,7 +6,13 @@
 #include <thread>
 #include <modbus/modbus.h>
 #include <SunSpec.h>
+
+//#define INTSF 0
+//#ifdef INTSF
 #include <SunSpecModelIntSf.h>
+//#else
+//#include <SunSpecModelFloat.h>
+//#endif
 
 using namespace CommonRegisterMap;
 
@@ -86,19 +92,10 @@ bool SunSpec::SetModbusAddress(const int &slave_id)
 	return true;
 }
 
-bool SunSpec::GetModbusAddress(int &slave_id)
-{
-	if (!GetRegister(C001_DA.res, C001_DA.reg, C001_DA.nb)) {
-		return false;
-	}
-	slave_id = static_cast<int>(C001_DA.res);
-
-	return true;
-}
-
 bool SunSpec::SetResponseTimeout(const int &millis)
 {
-	uint32_t sec, usec;
+	uint32_t sec = millis / 1000;
+	uint32_t usec = (millis % 1000) * 1000;
 
 	if (modbus_set_response_timeout(Ctx, sec, usec) == -1) {
 	    ErrorMessage = std::string("Setting response timeout failed: ")
@@ -110,7 +107,8 @@ bool SunSpec::SetResponseTimeout(const int &millis)
 
 bool SunSpec::SetByteTimeout(const int &millis)
 {
-	uint32_t sec, usec;
+	uint32_t sec = millis / 1000;
+	uint32_t usec = (millis % 1000) * 1000;;
 
 	if (modbus_set_byte_timeout(Ctx, sec, usec) == -1) {
 	    ErrorMessage = std::string("Setting response timeout failed: ")
@@ -184,6 +182,16 @@ template bool SunSpec::GetRegister(uint16_t &, const uint16_t &, const uint16_t 
 template bool SunSpec::GetRegister(uint32_t &, const uint16_t &, const uint16_t &);
 template bool SunSpec::GetRegister(uint64_t &, const uint16_t &, const uint16_t &);
 template bool SunSpec::GetRegister(std::string &, const uint16_t &, const uint16_t &);
+
+bool SunSpec::GetModbusAddress(int &slave_id)
+{
+	if (!GetRegister(C001_DA.res, C001_DA.reg, C001_DA.nb)) {
+		return false;
+	}
+	slave_id = static_cast<int>(C001_DA.res);
+
+	return true;
+}
 
 bool SunSpec::SetRegister(const uint16_t &value, const uint16_t &reg_addr)
 {
