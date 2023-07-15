@@ -70,12 +70,38 @@ public:
 	*/
 	bool GetModbusAddress(int &slave_id);
 
-	bool SetResponseTimeout(const int &millis);
+	/** Set timeout for response
 
-	bool SetByteTimeout(const int &millis);
+	    The SetResponseTimeout() function shall set the timeout interval used to wait for a response.
+	    When a byte timeout is set, if elapsed time for the first byte of response is longer than the
+	    given timeout, an ETIMEDOUT error will be raised by the function waiting for a response.
+	    When byte timeout is disabled, the full confirmation response must be received before expiration
+	    of the response timeout.
 
+	    @param millis [ms], default 200
+	*/
+	bool SetResponseTimeout(const int &millis = 200);
+
+	/** Set timeout between bytes
+
+	    The SetByteTimeout() function shall set the timeout interval between two consecutive bytes of the same message.
+	    The timeout is an upper bound on the amount of time elapsed before select() returns, if the time elapsed is
+	    longer than the defined timeout, an ETIMEDOUT error will be raised by the function waiting for a response.
+
+	    If millis is zero, this timeout will not be used at all. In this case, SetResponseTimeout() governs the entire
+	    handling of the response, the full confirmation response must be received before expiration of the response
+	    timeout. When a byte timeout is set, the response timeout is only used to wait for until the first byte of
+	    the response.
+
+	    @param millis [ms], default 200
+
+	*/
+	bool SetByteTimeout(const int &millis = 200);
+
+	/** Get timeout for response [ms] */
 	bool GetResponseTimeout(int &millis);
 
+	/** Get timeout between bytes [ms] */
 	bool GetByteTimeout(int &millis);
 
 protected:
