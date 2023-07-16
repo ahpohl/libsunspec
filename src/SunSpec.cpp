@@ -179,7 +179,6 @@ T SunSpec::ConvertRegister(const uint16_t *tab_reg, const uint16_t &size)
     return res;
 }
 
-/** Convert raw ModBus registers to a string */
 template <>
 std::string SunSpec::ConvertRegister(const uint16_t *tab_reg, const uint16_t &size)
 {
@@ -190,6 +189,15 @@ std::string SunSpec::ConvertRegister(const uint16_t *tab_reg, const uint16_t &si
 	    str.push_back(tab_reg[i]);
 	}
 	return str;
+}
+
+template <>
+float SunSpec::ConvertRegister(const uint16_t *tab_reg, const uint16_t &size)
+{
+	if (size == 2)
+		return modbus_get_float_abcd(tab_reg);
+	else
+		return 0;
 }
 
 template <typename T>
@@ -212,6 +220,7 @@ template bool SunSpec::GetRegister(uint16_t &, const uint16_t &, const uint16_t 
 template bool SunSpec::GetRegister(uint32_t &, const uint16_t &, const uint16_t &);
 template bool SunSpec::GetRegister(uint64_t &, const uint16_t &, const uint16_t &);
 template bool SunSpec::GetRegister(std::string &, const uint16_t &, const uint16_t &);
+template bool SunSpec::GetRegister(float &, const uint16_t &, const uint16_t &);
 
 bool SunSpec::GetModbusAddress(int &slave_id)
 {
