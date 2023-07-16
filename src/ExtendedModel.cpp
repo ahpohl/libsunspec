@@ -1,5 +1,11 @@
 #include "ExtendedModel.h"
-#include "SunSpecModelIntSf.h"
+
+#define INTSF
+#ifdef INTSF
+#include <SunSpecModelIntSf.h>
+#else
+#include <SunSpecModelFloat.h>
+#endif
 
 using namespace ExtendedRegisterMap;
 

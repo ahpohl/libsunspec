@@ -7,12 +7,12 @@
 #include <modbus/modbus.h>
 #include <SunSpec.h>
 
-//#define INTSF 0
-//#ifdef INTSF
+#define INTSF
+#ifdef INTSF
 #include <SunSpecModelIntSf.h>
-//#else
-//#include <SunSpecModelFloat.h>
-//#endif
+#else
+#include <SunSpecModelFloat.h>
+#endif
 
 using namespace CommonRegisterMap;
 
