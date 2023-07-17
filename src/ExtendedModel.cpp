@@ -1,7 +1,14 @@
 #include "ExtendedModel.h"
 #include "SunSpecModelIntSf.h"
+#include <SunSpecModelFloat.h>
 
-using namespace ExtendedRegisterMap;
+#ifdef MODEL_INTSF
+using namespace ExtendedRegisterMapIntSf;
+#endif
+
+#ifdef MODEL_FLOAT
+using namespace ExtendedRegisterMapFloat;
+#endif
 
 bool ExtendedModel::IsExtendedRegisterMap(void)
 {

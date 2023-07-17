@@ -2,8 +2,15 @@
 #include "NameplateModel.h"
 #include "SunSpec.h"
 #include "SunSpecModelIntSf.h"
+#include "SunSpecModelFloat.h"
 
-using namespace NameplateRegisterMap;
+#ifdef MODEL_INTSF
+using namespace NameplateRegisterMapIntSf;
+#endif
+
+#ifdef MODEL_FLOAT
+using namespace NameplateRegisterMapFloat;
+#endif
 
 bool NameplateModel::IsNameplateRegisterMap(void)
 {

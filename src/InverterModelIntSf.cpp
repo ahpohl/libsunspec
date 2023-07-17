@@ -3,7 +3,9 @@
 #include "SunSpecModelIntSf.h"
 #include <cmath>
 
-using namespace InverterRegisterMap;
+#ifdef MODEL_INTSF
+
+using namespace InverterRegisterMapIntSf;
 
 bool InverterModel::IsInverterRegisterMap(void)
 {
@@ -304,3 +306,5 @@ bool InverterModel::GetStateEvtFlags(StateEvt_t &state_evt)
 
 	return true;
 }
+
+#endif

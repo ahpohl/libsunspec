@@ -1,8 +1,15 @@
 #include "CommonModel.h"
 #include "SunSpec.h"
 #include <SunSpecModelIntSf.h>
+#include <SunSpecModelFloat.h>
 
-using namespace CommonRegisterMap;
+#ifdef MODEL_INTSF
+using namespace CommonRegisterMapIntSf;
+#endif
+
+#ifdef MODEL_FLOAT
+using namespace CommonRegisterMapFloat;
+#endif
 
 bool CommonModel::IsCommonRegisterMap(void)
 {

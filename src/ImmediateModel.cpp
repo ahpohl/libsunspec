@@ -1,8 +1,15 @@
 #include "ImmediateModel.h"
 #include "SunSpec.h"
 #include "SunSpecModelIntSf.h"
+#include "SunSpecModelFloat.h"
 
-using namespace ImmediateRegisterMap;
+#ifdef MODEL_INTSF
+using namespace ImmediateRegisterMapIntSf;
+#endif
+
+#ifdef MODEL_FLOAT
+using namespace ImmediateRegisterMapFloat;
+#endif
 
 bool ImmediateModel::IsImmediateRegisterMap(void)
 {

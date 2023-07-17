@@ -1,8 +1,15 @@
 #include <FroniusRegister.h>
 #include <SunSpec.h>
 #include <SunSpecModelIntSf.h>
+#include <SunSpecModelFloat.h>
 
-using namespace FroniusRegisterMap;
+#ifdef MODEL_INTSF
+using namespace FroniusRegisterMapIntSf;
+#endif
+
+#ifdef MODEL_FLOAT
+using namespace FroniusRegisterMapFloat;
+#endif
 
 bool FroniusRegister::GetActiveStateCode(uint16_t &code)
 {

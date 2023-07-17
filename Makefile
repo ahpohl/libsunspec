@@ -46,6 +46,10 @@ CPPFLAGS += -DVERSION_BUILD_DATE=\""$(shell date "+%F %T")"\" \
             -DVERSION_BUILD_MACHINE=\""$(shell echo `whoami`@`hostname`)"\" \
             -DVERSION_TAG=\"$(BUILD_TAG)\" \
             -DVERSION_BUILD=\"$(BUILD_INFO)\"
+            
+# choose between int+sf and float model
+#CPPFLAGS += -DMODEL_INTSF
+CPPFLAGS += -DMODEL_FLOAT
 
 # define any directories containing header files other than /usr/include
 INCLUDES = -I./include

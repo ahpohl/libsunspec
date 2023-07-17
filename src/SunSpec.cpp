@@ -6,15 +6,16 @@
 #include <thread>
 #include <modbus/modbus.h>
 #include <SunSpec.h>
-
-//#define INTSF 0
-//#ifdef INTSF
 #include <SunSpecModelIntSf.h>
-//#else
-//#include <SunSpecModelFloat.h>
-//#endif
+#include <SunSpecModelFloat.h>
 
-using namespace CommonRegisterMap;
+#ifdef MODEL_INTSF
+using namespace CommonRegisterMapIntSf;
+#endif
+
+#ifdef MODEL_FLOAT
+using namespace CommonRegisterMapFloat;
+#endif
 
 SunSpec::SunSpec(void) : Ctx(nullptr)
 {

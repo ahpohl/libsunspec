@@ -4,7 +4,7 @@
 #include <cstdint>
 
 /** @brief Register description of the SunSpec Common model */
-namespace CommonRegisterMap
+namespace CommonRegisterMapIntSf
 {
 	/** Uniquely identifies this as a SunSpec ModBus map.
 
@@ -77,7 +77,7 @@ namespace CommonRegisterMap
 };
 
 /** @brief Register description of the Inverter SunSpec model */
-namespace InverterRegisterMap
+namespace InverterRegisterMapIntSf
 {
 	/** Uniquely identifies this as a SunSpec inverter ModBus map.
 
@@ -251,7 +251,7 @@ namespace InverterRegisterMap
 };
 
 /** @brief Register description of the Nameplate SunSpec model */
-namespace NameplateRegisterMap
+namespace NameplateRegisterMapIntSf
 {
     /** Uniquely identifies this as a SunSpec Nameplate Model
 
@@ -396,7 +396,7 @@ namespace NameplateRegisterMap
 };
 
 /** @brief Register description of the Extended SunSpec model */
-namespace ExtendedRegisterMap
+namespace ExtendedRegisterMapIntSf
 {
 	/** Uniquely identifies this as a SunSpec Extended (Measurements_Status) Model
 
@@ -536,7 +536,7 @@ namespace ExtendedRegisterMap
 }
 
 /** @brief Register description of the SunSpec Immediate Controls model */
-namespace ImmediateRegisterMap
+namespace ImmediateRegisterMapIntSf
 {
 	/** Uniquely identifies this as a SunSpec Immediate Controls model
 
@@ -689,7 +689,7 @@ namespace ImmediateRegisterMap
 }
 
 /** @brief Register description of the Multi MPPT SunSpec model */
-namespace MultiMpptRegisterMap
+namespace MultiMpptRegisterMapIntSf
 {
 	/** Uniquely identifies this as a SunSpec Multiple MPPT Inverter Extension Model mode
 
@@ -834,7 +834,7 @@ namespace MultiMpptRegisterMap
 };
 
 /** @brief Register description of the Fronius specific registers */
-namespace FroniusRegisterMap
+namespace FroniusRegisterMapIntSf
 {
 	/** Delete stored ratings of the current inverter by writing 0xFFFF. */
 	struct { uint16_t res = 0; const uint16_t reg = 212-1; const uint16_t nb = 1; } F_Delete_Data;
@@ -885,7 +885,7 @@ namespace FroniusRegisterMap
 };
 
 /** @brief Register description of the Meter specific registers */
-namespace MeterRegisterMap
+namespace MeterRegisterMapIntSf
 {
     /** Uniquely identifies this as a SunSpec Meter Modbus Map
 
