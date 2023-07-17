@@ -47,9 +47,12 @@ CPPFLAGS += -DVERSION_BUILD_DATE=\""$(shell date "+%F %T")"\" \
             -DVERSION_TAG=\"$(BUILD_TAG)\" \
             -DVERSION_BUILD=\"$(BUILD_INFO)\"
             
-# choose between int+sf and float model
-#CPPFLAGS += -DMODEL_INTSF
+# choose between int+sf and float model (default)
+ifeq ($(MODEL),INTSF)
+CPPFLAGS += -DMODEL_INTSF
+else
 CPPFLAGS += -DMODEL_FLOAT
+endif
 
 # define any directories containing header files other than /usr/include
 INCLUDES = -I./include
