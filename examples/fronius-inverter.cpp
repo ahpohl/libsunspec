@@ -20,7 +20,7 @@ int main(int argc, char *argv[])
   std::unique_ptr<FroniusInverter> inverter(new FroniusInverter());
   
 
-  if (!inverter->ConnectModbusRtu(device))
+  if (!inverter->ConnectModbusRtu(device, 19200))
   {
     std::cout << inverter->GetErrorMessage() << std::endl;
     return EXIT_FAILURE;
@@ -38,9 +38,9 @@ int main(int argc, char *argv[])
 	  std::cout << inverter->GetErrorMessage() << std::endl;
 	  return EXIT_FAILURE;
   }
-  std::cout << "Model type " << model.TypeStr << " (" << model.Type << ")" << std::endl;
+  std::cout << "SunSpec model: " << model.TypeStr << " (" << model.Type << ")" << std::endl;
 
-  if (model.Type == 1) {
+  if (model.Type == 2) {
 	  std::cout << "Switching SunSpec model ..." << std::endl;
 	  if (!inverter->SetModelType()) {
 		  std::cout << inverter->GetErrorMessage() << std::endl;
@@ -50,7 +50,7 @@ int main(int argc, char *argv[])
 		  std::cout << inverter->GetErrorMessage() << std::endl;
 		  return EXIT_FAILURE;
 	  }
-	  std::cout << "Model type " << model.TypeStr << " (" << model.Type << ")" << std::endl;
+	  std::cout << "SunSpec model: " << model.TypeStr << " (" << model.Type << ")" << std::endl;
   }
 
   FroniusInverter::StateEvt_t state_evt;

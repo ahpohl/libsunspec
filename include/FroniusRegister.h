@@ -33,10 +33,10 @@ public:
 
 	/** Set type of SunSpec model used for inverter and meter data.
 
-	    @param value 1: floating point
-	                 2: integer + scale factor (default)
+	    @param value 1: floating point (default)
+	                 2: integer + scale factor
 	*/
-	bool SetModelType(const int &value = 2);
+	bool SetModelType(const int &value = 1);
 
 	/** Total power (site sum) of all connected inverters.
 
