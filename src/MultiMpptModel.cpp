@@ -1,14 +1,7 @@
 #include "MultiMpptModel.h"
 #include "SunSpec.h"
+#include "SunSpecModelIntSf.h"
 #include <cmath>
-
-#define INTSF
-#ifdef INTSF
-#include <SunSpecModelIntSf.h>
-#else
-#include <SunSpecModelFloat.h>
-#endif
-
 
 using namespace MultiMpptRegisterMap;
 

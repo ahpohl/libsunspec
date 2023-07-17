@@ -1,13 +1,7 @@
 #include "InverterModel.h"
 #include "SunSpec.h"
+#include "SunSpecModelIntSf.h"
 #include <cmath>
-
-#define INTSF
-#ifdef INTSF
-#include <SunSpecModelIntSf.h>
-#else
-#include <SunSpecModelFloat.h>
-#endif
 
 using namespace InverterRegisterMap;
 
@@ -23,11 +17,7 @@ bool InverterModel::IsInverterRegisterMap(void)
 	if (!GetRegister(I10X_L.res, I10X_L.reg, I10X_L.nb)) {
 		return false;
 	}
-#ifdef INTSF
 	if ( I10X_L.res != 50 ) {
-#else
-	if ( I10X_L.res != 60 ) {
-#endif
 		ErrorMessage = std::string("Invalid length of Inverter Model block (") + std::to_string(I10X_L.res) + ")";
 		return false;
 	}
@@ -40,14 +30,10 @@ bool InverterModel::GetAcCurrent(double &res)
 	if (!GetRegister(I10X_A.res, I10X_A.reg, I10X_A.nb)) {
 		return false;
 	}
-#ifdef INTSF
 	if (!GetRegister(I10X_A_SF.res, I10X_A_SF.reg, I10X_A_SF.nb)) {
 		return false;
 	}
 	res = static_cast<double>(I10X_A.res) * pow(10, I10X_A_SF.res);
-#else
-	res = I10X_A.res;
-#endif
 
 	return true;
 }
@@ -59,40 +45,28 @@ bool InverterModel::GetAcCurrentPhase(double &res, const char &ph)
 		if (!GetRegister(I10X_AphA.res, I10X_AphA.reg, I10X_AphA.nb)) {
 			return false;
 		}
-#ifdef INTSF
 		if (!GetRegister(I10X_A_SF.res, I10X_A_SF.reg, I10X_A_SF.nb)) {
 			return false;
 		}
 		res = static_cast<double>(I10X_AphA.res) * pow(10, I10X_A_SF.res);
-#else
-		res = I10X_AphA.res;
-#endif
 		break;
 	case 'B':
 		if (!GetRegister(I10X_AphB.res, I10X_AphB.reg, I10X_AphB.nb)) {
 			return false;
 		}
-#ifdef INTSF
 		if (!GetRegister(I10X_A_SF.res, I10X_A_SF.reg, I10X_A_SF.nb)) {
 			return false;
 		}
 		res = static_cast<double>(I10X_AphB.res) * pow(10, I10X_A_SF.res);
-#else
-		res = I10X_AphB.res
-#endif
 		break;
 	case 'C':
 		if (!GetRegister(I10X_AphC.res, I10X_AphC.reg, I10X_AphC.nb)) {
 			return false;
 		}
-#ifdef INTSF
 		if (!GetRegister(I10X_A_SF.res, I10X_A_SF.reg, I10X_A_SF.nb)) {
 			return false;
 		}
 		res = static_cast<double>(I10X_AphC.res) * pow(10, I10X_A_SF.res);
-#else
-		res = I10X_AphC.res;
-#endif
 		break;
 	default:
 		ErrorMessage = "Invalid phase " + ph;
@@ -109,40 +83,28 @@ bool InverterModel::GetAcVoltage(double &res, const char &ph)
 		if (!GetRegister(I10X_PhVphA.res, I10X_PhVphA.reg, I10X_PhVphA.nb)) {
 			return false;
 		}
-#ifdef INTSF
 		if (!GetRegister(I10X_V_SF.res, I10X_V_SF.reg, I10X_V_SF.nb)) {
 			return false;
 		}
 		res = static_cast<double>(I10X_PhVphA.res) * pow(10, I10X_V_SF.res);
-#else
-		res = I10X_PhVphA.res;
-#endif
 		break;
 	case 'B':
 		if (!GetRegister(I10X_PhVphB.res, I10X_PhVphB.reg, I10X_PhVphB.nb)) {
 			return false;
 		}
-#ifdef INTSF
 		if (!GetRegister(I10X_V_SF.res, I10X_V_SF.reg, I10X_V_SF.nb)) {
 			return false;
 		}
 		res = static_cast<double>(I10X_PhVphB.res) * pow(10, I10X_V_SF.res);
-#else
-		res = I10X_PhVphB.res;
-#endif
 		break;
 	case 'C':
 		if (!GetRegister(I10X_PhVphC.res, I10X_PhVphC.reg, I10X_PhVphC.nb)) {
 			return false;
 		}
-#ifdef INTSF
 		if (!GetRegister(I10X_V_SF.res, I10X_V_SF.reg, I10X_V_SF.nb)) {
 			return false;
 		}
 		res = static_cast<double>(I10X_PhVphC.res) * pow(10, I10X_V_SF.res);
-#else
-		res = I10X_PhVphC.res;
-#endif
 		break;
 	default:
 		ErrorMessage = "Invalid phase " + ph;
@@ -158,38 +120,26 @@ bool InverterModel::GetAcVoltagePhaseToPhase(double &res, const std::string &ph_
 		if (!GetRegister(I10X_PPVphAB.res, I10X_PPVphAB.reg, I10X_PPVphAB.nb)) {
 			return false;
 		}
-#ifdef INTSF
 		if (!GetRegister(I10X_V_SF.res, I10X_V_SF.reg, I10X_V_SF.nb)) {
 			return false;
 		}
 		res = static_cast<double>(I10X_PPVphAB.res) * pow(10, I10X_V_SF.res);
-#else
-		res = I10X_PPVphAB.res;
-#endif
 	} else if (ph_pair == "BC") {
 		if (!GetRegister(I10X_PPVphBC.res, I10X_PPVphBC.reg, I10X_PPVphBC.nb)) {
 			return false;
 		}
-#ifdef INTSF
 		if (!GetRegister(I10X_V_SF.res, I10X_V_SF.reg, I10X_V_SF.nb)) {
 			return false;
 		}
 		res = static_cast<double>(I10X_PPVphBC.res) * pow(10, I10X_V_SF.res);
-#else
-		res = I10X_PPVphBC.res
-#endif
 	} else if (ph_pair == "CA") {
 		if (!GetRegister(I10X_PPVphCA.res, I10X_PPVphCA.reg, I10X_PPVphCA.nb)) {
 			return false;
 		}
-#ifdef INTSF
 		if (!GetRegister(I10X_V_SF.res, I10X_V_SF.reg, I10X_V_SF.nb)) {
 			return false;
 		}
 		res = static_cast<double>(I10X_PPVphCA.res) * pow(10, I10X_V_SF.res);
-#else
-		res = I10X_PPVphCA.res;
-#endif
 	} else {
 		ErrorMessage = "Invalid phase pair " + ph_pair;
 		return false;
@@ -203,14 +153,10 @@ bool InverterModel::GetAcPower(double &res)
 	if (!GetRegister(I10X_W.res, I10X_W.reg, I10X_W.nb)) {
 		return false;
 	}
-#ifdef INTSF
 	if (!GetRegister(I10X_W_SF.res, I10X_W_SF.reg, I10X_W_SF.nb)) {
 		return false;
 	}
 	res = static_cast<double>(I10X_W.res) * pow(10, I10X_W_SF.res);
-#else
-	res = I10X_W.res;
-#endif
 
 	return true;
 }
@@ -220,14 +166,10 @@ bool InverterModel::GetAcFrequency(double &res)
 	if (!GetRegister(I10X_Hz.res, I10X_Hz.reg, I10X_Hz.nb)) {
 		return false;
 	}
-#ifdef INTSF
 	if (!GetRegister(I10X_Hz_SF.res, I10X_Hz_SF.reg, I10X_Hz_SF.nb)) {
 		return false;
 	}
 	res = static_cast<double>(I10X_Hz.res) * pow(10, I10X_Hz_SF.res);
-#else
-	res = I10X_Hz.res;
-#endif
 
 	return true;
 }
@@ -237,14 +179,10 @@ bool InverterModel::GetAcPowerApparent(double &res)
 	if (!GetRegister(I10X_VA.res, I10X_VA.reg, I10X_VA.nb)) {
 		return false;
 	}
-#ifdef INTSF
 	if (!GetRegister(I10X_VA_SF.res, I10X_VA_SF.reg, I10X_VA_SF.nb)) {
 		return false;
 	}
 	res = static_cast<double>(I10X_VA.res) * pow(10, I10X_VA_SF.res);
-#else
-	res = I10X_VA.res;
-#endif
 
 	return true;
 }
@@ -254,14 +192,10 @@ bool InverterModel::GetAcPowerReactive(double &res)
 	if (!GetRegister(I10X_VAr.res, I10X_VAr.reg, I10X_VAr.nb)) {
 		return false;
 	}
-#ifdef INTSF
 	if (!GetRegister(I10X_VAr_SF.res, I10X_VAr_SF.reg, I10X_VAr_SF.nb)) {
 		return false;
 	}
 	res = static_cast<double>(I10X_VAr.res) * pow(10, I10X_VAr_SF.res);
-#else
-	res = I10X_VAr.res;
-#endif
 
 	return true;
 }
@@ -271,14 +205,10 @@ bool InverterModel::GetAcPowerFactor(double &res)
 	if (!GetRegister(I10X_PF.res, I10X_PF.reg, I10X_PF.nb)) {
 		return false;
 	}
-#ifdef INTSF
 	if (!GetRegister(I10X_PF_SF.res, I10X_PF_SF.reg, I10X_PF_SF.nb)) {
 		return false;
 	}
 	res = static_cast<double>(I10X_PF.res) * pow(10, I10X_PF_SF.res);
-#else
-	res = I10X_PF.res;
-#endif
 
 	return true;
 }
@@ -288,14 +218,10 @@ bool InverterModel::GetAcEnergyLifetime(double &res)
 	if (!GetRegister(I10X_WH.res, I10X_WH.reg, I10X_WH.nb)) {
 		return false;
 	}
-#ifdef INTSF
 	if (!GetRegister(I10X_W_SF.res, I10X_W_SF.reg, I10X_W_SF.nb)) {
 		return false;
 	}
 	res = static_cast<double>(I10X_WH.res) * pow(10, I10X_WH_SF.res) * 0.001f;
-#else
-	res = I10X_WH.res;
-#endif
 
 	return true;
 }

@@ -1,12 +1,6 @@
 #include "ImmediateModel.h"
 #include "SunSpec.h"
-
-#define INTSF
-#ifdef INTSF
-#include <SunSpecModelIntSf.h>
-#else
-#include <SunSpecModelFloat.h>
-#endif
+#include "SunSpecModelIntSf.h"
 
 using namespace ImmediateRegisterMap;
 

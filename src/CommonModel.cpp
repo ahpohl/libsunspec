@@ -1,12 +1,6 @@
 #include "CommonModel.h"
 #include "SunSpec.h"
-
-#define INTSF
-#ifdef INTSF
 #include <SunSpecModelIntSf.h>
-#else
-#include <SunSpecModelFloat.h>
-#endif
 
 using namespace CommonRegisterMap;
 

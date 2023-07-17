@@ -1,13 +1,7 @@
 #include <cmath>
 #include "NameplateModel.h"
 #include "SunSpec.h"
-
-#define INTSF
-#ifdef INTSF
-#include <SunSpecModelIntSf.h>
-#else
-#include <SunSpecModelFloat.h>
-#endif
+#include "SunSpecModelIntSf.h"
 
 using namespace NameplateRegisterMap;
 
