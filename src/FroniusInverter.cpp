@@ -331,3 +331,4 @@ bool FroniusInverter::GetStateCode(StateCode_t &state)
 
 	return true;
 }
+

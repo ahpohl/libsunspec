@@ -42,3 +42,4 @@ private:
 };
 
 #endif /* FRONIUSINVERTER_H_ */
+

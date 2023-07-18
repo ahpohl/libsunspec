@@ -48,7 +48,7 @@ CPPFLAGS += -DVERSION_BUILD_DATE=\""$(shell date "+%F %T")"\" \
             -DVERSION_BUILD=\"$(BUILD_INFO)\"
             
 # choose between int+sf and float model (default)
-ifeq ($(MODEL),INTSF)
+ifeq ($(MODEL),int+sf)
 CPPFLAGS += -DMODEL_INTSF
 else
 CPPFLAGS += -DMODEL_FLOAT
