@@ -6,9 +6,11 @@
 #define FRONIUSMETER_H_
 
 #include "CommonModel.h"
+#include "FroniusRegister.h"
 #include "MeterModel.h"
 
-class FroniusMeter: public CommonModel, public MeterModel
+class FroniusMeter: public CommonModel, public MeterModel,
+	public FroniusRegister
 {
 public:
 	/** Checks if device is a SunSpec compatible meter */
