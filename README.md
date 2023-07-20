@@ -9,11 +9,11 @@ The library is written in plain C++ and implements the basic functions to commun
 
 ## Native compile
 
-The compilation of the library follows the usual `make install` procedure, and the examples can be optionally compiled with `make examples`.
+The compilation of the library follows the usual `make install` procedure, and the examples can be optionally compiled with `make examples`. The library supports both SunSpec data models integer with a scale factor and float, the latter being the default. The make command accepts and optional paramter `MODEL=int+sf` to compile the library to use integer and scale factors instead of floats. 
 
 ## Cross compilation
 
-The Makefile supports cross compilation for example if the library is used on a Raspberry 3/4 or simialar 64-bit single board computer (currently only ARM 64 bit supported). [Crosstool-NG](https://crosstool-ng.github.io/) provides pre-configured and easy to install toolchains for all kinds of target architectures:
+The Makefile supports cross compilation for example if the library is used on a Raspberry 3/4 or simialar 64-bit single board computer (currently only ARM 64 bit supported). To enable cross-compilation, there is an optional make variable `CROSS_COMPILE=aarch64-unknown-linux-gnu`. The toolchain was built with [Crosstool-NG](https://crosstool-ng.github.io/) as it provides pre-configured and easy to install toolchains for all kinds of target architectures:
 
 ```
 ct-ng list-samples
@@ -27,7 +27,7 @@ The compiled toolchain is copied to the `/home/user/x-tools/aarch64-unknown-linu
 export PATH=$PATH:/home/alex/x-tools/aarch64-unknown-linux-gnu/bin
 ```
 
-You also need libmodbus and libmosquitto for the target architecture added into the sysroot of the toolchain:
+You also need libmodbus for the target architecture added into the sysroot of the toolchain:
 
 ```
 cd libmodbus
@@ -35,11 +35,7 @@ cd libmodbus
 make install
 ```
 
-Finally libsunspec needs to be compiled with the cross-compile variable set :
-
-```
-make CROSS_COMPILE=aarch64-unknown-linux-gnu examples
-```
+The resources folder contains instructions to build a stripped down version of libmosquitto without ssl.
 
 # Changelog
 
