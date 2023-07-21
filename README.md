@@ -35,8 +35,6 @@ cd libmodbus
 make install
 ```
 
-The resources folder contains instructions to build a stripped down version of libmosquitto without ssl.
-
 # Changelog
 
 All notable changes and releases are documented in the [CHANGELOG](CHANGELOG.md).
