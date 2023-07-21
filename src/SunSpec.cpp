@@ -17,7 +17,7 @@ using namespace CommonRegisterMapIntSf;
 using namespace CommonRegisterMapFloat;
 #endif
 
-SunSpec::SunSpec(void) : Ctx(nullptr)
+SunSpec::SunSpec(void) : Ctx(nullptr), Delay(50)
 {
 
 }
@@ -161,7 +161,7 @@ uint16_t *SunSpec::ReadRegister(const uint16_t &address, const uint16_t &size)
 	    	+ modbus_strerror(errno) + " (" + std::to_string(errno) + ")";
 		return nullptr;
 	}
-	std::this_thread::sleep_for(std::chrono::milliseconds(50));
+	std::this_thread::sleep_for(std::chrono::milliseconds(Delay));
 
 	return tab_reg;
 }
@@ -243,7 +243,17 @@ bool SunSpec::SetRegister(const uint16_t &value, const uint16_t &reg_addr)
 	    	+ modbus_strerror(errno) + " (" + std::to_string(errno) + ")";
 		return false;
 	}
-	std::this_thread::sleep_for(std::chrono::milliseconds(50));
+	std::this_thread::sleep_for(std::chrono::milliseconds(Delay));
 
 	return true;
+}
+
+void SunSpec::SetRegisterRwDelay(const int &millis)
+{
+	Delay = millis;
+}
+
+int SunSpec::GetRegisterRwDelay(void)
+{
+	return Delay;
 }

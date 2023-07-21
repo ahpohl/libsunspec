@@ -78,9 +78,12 @@ public:
 	    When byte timeout is disabled, the full confirmation response must be received before expiration
 	    of the response timeout.
 
-	    @param millis [ms], default 200
+	    @param millis [ms], default 500
 	*/
-	bool SetResponseTimeout(const int &millis = 200);
+	bool SetResponseTimeout(const int &millis = 500);
+
+	/** Get timeout for response [ms] */
+	bool GetResponseTimeout(int &millis);
 
 	/** Set timeout between bytes
 
@@ -93,16 +96,22 @@ public:
 	    timeout. When a byte timeout is set, the response timeout is only used to wait for until the first byte of
 	    the response.
 
-	    @param millis [ms], default 200
+	    @param millis [ms], default 500
 
 	*/
-	bool SetByteTimeout(const int &millis = 200);
-
-	/** Get timeout for response [ms] */
-	bool GetResponseTimeout(int &millis);
+	bool SetByteTimeout(const int &millis = 500);
 
 	/** Get timeout between bytes [ms] */
 	bool GetByteTimeout(int &millis);
+
+	/** Set delay between consecutive register read / write requests
+
+	    @param millis [ms], default 50
+	*/
+	void SetRegisterRwDelay(const int &millis = 50);
+
+	/** Get delay between consecutive register read / write requests [ms] */
+	int GetRegisterRwDelay(void);
 
 protected:
 	/** Get a Modbus register and convert to number or string
@@ -126,6 +135,9 @@ protected:
 private:
 	/** Structure that holds the Modbus connection */
 	modbus_t *Ctx;
+
+	/** Register read / write delay */
+	int Delay;
 
 	/** Read raw Modbus registers from the device
 
