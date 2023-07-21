@@ -180,6 +180,7 @@ T SunSpec::ConvertRegister(const uint16_t *tab_reg, const uint16_t &size)
     return res;
 }
 
+/** Convert raw Modbus registers to string */
 template <>
 std::string SunSpec::ConvertRegister(const uint16_t *tab_reg, const uint16_t &size)
 {
@@ -192,6 +193,7 @@ std::string SunSpec::ConvertRegister(const uint16_t *tab_reg, const uint16_t &si
 	return str;
 }
 
+/** Convert raw Modbus registers to float */
 template <>
 float SunSpec::ConvertRegister(const uint16_t *tab_reg, const uint16_t &size)
 {
