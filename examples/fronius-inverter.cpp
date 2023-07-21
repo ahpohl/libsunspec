@@ -20,7 +20,7 @@ int main(int argc, char *argv[])
   std::unique_ptr<FroniusInverter> inverter(new FroniusInverter());
   
 
-  if (!inverter->ConnectModbusRtu(device, 19200))
+  if (!inverter->ConnectModbusRtu(device))
   {
     std::cout << inverter->GetErrorMessage() << std::endl;
     return EXIT_FAILURE;

@@ -15,7 +15,7 @@ int main(int argc, char *argv[])
 
   std::unique_ptr<FroniusMeter> meter(new FroniusMeter());
   
-  if (!meter->ConnectModbusRtu(device, 19200))
+  if (!meter->ConnectModbusRtu(device))
   {
     std::cout << meter->GetErrorMessage() << std::endl;
     return EXIT_FAILURE;

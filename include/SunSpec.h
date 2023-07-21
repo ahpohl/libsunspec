@@ -104,15 +104,6 @@ public:
 	/** Get timeout between bytes [ms] */
 	bool GetByteTimeout(int &millis);
 
-	/** Set delay between consecutive register read / write requests
-
-	    @param millis [ms], default 50
-	*/
-	void SetRegisterRwDelay(const int &millis = 50);
-
-	/** Get delay between consecutive register read / write requests [ms] */
-	int GetRegisterRwDelay(void);
-
 protected:
 	/** Get a Modbus register and convert to number or string
 
@@ -135,9 +126,6 @@ protected:
 private:
 	/** Structure that holds the Modbus connection */
 	modbus_t *Ctx;
-
-	/** Register read / write delay */
-	int Delay;
 
 	/** Read raw Modbus registers from the device
 
