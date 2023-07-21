@@ -22,7 +22,7 @@ int main(int argc, char *argv[])
   }
   meter->SetModbusDebug(false);
 
-  if (!meter->SetModbusAddress(2))
+  if (!meter->SetModbusAddress(240))
   {
     std::cout << meter->GetErrorMessage() << std::endl;
     return EXIT_FAILURE;
