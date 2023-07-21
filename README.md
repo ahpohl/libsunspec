@@ -1,13 +1,13 @@
 [![Build Status](https://travis-ci.com/ahpohl/libsunspec.svg?branch=master)](https://travis-ci.com/ahpohl/libsunspec)
 # Overview
 
-Libsunspec adheres to the SunSpec INT+SF register map but could be easily adapted to the float registers. Modbus TCP and Modbus RTU register maps were downloaded from the [Fronius website](https://www.fronius.com/en/solar-energy/installers-partners/technical-data/all-products/system-monitoring/open-interfaces/modbus-tcp). The libsunspec library currently supports string inverters with up to two 2 strings, and support for Modbus compatible smartmeters and batteries could be added later if needed (don't have such devices for testing). The example folder contains basic demo programs how to use the library. The full API documentation of all classes, methods and namespaces is provided [here](https://ahpohl.github.io/libsunspec/)
+Libsunspec supports both SunSpec float and integer + scale factor register maps. The library uses the float model by default, but can be compiled to use the integer and scale factor model instead. Modbus TCP and Modbus RTU register maps were downloaded from the [Fronius website](https://www.fronius.com/en/solar-energy/installers-partners/technical-data/all-products/system-monitoring/open-interfaces/modbus-tcp). The libsunspec library currently supports string inverters with up to two 2 strings and Modbus compatible smartmeters such as the ones made by Fronius. Energy storage devices (i.e. batteries) could be added later, but I currently don't have such devices for testing. The example folder contains basic demo programs how to use the library. The full API documentation of all classes, methods and namespaces is provided [here](https://ahpohl.github.io/libsunspec/).
 
-The library is written in plain C++ and implements the basic functions to communicate with the inverter, meter or storage device. It depends only on [libmodbus](https://libmodbus.org/) for low level methods.
+The library is written in plain C++ and implements the basic functions to communicate with the inverter or energy meter. It depends only on [libmodbus](https://libmodbus.org/) for low level methods.
 
 # Compilation
 
-## Native compile
+## Native compilation
 
 The compilation of the library follows the usual `make install` procedure, and the examples can be optionally compiled with `make examples`. The library supports both SunSpec data models integer with a scale factor and float, the latter being the default. The make command accepts and optional paramter `MODEL=int+sf` to compile the library to use integer and scale factors instead of floats. 
 
