@@ -1,4 +1,4 @@
 # libsunspec changelog
 
-## v0.1.0 - 2021-06-xx
+## v0.1.0 - 2021-07-21
 * initial release
