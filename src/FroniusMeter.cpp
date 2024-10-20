@@ -1,13 +1,12 @@
 #include "FroniusMeter.h"
 
-bool FroniusMeter::IsSunSpecMeter(void)
-{
-	if (!IsCommonRegisterMap()) {
-		return false;
-	}
-	if (!IsMeterRegisterMap()) {
-		return false;
-	}
+bool FroniusMeter::IsSunSpecMeter(void) {
+  if (!IsCommonRegisterMap()) {
+    return false;
+  }
+  if (!IsMeterRegisterMap()) {
+    return false;
+  }
 
-	return true;
+  return true;
 }
