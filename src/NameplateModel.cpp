@@ -1,8 +1,8 @@
-#include <cmath>
 #include "NameplateModel.h"
 #include "SunSpec.h"
-#include "SunSpecModelIntSf.h"
 #include "SunSpecModelFloat.h"
+#include "SunSpecModelIntSf.h"
+#include <cmath>
 
 #ifdef MODEL_INTSF
 using namespace NameplateRegisterMapIntSf;
@@ -17,16 +17,16 @@ bool NameplateModel::IsNameplateRegisterMap(void) {
     return false;
   }
   if (!(I120_ID.res == 120)) {
-    ErrorMessage = std::string("Invalid ID of Nameplate Model block (")
-        + std::to_string(I120_ID.res) + ")";
+    ErrorMessage = std::string("Invalid ID of Nameplate Model block (") +
+                   std::to_string(I120_ID.res) + ")";
     return false;
   }
   if (!GetRegister(I120_L.res, I120_L.reg, I120_L.nb)) {
     return false;
   }
   if (I120_L.res != 26) {
-    ErrorMessage = std::string("Invalid length of Nameplate Model block (")
-        + std::to_string(I120_L.res) + ")";
+    ErrorMessage = std::string("Invalid length of Nameplate Model block (") +
+                   std::to_string(I120_L.res) + ")";
     return false;
   }
 
@@ -63,42 +63,34 @@ bool NameplateModel::GetPowerReactiveMax(double &res, const int quadrant) {
   }
 
   switch (quadrant) {
-    case 1:
-      if (!GetRegister(I120_VArRtgQ1.res, I120_VArRtgQ1.reg,
-                       I120_VArRtgQ1.nb)) {
-        return false;
-      }
-      res = static_cast<double>(I120_VArRtgQ1.res)
-          * pow(10, I120_VArRtg_SF.res);
-      break;
-    case 2:
-      if (!GetRegister(I120_VArRtgQ2.res, I120_VArRtgQ2.reg,
-                       I120_VArRtgQ2.nb)) {
-        return false;
-      }
-      res = static_cast<double>(I120_VArRtgQ2.res)
-          * pow(10, I120_VArRtg_SF.res);
-      break;
-    case 3:
-      if (!GetRegister(I120_VArRtgQ3.res, I120_VArRtgQ3.reg,
-                       I120_VArRtgQ3.nb)) {
-        return false;
-      }
-      res = static_cast<double>(I120_VArRtgQ3.res)
-          * pow(10, I120_VArRtg_SF.res);
-      break;
-    case 4:
-      if (!GetRegister(I120_VArRtgQ4.res, I120_VArRtgQ4.reg,
-                       I120_VArRtgQ4.nb)) {
-        return false;
-      }
-      res = static_cast<double>(I120_VArRtgQ4.res)
-          * pow(10, I120_VArRtg_SF.res);
-      break;
-    default:
-      ErrorMessage = std::string("Invalid quadrant (")
-          + std::to_string(quadrant) + ")";
+  case 1:
+    if (!GetRegister(I120_VArRtgQ1.res, I120_VArRtgQ1.reg, I120_VArRtgQ1.nb)) {
       return false;
+    }
+    res = static_cast<double>(I120_VArRtgQ1.res) * pow(10, I120_VArRtg_SF.res);
+    break;
+  case 2:
+    if (!GetRegister(I120_VArRtgQ2.res, I120_VArRtgQ2.reg, I120_VArRtgQ2.nb)) {
+      return false;
+    }
+    res = static_cast<double>(I120_VArRtgQ2.res) * pow(10, I120_VArRtg_SF.res);
+    break;
+  case 3:
+    if (!GetRegister(I120_VArRtgQ3.res, I120_VArRtgQ3.reg, I120_VArRtgQ3.nb)) {
+      return false;
+    }
+    res = static_cast<double>(I120_VArRtgQ3.res) * pow(10, I120_VArRtg_SF.res);
+    break;
+  case 4:
+    if (!GetRegister(I120_VArRtgQ4.res, I120_VArRtgQ4.reg, I120_VArRtgQ4.nb)) {
+      return false;
+    }
+    res = static_cast<double>(I120_VArRtgQ4.res) * pow(10, I120_VArRtg_SF.res);
+    break;
+  default:
+    ErrorMessage =
+        std::string("Invalid quadrant (") + std::to_string(quadrant) + ")";
+    return false;
   }
 
   return true;
@@ -122,34 +114,34 @@ bool NameplateModel::GetPowerFactorMin(double &res, const int quadrant) {
   }
 
   switch (quadrant) {
-    case 1:
-      if (!GetRegister(I120_PFRtgQ1.res, I120_PFRtgQ1.reg, I120_PFRtgQ1.nb)) {
-        return false;
-      }
-      res = static_cast<double>(I120_PFRtgQ1.res) * pow(10, I120_PFRtg_SF.res);
-      break;
-    case 2:
-      if (!GetRegister(I120_PFRtgQ2.res, I120_PFRtgQ2.reg, I120_PFRtgQ2.nb)) {
-        return false;
-      }
-      res = static_cast<double>(I120_PFRtgQ2.res) * pow(10, I120_PFRtg_SF.res);
-      break;
-    case 3:
-      if (!GetRegister(I120_PFRtgQ3.res, I120_PFRtgQ3.reg, I120_PFRtgQ3.nb)) {
-        return false;
-      }
-      res = static_cast<double>(I120_PFRtgQ3.res) * pow(10, I120_PFRtg_SF.res);
-      break;
-    case 4:
-      if (!GetRegister(I120_PFRtgQ4.res, I120_PFRtgQ4.reg, I120_PFRtgQ4.nb)) {
-        return false;
-      }
-      res = static_cast<double>(I120_PFRtgQ4.res) * pow(10, I120_PFRtg_SF.res);
-      break;
-    default:
-      ErrorMessage = std::string("Invalid quadrant (")
-          + std::to_string(quadrant) + ")";
+  case 1:
+    if (!GetRegister(I120_PFRtgQ1.res, I120_PFRtgQ1.reg, I120_PFRtgQ1.nb)) {
       return false;
+    }
+    res = static_cast<double>(I120_PFRtgQ1.res) * pow(10, I120_PFRtg_SF.res);
+    break;
+  case 2:
+    if (!GetRegister(I120_PFRtgQ2.res, I120_PFRtgQ2.reg, I120_PFRtgQ2.nb)) {
+      return false;
+    }
+    res = static_cast<double>(I120_PFRtgQ2.res) * pow(10, I120_PFRtg_SF.res);
+    break;
+  case 3:
+    if (!GetRegister(I120_PFRtgQ3.res, I120_PFRtgQ3.reg, I120_PFRtgQ3.nb)) {
+      return false;
+    }
+    res = static_cast<double>(I120_PFRtgQ3.res) * pow(10, I120_PFRtg_SF.res);
+    break;
+  case 4:
+    if (!GetRegister(I120_PFRtgQ4.res, I120_PFRtgQ4.reg, I120_PFRtgQ4.nb)) {
+      return false;
+    }
+    res = static_cast<double>(I120_PFRtgQ4.res) * pow(10, I120_PFRtg_SF.res);
+    break;
+  default:
+    ErrorMessage =
+        std::string("Invalid quadrant (") + std::to_string(quadrant) + ")";
+    return false;
   }
 
   return true;

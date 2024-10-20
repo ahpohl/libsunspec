@@ -8,8 +8,8 @@
  */
 
 #include <FroniusInverter.h>
-#include <iostream>
 #include <iomanip>
+#include <iostream>
 #include <memory>
 
 int main(int argc, char *argv[]) {

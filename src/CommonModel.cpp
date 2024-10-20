@@ -1,7 +1,7 @@
 #include "CommonModel.h"
 #include "SunSpec.h"
-#include <SunSpecModelIntSf.h>
 #include <SunSpecModelFloat.h>
+#include <SunSpecModelIntSf.h>
 
 #ifdef MODEL_INTSF
 using namespace CommonRegisterMapIntSf;
@@ -23,16 +23,16 @@ bool CommonModel::IsCommonRegisterMap(void) {
     return false;
   }
   if (C001_ID.res != 1) {
-    ErrorMessage = std::string("Invalid ID of Common Model block (")
-        + std::to_string(C001_ID.res) + ")";
+    ErrorMessage = std::string("Invalid ID of Common Model block (") +
+                   std::to_string(C001_ID.res) + ")";
     return false;
   }
   if (!GetRegister(C001_L.res, C001_L.reg, C001_L.nb)) {
     return false;
   }
   if (C001_L.res != 65) {
-    ErrorMessage = std::string("Invalid length of Common Model block (")
-        + std::to_string(C001_L.res) + ")";
+    ErrorMessage = std::string("Invalid length of Common Model block (") +
+                   std::to_string(C001_L.res) + ")";
     return false;
   }
 

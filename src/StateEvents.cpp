@@ -2,49 +2,49 @@
 
 bool StateEvents::SetStateEventsStr(StateEvt_t &state_evt) {
   switch (state_evt.St) {
-    case static_cast<uint16_t>(OpState::I_STATUS_OFF):
-      state_evt.StStr = "Off";
-      break;
-    case static_cast<uint16_t>(OpState::I_STATUS_SLEEPING):
-      state_evt.StStr = "Sleeping (auto-shutdown)";
-      break;
-    case static_cast<uint16_t>(OpState::I_STATUS_STARTING):
-      state_evt.StStr = "Starting up";
-      break;
-    case static_cast<uint16_t>(OpState::I_STATUS_MPPT):
-      state_evt.StStr = "Tracking power point";
-      break;
-    case static_cast<uint16_t>(OpState::I_STATUS_THROTTLED):
-      state_evt.StStr = "Forced power reduction";
-      break;
-    case static_cast<uint16_t>(OpState::I_STATUS_SHUTTING_DOWN):
-      state_evt.StStr = "Shutting down";
-      break;
-    case static_cast<uint16_t>(OpState::I_STATUS_FAULT):
-      state_evt.StStr = "One or more faults exist";
-      break;
-    case static_cast<uint16_t>(OpState::I_STATUS_STANDBY):
-      state_evt.StStr = "Standby";
-      break;
-    case static_cast<uint16_t>(OpState::I_STATUS_NO_BUSINIT):
-      state_evt.StStr = "No SolarNet communication";
-      break;
-    case static_cast<uint16_t>(OpState::I_STATUS_NO_COMM_INV):
-      state_evt.StStr = "No communication with inverter";
-      break;
-    case static_cast<uint16_t>(OpState::I_STATUS_SN_OVERCURRENT):
-      state_evt.StStr = "Overcurrent on SolarNet plug detected";
-      break;
-    case static_cast<uint16_t>(OpState::I_STATUS_BOOTLOAD):
-      state_evt.StStr = "Inverter is being updated";
-      break;
-    case static_cast<uint16_t>(OpState::I_STATUS_AFCI):
-      state_evt.StStr = "AFCI Event";
-      break;
-    default:
-      ErrorStr = std::string("Invalid operating state (")
-          + std::to_string(state_evt.St) + ")";
-      return false;
+  case static_cast<uint16_t>(OpState::I_STATUS_OFF):
+    state_evt.StStr = "Off";
+    break;
+  case static_cast<uint16_t>(OpState::I_STATUS_SLEEPING):
+    state_evt.StStr = "Sleeping (auto-shutdown)";
+    break;
+  case static_cast<uint16_t>(OpState::I_STATUS_STARTING):
+    state_evt.StStr = "Starting up";
+    break;
+  case static_cast<uint16_t>(OpState::I_STATUS_MPPT):
+    state_evt.StStr = "Tracking power point";
+    break;
+  case static_cast<uint16_t>(OpState::I_STATUS_THROTTLED):
+    state_evt.StStr = "Forced power reduction";
+    break;
+  case static_cast<uint16_t>(OpState::I_STATUS_SHUTTING_DOWN):
+    state_evt.StStr = "Shutting down";
+    break;
+  case static_cast<uint16_t>(OpState::I_STATUS_FAULT):
+    state_evt.StStr = "One or more faults exist";
+    break;
+  case static_cast<uint16_t>(OpState::I_STATUS_STANDBY):
+    state_evt.StStr = "Standby";
+    break;
+  case static_cast<uint16_t>(OpState::I_STATUS_NO_BUSINIT):
+    state_evt.StStr = "No SolarNet communication";
+    break;
+  case static_cast<uint16_t>(OpState::I_STATUS_NO_COMM_INV):
+    state_evt.StStr = "No communication with inverter";
+    break;
+  case static_cast<uint16_t>(OpState::I_STATUS_SN_OVERCURRENT):
+    state_evt.StStr = "Overcurrent on SolarNet plug detected";
+    break;
+  case static_cast<uint16_t>(OpState::I_STATUS_BOOTLOAD):
+    state_evt.StStr = "Inverter is being updated";
+    break;
+  case static_cast<uint16_t>(OpState::I_STATUS_AFCI):
+    state_evt.StStr = "AFCI Event";
+    break;
+  default:
+    ErrorStr = std::string("Invalid operating state (") +
+               std::to_string(state_evt.St) + ")";
+    return false;
   }
 
   if (!state_evt.Evt1) {
@@ -82,8 +82,8 @@ bool StateEvents::SetStateEventsStr(StateEvt_t &state_evt) {
   } else if ((state_evt.Evt1 >> 15) & 1) {
     state_evt.EvtStr = "Hardware test failure";
   } else {
-    ErrorStr = std::string("Invalid event flag (")
-        + std::to_string(state_evt.Evt1) + ")";
+    ErrorStr = std::string("Invalid event flag (") +
+               std::to_string(state_evt.Evt1) + ")";
     return false;
   }
 
@@ -155,8 +155,8 @@ bool StateEvents::SetStateEventsStr(StateEvt_t &state_evt) {
     state_evt.EvtStr =
         "The buck converter relay does not open at high DC voltage";
   } else {
-    ErrorStr = std::string("Invalid vendor event flag 1 (")
-        + std::to_string(state_evt.EvtVnd1) + ")";
+    ErrorStr = std::string("Invalid vendor event flag 1 (") +
+               std::to_string(state_evt.EvtVnd1) + ")";
     return false;
   }
 
@@ -227,8 +227,8 @@ bool StateEvents::SetStateEventsStr(StateEvt_t &state_evt) {
   } else if ((state_evt.EvtVnd2 >> 31) & 1) {
     state_evt.EvtStr = "Supply voltage fault";
   } else {
-    ErrorStr = std::string("Invalid vendor event flag 2 (")
-        + std::to_string(state_evt.EvtVnd2) + ")";
+    ErrorStr = std::string("Invalid vendor event flag 2 (") +
+               std::to_string(state_evt.EvtVnd2) + ")";
     return false;
   }
 
@@ -243,8 +243,8 @@ bool StateEvents::SetStateEventsStr(StateEvt_t &state_evt) {
   } else if ((state_evt.EvtVnd3 >> 3) & 1) {
     state_evt.EvtStr = "Init error";
   } else {
-    ErrorStr = std::string("Invalid vendor event flag 3 (")
-        + std::to_string(state_evt.EvtVnd3) + ")";
+    ErrorStr = std::string("Invalid vendor event flag 3 (") +
+               std::to_string(state_evt.EvtVnd3) + ")";
     return false;
   }
 

@@ -15,16 +15,16 @@ bool ExtendedModel::IsExtendedRegisterMap(void) {
     return false;
   }
   if (!(I122_ID.res == 122)) {
-    ErrorMessage = std::string("Invalid ID of Extended Model block (")
-        + std::to_string(I122_ID.res) + ")";
+    ErrorMessage = std::string("Invalid ID of Extended Model block (") +
+                   std::to_string(I122_ID.res) + ")";
     return false;
   }
   if (!GetRegister(I122_L.res, I122_L.reg, I122_L.nb)) {
     return false;
   }
   if (I122_L.res != 44) {
-    ErrorMessage = std::string("Invalid length of Extended Model block (")
-        + std::to_string(I122_L.res) + ")";
+    ErrorMessage = std::string("Invalid length of Extended Model block (") +
+                   std::to_string(I122_L.res) + ")";
     return false;
   }
 

@@ -8,11 +8,11 @@
  */
 
 #include <FroniusInverter.h>
-#include <iostream>
-#include <iomanip>
-#include <memory>
 #include <chrono>
 #include <ctime>
+#include <iomanip>
+#include <iostream>
+#include <memory>
 
 int main(int argc, char *argv[]) {
   const std::string device =
@@ -42,10 +42,10 @@ int main(int argc, char *argv[]) {
   std::cout << "  "
             << std::put_time(std::gmtime(&rawtime), "%a %Y-%m-%d %H:%M:%S %Z")
             << std::endl;
-  std::cout
-      << "  "
-      << std::put_time(std::localtime(&rawtime), "%a %Y-%m-%d %H:%M:%S %Z")
-      << std::endl;
+  std::cout << "  "
+            << std::put_time(std::localtime(&rawtime),
+                             "%a %Y-%m-%d %H:%M:%S %Z")
+            << std::endl;
 
   std::cout << "System time:" << std::endl;
   std::time_t t = std::time(nullptr);

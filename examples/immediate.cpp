@@ -8,11 +8,11 @@
  */
 
 #include <FroniusInverter.h>
-#include <iostream>
-#include <iomanip>
-#include <memory>
 #include <chrono>
 #include <ctime>
+#include <iomanip>
+#include <iostream>
+#include <memory>
 
 int main(int argc, char *argv[]) {
   const std::string device =

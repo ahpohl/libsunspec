@@ -6,11 +6,11 @@
 #ifndef METERMODEL_H_
 #define METERMODEL_H_
 
-#include "SunSpec.h"
 #include "StateEvents.h"
+#include "SunSpec.h"
 
 class MeterModel : virtual public SunSpec {
- public:
+public:
   /** Checks if device has a SunSpec inverter register map */
   bool IsMeterRegisterMap(void);
 
@@ -59,7 +59,7 @@ class MeterModel : virtual public SunSpec {
   /** AC energy total imported [kWh] */
   bool GetAcEnergyImport(double &res);
 
- private:
+private:
   /** Read meter event flags */
   bool ReadEventFlags(uint32_t &flag1, uint32_t &flag2);
 };

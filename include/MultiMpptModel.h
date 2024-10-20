@@ -9,7 +9,7 @@
 #include "SunSpec.h"
 
 class MultiMpptModel : virtual public SunSpec {
- public:
+public:
   /** Checks if device has a SunSpec Multi MPPT register map */
   bool IsMultiMpptRegisterMap(void);
 

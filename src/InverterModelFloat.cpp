@@ -11,16 +11,16 @@ bool InverterModel::IsInverterRegisterMap(void) {
     return false;
   }
   if (!((I11X_ID.res == 111) || (I11X_ID.res == 112) || (I11X_ID.res = 113))) {
-    ErrorMessage = std::string("Invalid ID of Inverter Model block (")
-        + std::to_string(I11X_ID.res) + ")";
+    ErrorMessage = std::string("Invalid ID of Inverter Model block (") +
+                   std::to_string(I11X_ID.res) + ")";
     return false;
   }
   if (!GetRegister(I11X_L.res, I11X_L.reg, I11X_L.nb)) {
     return false;
   }
   if (I11X_L.res != 60) {
-    ErrorMessage = std::string("Invalid length of Inverter Model block (")
-        + std::to_string(I11X_L.res) + ")";
+    ErrorMessage = std::string("Invalid length of Inverter Model block (") +
+                   std::to_string(I11X_L.res) + ")";
     return false;
   }
 
@@ -38,27 +38,27 @@ bool InverterModel::GetAcCurrent(double &res) {
 
 bool InverterModel::GetAcCurrentPhase(double &res, const char &ph) {
   switch (ph) {
-    case 'A':
-      if (!GetRegister(I11X_AphA.res, I11X_AphA.reg, I11X_AphA.nb)) {
-        return false;
-      }
-      res = static_cast<double>(I11X_AphA.res);
-      break;
-    case 'B':
-      if (!GetRegister(I11X_AphB.res, I11X_AphB.reg, I11X_AphB.nb)) {
-        return false;
-      }
-      res = static_cast<double>(I11X_AphB.res);
-      break;
-    case 'C':
-      if (!GetRegister(I11X_AphC.res, I11X_AphC.reg, I11X_AphC.nb)) {
-        return false;
-      }
-      res = static_cast<double>(I11X_AphC.res);
-      break;
-    default:
-      ErrorMessage = "Invalid phase " + ph;
+  case 'A':
+    if (!GetRegister(I11X_AphA.res, I11X_AphA.reg, I11X_AphA.nb)) {
       return false;
+    }
+    res = static_cast<double>(I11X_AphA.res);
+    break;
+  case 'B':
+    if (!GetRegister(I11X_AphB.res, I11X_AphB.reg, I11X_AphB.nb)) {
+      return false;
+    }
+    res = static_cast<double>(I11X_AphB.res);
+    break;
+  case 'C':
+    if (!GetRegister(I11X_AphC.res, I11X_AphC.reg, I11X_AphC.nb)) {
+      return false;
+    }
+    res = static_cast<double>(I11X_AphC.res);
+    break;
+  default:
+    ErrorMessage = "Invalid phase " + ph;
+    return false;
   }
 
   return true;
@@ -66,27 +66,27 @@ bool InverterModel::GetAcCurrentPhase(double &res, const char &ph) {
 
 bool InverterModel::GetAcVoltage(double &res, const char &ph) {
   switch (ph) {
-    case 'A':
-      if (!GetRegister(I11X_PhVphA.res, I11X_PhVphA.reg, I11X_PhVphA.nb)) {
-        return false;
-      }
-      res = static_cast<double>(I11X_PhVphA.res);
-      break;
-    case 'B':
-      if (!GetRegister(I11X_PhVphB.res, I11X_PhVphB.reg, I11X_PhVphB.nb)) {
-        return false;
-      }
-      res = static_cast<double>(I11X_PhVphB.res);
-      break;
-    case 'C':
-      if (!GetRegister(I11X_PhVphC.res, I11X_PhVphC.reg, I11X_PhVphC.nb)) {
-        return false;
-      }
-      res = static_cast<double>(I11X_PhVphC.res);
-      break;
-    default:
-      ErrorMessage = "Invalid phase " + ph;
+  case 'A':
+    if (!GetRegister(I11X_PhVphA.res, I11X_PhVphA.reg, I11X_PhVphA.nb)) {
       return false;
+    }
+    res = static_cast<double>(I11X_PhVphA.res);
+    break;
+  case 'B':
+    if (!GetRegister(I11X_PhVphB.res, I11X_PhVphB.reg, I11X_PhVphB.nb)) {
+      return false;
+    }
+    res = static_cast<double>(I11X_PhVphB.res);
+    break;
+  case 'C':
+    if (!GetRegister(I11X_PhVphC.res, I11X_PhVphC.reg, I11X_PhVphC.nb)) {
+      return false;
+    }
+    res = static_cast<double>(I11X_PhVphC.res);
+    break;
+  default:
+    ErrorMessage = "Invalid phase " + ph;
+    return false;
   }
 
   return true;

@@ -8,10 +8,10 @@
  */
 
 #include <FroniusInverter.h>
-#include <iostream>
-#include <iomanip>
-#include <memory>
 #include <chrono>
+#include <iomanip>
+#include <iostream>
+#include <memory>
 
 int main(int argc, char *argv[]) {
   const std::string device =
@@ -84,4 +84,3 @@ int main(int argc, char *argv[]) {
   std::cout.flags(old_settings);
   return EXIT_SUCCESS;
 }
-

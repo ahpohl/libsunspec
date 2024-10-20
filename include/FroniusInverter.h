@@ -8,17 +8,21 @@
 #include <string>
 
 #include "CommonModel.h"
-#include "InverterModel.h"
-#include "NameplateModel.h"
 #include "ExtendedModel.h"
-#include "ImmediateModel.h"
-#include "MultiMpptModel.h"
 #include "FroniusRegister.h"
+#include "ImmediateModel.h"
+#include "InverterModel.h"
+#include "MultiMpptModel.h"
+#include "NameplateModel.h"
 
-class FroniusInverter : public CommonModel, public InverterModel,
-    public NameplateModel, public ExtendedModel, public ImmediateModel,
-    public MultiMpptModel, public FroniusRegister {
- public:
+class FroniusInverter : public CommonModel,
+                        public InverterModel,
+                        public NameplateModel,
+                        public ExtendedModel,
+                        public ImmediateModel,
+                        public MultiMpptModel,
+                        public FroniusRegister {
+public:
   /** Checks if device is a SunSpec compatible inverter */
   bool IsSunSpecInverter(void);
 
@@ -35,10 +39,9 @@ class FroniusInverter : public CommonModel, public InverterModel,
   /** Get Fronius state code */
   bool GetStateCode(StateCode_t &state);
 
- private:
+private:
   /** Set Fronius state code string */
   bool SetStateCodeStr(StateCode_t &state);
 };
 
 #endif /* FRONIUSINVERTER_H_ */
-

@@ -11,16 +11,16 @@ bool MeterModel::IsMeterRegisterMap(void) {
     return false;
   }
   if (!((M21X_ID.res == 211) || (M21X_ID.res == 212) || (M21X_ID.res = 213))) {
-    ErrorMessage = std::string("Invalid ID of Meter Model block (")
-        + std::to_string(M21X_ID.res) + ")";
+    ErrorMessage = std::string("Invalid ID of Meter Model block (") +
+                   std::to_string(M21X_ID.res) + ")";
     return false;
   }
   if (!GetRegister(M21X_L.res, M21X_L.reg, M21X_L.nb)) {
     return false;
   }
   if (M21X_L.res != 65) {
-    ErrorMessage = std::string("Invalid length of Meter Model block (")
-        + std::to_string(M21X_L.res) + ")";
+    ErrorMessage = std::string("Invalid length of Meter Model block (") +
+                   std::to_string(M21X_L.res) + ")";
     return false;
   }
 
@@ -38,27 +38,27 @@ bool MeterModel::GetAcCurrent(double &res) {
 
 bool MeterModel::GetAcCurrentPhase(double &res, const char &ph) {
   switch (ph) {
-    case 'A':
-      if (!GetRegister(M21X_AphA.res, M21X_AphA.reg, M21X_AphA.nb)) {
-        return false;
-      }
-      res = static_cast<double>(M21X_AphA.res);
-      break;
-    case 'B':
-      if (!GetRegister(M21X_AphB.res, M21X_AphB.reg, M21X_AphB.nb)) {
-        return false;
-      }
-      res = static_cast<double>(M21X_AphB.res);
-      break;
-    case 'C':
-      if (!GetRegister(M21X_AphC.res, M21X_AphC.reg, M21X_AphC.nb)) {
-        return false;
-      }
-      res = static_cast<double>(M21X_AphC.res);
-      break;
-    default:
-      ErrorMessage = "Invalid phase " + ph;
+  case 'A':
+    if (!GetRegister(M21X_AphA.res, M21X_AphA.reg, M21X_AphA.nb)) {
       return false;
+    }
+    res = static_cast<double>(M21X_AphA.res);
+    break;
+  case 'B':
+    if (!GetRegister(M21X_AphB.res, M21X_AphB.reg, M21X_AphB.nb)) {
+      return false;
+    }
+    res = static_cast<double>(M21X_AphB.res);
+    break;
+  case 'C':
+    if (!GetRegister(M21X_AphC.res, M21X_AphC.reg, M21X_AphC.nb)) {
+      return false;
+    }
+    res = static_cast<double>(M21X_AphC.res);
+    break;
+  default:
+    ErrorMessage = "Invalid phase " + ph;
+    return false;
   }
 
   return true;
@@ -66,27 +66,27 @@ bool MeterModel::GetAcCurrentPhase(double &res, const char &ph) {
 
 bool MeterModel::GetAcVoltage(double &res, const char &ph) {
   switch (ph) {
-    case 'A':
-      if (!GetRegister(M21X_PhVphA.res, M21X_PhVphA.reg, M21X_PhVphA.nb)) {
-        return false;
-      }
-      res = static_cast<double>(M21X_PhVphA.res);
-      break;
-    case 'B':
-      if (!GetRegister(M21X_PhVphB.res, M21X_PhVphB.reg, M21X_PhVphB.nb)) {
-        return false;
-      }
-      res = static_cast<double>(M21X_PhVphB.res);
-      break;
-    case 'C':
-      if (!GetRegister(M21X_PhVphC.res, M21X_PhVphC.reg, M21X_PhVphC.nb)) {
-        return false;
-      }
-      res = static_cast<double>(M21X_PhVphC.res);
-      break;
-    default:
-      ErrorMessage = "Invalid phase " + ph;
+  case 'A':
+    if (!GetRegister(M21X_PhVphA.res, M21X_PhVphA.reg, M21X_PhVphA.nb)) {
       return false;
+    }
+    res = static_cast<double>(M21X_PhVphA.res);
+    break;
+  case 'B':
+    if (!GetRegister(M21X_PhVphB.res, M21X_PhVphB.reg, M21X_PhVphB.nb)) {
+      return false;
+    }
+    res = static_cast<double>(M21X_PhVphB.res);
+    break;
+  case 'C':
+    if (!GetRegister(M21X_PhVphC.res, M21X_PhVphC.reg, M21X_PhVphC.nb)) {
+      return false;
+    }
+    res = static_cast<double>(M21X_PhVphC.res);
+    break;
+  default:
+    ErrorMessage = "Invalid phase " + ph;
+    return false;
   }
 
   return true;

@@ -77,22 +77,25 @@ struct {
 
 /** Serial number of the inverter
 
- Please note, that the inverter serial number is not supported on all devices and also
- depends on the internal inverter controller‘s production date and its software version.
+ Please note, that the inverter serial number is not supported on all devices
+ and also depends on the internal inverter controller‘s production date and its
+ software version.
 
- If the inverter serial number is not supported, then two fallbacks are implemented that
- are still unique but may not match the inverter serial number printed on the nameplate:
+ If the inverter serial number is not supported, then two fallbacks are
+ implemented that are still unique but may not match the inverter serial number
+ printed on the nameplate:
 
  1: Serial of inverter controller (PMC) if supported
  2: Unique ID (UID) of inverter controller
 
- For SYMOHYBRID inverters the inverter serial number is not supported and this register
- always contains one of the two implemented fallbacks.
+ For SYMOHYBRID inverters the inverter serial number is not supported and this
+ register always contains one of the two implemented fallbacks.
 
- Please note further that due to startup timing issues or synchronization faults this field
- may change its value during operation from one option to another, e.g. at boot time only UID
- is available and after some time device information is synchronized then this field changes
- from UID to PMC or inverter serial number.
+ Please note further that due to startup timing issues or synchronization faults
+ this field may change its value during operation from one option to another,
+ e.g. at boot time only UID is available and after some time device information
+ is synchronized then this field changes from UID to PMC or inverter serial
+ number.
  */
 struct {
   std::string str;
@@ -109,7 +112,7 @@ struct {
   const uint16_t reg = 40069 - 1;
   const uint16_t nb = 1;
 } C001_DA;
-}
+} // namespace CommonRegisterMapIntSf
 
 /** @brief Register description of the Inverter SunSpec model */
 namespace InverterRegisterMapIntSf {
@@ -305,7 +308,8 @@ struct {
 
 /** DC current value [A]
 
- @note Not supported if multiple DC inputs; current can be found in Multiple MPPT model
+ @note Not supported if multiple DC inputs; current can be found in Multiple
+ MPPT model
  */
 struct {
   uint16_t res = 0;
@@ -325,7 +329,8 @@ struct {
 
 /** DC voltage value [V]
 
- @note Not supported if multiple DC inputs; voltage can be found in Multiple MPPT model
+ @note Not supported if multiple DC inputs; voltage can be found in Multiple
+ MPPT model
  */
 struct {
   uint16_t res = 0;
@@ -462,7 +467,7 @@ struct {
   const uint16_t reg = 40120 - 1;
   const uint16_t nb = 2;
 } I10X_EvtVnd4;
-}
+} // namespace InverterRegisterMapIntSf
 
 /** @brief Register description of the Nameplate SunSpec model */
 namespace NameplateRegisterMapIntSf {
@@ -714,7 +719,7 @@ struct {
   const uint16_t reg = 40148 - 1;
   const uint16_t nb = 1;
 } I120_MaxDisChaRte_SF;
-}
+} // namespace NameplateRegisterMapIntSf
 
 /** @brief Register description of the Extended SunSpec model */
 namespace ExtendedRegisterMapIntSf {
@@ -941,7 +946,7 @@ struct {
   const uint16_t reg = 40227 - 1;
   const uint16_t nb = 1;
 } I122_Ris_SF;
-}
+} // namespace ExtendedRegisterMapIntSf
 
 /** @brief Register description of the SunSpec Immediate Controls model */
 namespace ImmediateRegisterMapIntSf {
@@ -1197,11 +1202,12 @@ struct {
   const uint16_t reg = 40253 - 1;
   const uint16_t nb = 1;
 } I123_VArPct_SF;
-}
+} // namespace ImmediateRegisterMapIntSf
 
 /** @brief Register description of the Multi MPPT SunSpec model */
 namespace MultiMpptRegisterMapIntSf {
-/** Uniquely identifies this as a SunSpec Multiple MPPT Inverter Extension Model mode
+/** Uniquely identifies this as a SunSpec Multiple MPPT Inverter Extension Model
+ mode
 
  @returns 160
  */
@@ -1457,7 +1463,7 @@ struct {
   const uint16_t reg = 40302 - 1;
   const uint16_t nb = 2;
 } I160_2_DCEvt;
-}
+} // namespace MultiMpptRegisterMapIntSf
 
 /** @brief Register description of the Fronius specific registers */
 namespace FroniusRegisterMapIntSf {
@@ -1468,8 +1474,8 @@ struct {
   const uint16_t nb = 1;
 } F_Delete_Data;
 
-/** Rating data of all inverters connected to the Fronius Datamanager are persistently stored
- by writing 0xFFFF.
+/** Rating data of all inverters connected to the Fronius Datamanager are
+ persistently stored by writing 0xFFFF.
  */
 struct {
   uint16_t res = 0;
@@ -1477,10 +1483,11 @@ struct {
   const uint16_t nb = 1;
 } F_Store_Data;
 
-/** Current active state code of inverter - Description can be found in inverter manual
+/** Current active state code of inverter - Description can be found in inverter
+ manual
 
- Not supported for Fronius Hybrid inverters (because of this inverter status maybe
- reported differently during night time compared to other inverter types)
+ Not supported for Fronius Hybrid inverters (because of this inverter status
+ maybe reported differently during night time compared to other inverter types)
  */
 struct {
   uint16_t res = 0;
@@ -1495,8 +1502,8 @@ struct {
   const uint16_t nb = 1;
 } F_Reset_All_Event_Flags;
 
-/** Type of SunSpec models used for inverter and meter data. Write 1 or 2 and then immediately 6
- to acknowledge setting.
+/** Type of SunSpec models used for inverter and meter data. Write 1 or 2 and
+ then immediately 6 to acknowledge setting.
 
  1: Floating point
  2: Integer & SF
@@ -1507,9 +1514,9 @@ struct {
   const uint16_t nb = 1;
 } F_ModelType;
 
-/** Type of Restrictions reported in BasicStorageControl Model (IC124). Local restrictions
- are those that are set by ModBus Interface. Global restrictions are those that are set
- system wide.
+/** Type of Restrictions reported in BasicStorageControl Model (IC124). Local
+ restrictions are those that are set by ModBus Interface. Global restrictions
+ are those that are set system wide.
 
  0: local (default)
  1: global
@@ -1547,7 +1554,7 @@ struct {
   const uint16_t reg = 510 - 1;
   const uint16_t nb = 4;
 } F_Site_Energy_Total;
-}
+} // namespace FroniusRegisterMapIntSf
 
 /** @brief Register description of the Meter specific registers */
 namespace MeterRegisterMapIntSf {
@@ -2127,6 +2134,6 @@ struct {
   const uint16_t reg = 40175 - 1;
   const uint16_t nb = 2;
 } M20X_Evt;
-}
+} // namespace MeterRegisterMapIntSf
 
 #endif /* SUNSPECMODELINTSF_H_ */

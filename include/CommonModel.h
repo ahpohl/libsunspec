@@ -8,7 +8,7 @@
 #include "SunSpec.h"
 
 class CommonModel : virtual public SunSpec {
- public:
+public:
   /** Checks if device has a SunSpec common register map */
   bool IsCommonRegisterMap(void);
 
@@ -41,7 +41,6 @@ class CommonModel : virtual public SunSpec {
    @returns Serial number
    */
   bool GetSerialNumber(std::string &str);
-
 };
 
 #endif /* COMMONMODEL_H_ */

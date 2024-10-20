@@ -9,7 +9,7 @@
 #include <string>
 
 class ImmediateModel : virtual public SunSpec {
- public:
+public:
   /** Checks if device has a SunSpec immediate controls register map */
   bool IsImmediateRegisterMap(void);
 

@@ -9,9 +9,10 @@
 #include "FroniusRegister.h"
 #include "MeterModel.h"
 
-class FroniusMeter : public CommonModel, public MeterModel,
-    public FroniusRegister {
- public:
+class FroniusMeter : public CommonModel,
+                     public MeterModel,
+                     public FroniusRegister {
+public:
   /** Checks if device is a SunSpec compatible meter */
   bool IsSunSpecMeter(void);
 };

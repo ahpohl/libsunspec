@@ -6,11 +6,11 @@
 #ifndef INVERTERMODEL_H_
 #define INVERTERMODEL_H_
 
-#include "SunSpec.h"
 #include "StateEvents.h"
+#include "SunSpec.h"
 
 class InverterModel : virtual public SunSpec, public StateEvents {
- public:
+public:
   /** Checks if device has a SunSpec inverter register map */
   bool IsInverterRegisterMap(void);
 
@@ -59,7 +59,7 @@ class InverterModel : virtual public SunSpec, public StateEvents {
   /** Read all state and event flags */
   bool GetStateEvtFlags(StateEvt_t &state_evt);
 
- private:
+private:
   /** Read inverter operating state */
   bool ReadState(uint16_t &state);
 

@@ -8,7 +8,7 @@
 #include "SunSpec.h"
 
 class NameplateModel : virtual public SunSpec {
- public:
+public:
   /** Checks if device has a SunSpec nameplate register map */
   bool IsNameplateRegisterMap(void);
 

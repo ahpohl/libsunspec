@@ -9,7 +9,7 @@
 #include "SunSpec.h"
 
 class FroniusRegister : virtual public SunSpec {
- public:
+public:
   /** Get current active state code of inverter
 
    @returns state code

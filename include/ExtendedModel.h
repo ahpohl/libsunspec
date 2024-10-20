@@ -9,7 +9,7 @@
 #include "SunSpec.h"
 
 class ExtendedModel : virtual public SunSpec {
- public:
+public:
   /** Checks if device has a SunSpec extended register map */
   bool IsExtendedRegisterMap(void);
 

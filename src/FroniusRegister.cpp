@@ -1,7 +1,7 @@
 #include <FroniusRegister.h>
 #include <SunSpec.h>
-#include <SunSpecModelIntSf.h>
 #include <SunSpecModelFloat.h>
+#include <SunSpecModelIntSf.h>
 
 #ifdef MODEL_INTSF
 using namespace FroniusRegisterMapIntSf;
@@ -35,15 +35,15 @@ bool FroniusRegister::GetModelType(struct ModelType_t &model) {
   model.Type = F_ModelType.res;
 
   switch (model.Type) {
-    case 1:
-      model.TypeStr = "floating point";
-      break;
-    case 2:
-      model.TypeStr = "integer + scale factor";
-      break;
-    default:
-      ErrorMessage = "Invalid model type (" + std::to_string(model.Type) + ")";
-      return false;
+  case 1:
+    model.TypeStr = "floating point";
+    break;
+  case 2:
+    model.TypeStr = "integer + scale factor";
+    break;
+  default:
+    ErrorMessage = "Invalid model type (" + std::to_string(model.Type) + ")";
+    return false;
   }
   return true;
 }

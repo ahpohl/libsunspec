@@ -6,11 +6,11 @@
 #ifndef STATEEVENTS_H_
 #define STATEEVENTS_H_
 
-#include <string>
 #include <cstdint>
+#include <string>
 
 class StateEvents {
- public:
+public:
   /** Operating state and event flags */
   struct StateEvt_t {
     /// Operating state
@@ -35,14 +35,14 @@ class StateEvents {
     std::string EvtVndStr;
   };
 
- protected:
+protected:
   /** Set state and event flag strings */
   bool SetStateEventsStr(StateEvt_t &state_evt);
 
   /** Error message string */
   std::string ErrorStr;
 
- private:
+private:
   /** Operating states */
   enum class OpState : uint16_t {
     I_STATUS_OFF = 1,

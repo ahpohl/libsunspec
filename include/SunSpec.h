@@ -10,11 +10,11 @@
 #define SUNSPEC_H_
 
 #include <cstdint>
-#include <string>
 #include <modbus/modbus.h>
+#include <string>
 
 class SunSpec {
- public:
+public:
   /** SunSpec class constructor */
   SunSpec(void);
 
@@ -26,18 +26,19 @@ class SunSpec {
 
   /** Create a libmodbus context for TCP/IPv4
 
-   The ConnectModbusTcp() function shall allocate and initialize a modbus_t structure
-   to communicate with a Modbus TCP IPv4 server.
+   The ConnectModbusTcp() function shall allocate and initialize a modbus_t
+   structure to communicate with a Modbus TCP IPv4 server.
 
-   @param ip_address IP address of the server to which the client wants to establish a connection
+   @param ip_address IP address of the server to which the client wants to
+   establish a connection
    @param port port argument is the TCP port to use
    */
   bool ConnectModbusTcp(const std::string &ip_address, const int &port = 502);
 
   /** Create a libmodbus context for RTU serial
 
-   The ConnectModbusRtu() function shall allocate and initialize a modbus_t structure
-   to communicate in RTU mode on a serial line.
+   The ConnectModbusRtu() function shall allocate and initialize a modbus_t
+   structure to communicate in RTU mode on a serial line.
 
    @param device device specifies the name of the serial port
    @param baud_rate baud rate (9600 or 19200)
@@ -49,15 +50,18 @@ class SunSpec {
 
   /** Sets the Modbus device address (slave ID)
 
-   The SetModbusAddress() function sets the slave number in the libmodbus context. It is usually only required
-   to set the slave ID in RTU. The meaning of this ID will be different if your program acts as client (master)
-   or server (slave).
+   The SetModbusAddress() function sets the slave number in the libmodbus
+   context. It is usually only required to set the slave ID in RTU. The meaning
+   of this ID will be different if your program acts as client (master) or
+   server (slave).
 
-   As RTU client, SetModbusAddress() sets the ID of the remote device you want to communicate. Be sure to set the
-   slave ID before issuing any Modbus requests on the serial bus. If you communicate with several servers
-   (slaves), you can set the slave ID of the remote device before each request.
+   As RTU client, SetModbusAddress() sets the ID of the remote device you want
+   to communicate. Be sure to set the slave ID before issuing any Modbus
+   requests on the serial bus. If you communicate with several servers (slaves),
+   you can set the slave ID of the remote device before each request.
 
-   In TCP, the slave number is only required if the message must reach a device on a serial network.
+   In TCP, the slave number is only required if the message must reach a device
+   on a serial network.
 
    @param slave_id Modbus device address (1-247), default (1)
    */
@@ -71,11 +75,12 @@ class SunSpec {
 
   /** Set timeout for response
 
-   The SetResponseTimeout() function shall set the timeout interval used to wait for a response.
-   When a byte timeout is set, if elapsed time for the first byte of response is longer than the
-   given timeout, an ETIMEDOUT error will be raised by the function waiting for a response.
-   When byte timeout is disabled, the full confirmation response must be received before expiration
-   of the response timeout.
+   The SetResponseTimeout() function shall set the timeout interval used to wait
+   for a response. When a byte timeout is set, if elapsed time for the first
+   byte of response is longer than the given timeout, an ETIMEDOUT error will be
+   raised by the function waiting for a response. When byte timeout is disabled,
+   the full confirmation response must be received before expiration of the
+   response timeout.
 
    @param millis [ms], default 500
    */
@@ -86,14 +91,17 @@ class SunSpec {
 
   /** Set timeout between bytes
 
-   The SetByteTimeout() function shall set the timeout interval between two consecutive bytes of the same message.
-   The timeout is an upper bound on the amount of time elapsed before select() returns, if the time elapsed is
-   longer than the defined timeout, an ETIMEDOUT error will be raised by the function waiting for a response.
+   The SetByteTimeout() function shall set the timeout interval between two
+   consecutive bytes of the same message. The timeout is an upper bound on the
+   amount of time elapsed before select() returns, if the time elapsed is longer
+   than the defined timeout, an ETIMEDOUT error will be raised by the function
+   waiting for a response.
 
-   If millis is zero, this timeout will not be used at all. In this case, SetResponseTimeout() governs the entire
-   handling of the response, the full confirmation response must be received before expiration of the response
-   timeout. When a byte timeout is set, the response timeout is only used to wait for until the first byte of
-   the response.
+   If millis is zero, this timeout will not be used at all. In this case,
+   SetResponseTimeout() governs the entire handling of the response, the full
+   confirmation response must be received before expiration of the response
+   timeout. When a byte timeout is set, the response timeout is only used to
+   wait for until the first byte of the response.
 
    @param millis [ms], default 500
 
@@ -103,17 +111,17 @@ class SunSpec {
   /** Get timeout between bytes [ms] */
   bool GetByteTimeout(int &millis);
 
- protected:
+protected:
   /** Get a Modbus register and convert to number or string
 
-   Method automatically converts the raw register value(s) to the destination format
-   specified in the res parameter. Supported register types are:
+   Method automatically converts the raw register value(s) to the destination
+   format specified in the res parameter. Supported register types are:
 
    T: int16_t, uint16_t, uint32_t, uint64_t, std::string
 
    @returns number or string (template T)
    */
-  template<typename T>
+  template <typename T>
   bool GetRegister(T &res, const uint16_t &reg_addr, const uint16_t &size);
 
   /** Set a single Modbus register (function 0x06) */
@@ -122,7 +130,7 @@ class SunSpec {
   /** String to hold the error message */
   std::string ErrorMessage;
 
- private:
+private:
   /** Structure that holds the Modbus connection */
   modbus_t *Ctx;
 
@@ -130,13 +138,13 @@ class SunSpec {
 
    @returns pointer to an array with the register values
    */
-  uint16_t* ReadRegister(const uint16_t &address, const uint16_t &size);
+  uint16_t *ReadRegister(const uint16_t &address, const uint16_t &size);
 
   /** Convert raw Modbus registers to usable values
 
    @returns number or string (template T)
    */
-  template<typename T>
+  template <typename T>
   T ConvertRegister(const uint16_t *tab_reg, const uint16_t &size);
 };
 
