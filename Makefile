@@ -20,9 +20,10 @@ MAJOR_VERSION := $(word 1, $(subst ., ,$(FULL_VERSION)))
 MINOR_VERSION := $(word 2, $(subst ., ,$(FULL_VERSION)))
 RELEASE_VERSION := $(word 3, $(subst ., ,$(FULL_VERSION)))
 
-# define the library file names 
-STATIC_LIB := libsunspec.a
-SHARED_LIB := libsunspec.so
+# define the library file names
+PROJECT := libsunspec
+STATIC_LIB := $(PROJECT).a
+SHARED_LIB := $(PROJECT).so
 
 # define examples directory
 EXAMPLE := examples
@@ -110,6 +111,8 @@ install: all
 	install -m 755 $(OBJ_DIR)/$(SHARED_LIB) $(DESTDIR)$(PREFIX)/lib/$(SHARED_LIB).$(FULL_VERSION)
 	ln -sr $(DESTDIR)$(PREFIX)/lib/$(SHARED_LIB).$(FULL_VERSION) $(DESTDIR)$(PREFIX)/lib/$(SHARED_LIB)
 	ln -sr $(DESTDIR)$(PREFIX)/lib/$(SHARED_LIB).$(FULL_VERSION) $(DESTDIR)$(PREFIX)/lib/$(SHARED_LIB).$(MAJOR_VERSION)
+	install -d $(DESTDIR)$(PREFIX)/include/$(PROJECT)
+	install -D -m 644 ./include/*.h $(DESTDIR)$(PREFIX)/include/$(PROJECT)
 
 docs:
 	doxygen Doxyfile
