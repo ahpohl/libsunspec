@@ -1,4 +1,4 @@
-/** @example fronius-inverter.cpp
+/** @example fronius-inverter-rtu.cpp
 
  Demonstration of a SunSpec compatible Fronius inverter.
 
@@ -18,7 +18,7 @@ int main(int argc, char *argv[]) {
 
   std::unique_ptr<FroniusInverter> inverter(new FroniusInverter());
 
-  if (!inverter->ConnectModbusRtu(device)) {
+  if (!inverter->ConnectModbusRtu(device, 19200)) {
     std::cout << inverter->GetErrorMessage() << std::endl;
     return EXIT_FAILURE;
   }

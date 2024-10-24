@@ -26,18 +26,19 @@ SunSpec::~SunSpec(void) {
 
 std::string SunSpec::GetErrorMessage(void) const { return ErrorMessage; }
 
-bool SunSpec::ConnectModbusTcp(const std::string &ip_addr, const int &port) {
-  if (ip_addr.empty()) {
-    ErrorMessage = "IP address argument empty";
+bool SunSpec::ConnectModbusTcp(const std::string &node,
+                               const std::string &service) {
+  if (node.empty()) {
+    ErrorMessage = "Node argument empty";
     return false;
   }
-  Ctx = modbus_new_tcp(ip_addr.c_str(), port);
+  Ctx = modbus_new_tcp_pi(node.c_str(), service.c_str());
   if (Ctx == nullptr) {
     ErrorMessage = "Unable to create the libmodbus context";
     return false;
   }
   if (modbus_connect(Ctx)) {
-    ErrorMessage = std::string("Connection to \"") + ip_addr +
+    ErrorMessage = std::string("Connection to \"") + node +
                    "\" failed: " + modbus_strerror(errno) + " (" +
                    std::to_string(errno) + ")";
     return false;

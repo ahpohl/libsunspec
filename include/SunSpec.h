@@ -27,13 +27,14 @@ public:
   /** Create a libmodbus context for TCP/IPv4
 
    The ConnectModbusTcp() function shall allocate and initialize a modbus_t
-   structure to communicate with a Modbus TCP IPv4 server.
+   structure to communicate with a Modbus TCP IPv4/IPv6 server.
 
-   @param ip_address IP address of the server to which the client wants to
+   @param node hostname or address of the server to which the client wants to
    establish a connection
-   @param port port argument is the TCP port to use
+   @param service service name/port number to connect to
    */
-  bool ConnectModbusTcp(const std::string &ip_address, const int &port = 502);
+  bool ConnectModbusTcp(const std::string &node,
+                        const std::string &service = "502");
 
   /** Create a libmodbus context for RTU serial
 

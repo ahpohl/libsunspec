@@ -25,13 +25,13 @@ ct-ng build
 The final toolchain is copied to the `/home/user/x-tools/aarch64-unknown-linux-gnu` folder and needs to be added to the PATH:
 
 ```
-export PATH=$PATH:/home/user/x-tools/aarch64-unknown-linux-gnu/bin
+export PATH=$PATH:/home/alex/x-tools/aarch64-unknown-linux-gnu/bin
 ```
 
 Libsunspec depends on libmodbus. Therefore libmodbus needs to be compiled for the target architeture and copied to sysroot folder of the cross toolchain:
 
 ```
 cd libmodbus
-./configure --prefix=/home/user/x-tools/aarch64-unknown-linux-gnu/aarch64-unknown-linux-gnu/sysroot/usr --host=aarch64-unknown-linux-gnu
+./configure --prefix=/home/alex/x-tools/aarch64-unknown-linux-gnu/aarch64-unknown-linux-gnu/sysroot/usr --host=aarch64-unknown-linux-gnu
 make install
 ```

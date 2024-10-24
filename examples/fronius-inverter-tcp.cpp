@@ -13,11 +13,11 @@
 #include <memory>
 
 int main(int argc, char *argv[]) {
-  const std::string ip_addr = "192.168.6.56";
+  const std::string node = "primo.home.arpa";
 
   std::unique_ptr<FroniusInverter> inverter(new FroniusInverter());
 
-  if (!inverter->ConnectModbusTcp(ip_addr)) {
+  if (!inverter->ConnectModbusTcp(node)) {
     std::cout << inverter->GetErrorMessage() << std::endl;
     return EXIT_FAILURE;
   }
@@ -28,6 +28,7 @@ int main(int argc, char *argv[]) {
     std::cout << inverter->GetErrorMessage() << std::endl;
     return EXIT_FAILURE;
   }
+
   if (!inverter->IsCommonRegisterMap()) {
     std::cout << inverter->GetErrorMessage() << std::endl;
     return EXIT_FAILURE;
