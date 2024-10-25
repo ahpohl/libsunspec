@@ -2,6 +2,7 @@ var searchData=
 [
   ['setacconnection',['SetAcConnection',['../class_immediate_model.html#a4c6b97255bbdbe02eb333a7fff16db5c',1,'ImmediateModel']]],
   ['setbytetimeout',['SetByteTimeout',['../class_sun_spec.html#a1774363395e43992b537fe6ecfd1e967',1,'SunSpec']]],
+  ['setindicationtimeout',['SetIndicationTimeout',['../class_sun_spec.html#a9531613f839eb50825a92756fb5e7fe8',1,'SunSpec']]],
   ['setmodbusaddress',['SetModbusAddress',['../class_sun_spec.html#ad9ec9175c826e98eb1c9ccc733dce247',1,'SunSpec']]],
   ['setmodbusdebug',['SetModbusDebug',['../class_sun_spec.html#a4f2336b143aae98acdbf38b4bedfa5c0',1,'SunSpec']]],
   ['setmodeltype',['SetModelType',['../class_fronius_register.html#a3dee76eee76fe4812b5475412a16791e',1,'FroniusRegister']]],

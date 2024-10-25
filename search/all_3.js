@@ -23,6 +23,7 @@ var searchData=
   ['getdevicefwversion',['GetDeviceFwVersion',['../class_common_model.html#ac2d8d1b8cf95b0d37aed42866ca26464',1,'CommonModel']]],
   ['getdevicemodel',['GetDeviceModel',['../class_common_model.html#a474acd790754c2ac95fd953bf0df3989',1,'CommonModel']]],
   ['geterrormessage',['GetErrorMessage',['../class_sun_spec.html#a308bcdd2d647bb17e8025b5951c730dc',1,'SunSpec']]],
+  ['getindicationtimeout',['GetIndicationTimeout',['../class_sun_spec.html#a1be6294098dc0e1fabb8ca5aafe53262',1,'SunSpec']]],
   ['getmanufacturer',['GetManufacturer',['../class_common_model.html#a3c5eebe732481376b97a5c70cb459285',1,'CommonModel']]],
   ['getmodbusaddress',['GetModbusAddress',['../class_sun_spec.html#adcb9e23c38a9daf4eecca1fd8c761985',1,'SunSpec']]],
   ['getmodeltype',['GetModelType',['../class_fronius_register.html#a020134f00b37d375601b28dafc8a9aac',1,'FroniusRegister']]],
