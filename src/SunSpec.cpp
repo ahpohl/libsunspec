@@ -98,6 +98,20 @@ bool SunSpec::SetResponseTimeout(const int &millis) {
   return true;
 }
 
+bool SunSpec::GetResponseTimeout(int &millis) {
+  uint32_t sec = 0;
+  uint32_t usec = 0;
+
+  if (modbus_get_response_timeout(Ctx, &sec, &usec) == -1) {
+    ErrorMessage = std::string("Getting response timeout failed: ") +
+                   modbus_strerror(errno) + " (" + std::to_string(errno) + ")";
+    return false;
+  }
+  millis = sec * 1000 + usec / 1000;
+
+  return true;
+}
+
 bool SunSpec::SetByteTimeout(const int &millis) {
   uint32_t sec = millis / 1000;
   uint32_t usec = (millis % 1000) * 1000;
@@ -110,12 +124,12 @@ bool SunSpec::SetByteTimeout(const int &millis) {
   return true;
 }
 
-bool SunSpec::GetResponseTimeout(int &millis) {
+bool SunSpec::GetByteTimeout(int &millis) {
   uint32_t sec = 0;
   uint32_t usec = 0;
 
-  if (modbus_set_response_timeout(Ctx, sec, usec) == -1) {
-    ErrorMessage = std::string("Getting response timeout failed: ") +
+  if (modbus_get_byte_timeout(Ctx, &sec, &usec) == -1) {
+    ErrorMessage = std::string("Getting byte timeout failed: ") +
                    modbus_strerror(errno) + " (" + std::to_string(errno) + ")";
     return false;
   }
@@ -124,12 +138,24 @@ bool SunSpec::GetResponseTimeout(int &millis) {
   return true;
 }
 
-bool SunSpec::GetByteTimeout(int &millis) {
+bool SunSpec::SetIndicationTimeout(const int &millis) {
+  uint32_t sec = millis / 1000;
+  uint32_t usec = (millis % 1000) * 1000;
+
+  if (modbus_set_indication_timeout(Ctx, sec, usec) == -1) {
+    ErrorMessage = std::string("Setting indication timeout failed: ") +
+                   modbus_strerror(errno) + " (" + std::to_string(errno) + ")";
+    return false;
+  }
+  return true;
+}
+
+bool SunSpec::GetIndicationTimeout(int &millis) {
   uint32_t sec = 0;
   uint32_t usec = 0;
 
-  if (modbus_set_byte_timeout(Ctx, sec, usec) == -1) {
-    ErrorMessage = std::string("Getting byte timeout failed: ") +
+  if (modbus_get_indication_timeout(Ctx, &sec, &usec) == -1) {
+    ErrorMessage = std::string("Getting indication timeout failed: ") +
                    modbus_strerror(errno) + " (" + std::to_string(errno) + ")";
     return false;
   }

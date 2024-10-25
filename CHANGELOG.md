@@ -1,7 +1,9 @@
 # libsunspec changelog
 
 ## v0.1.3 - 2024-xx-xx
+* minimum libmodbus 3.1.11
 * switch to new modbus_connect_tcp_pi() function
+* added indication timeout set/get functions
 
 ## v0.1.2 - 2024-10-22
 * copy include files during make install

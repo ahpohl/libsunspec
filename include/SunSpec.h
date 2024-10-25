@@ -112,6 +112,21 @@ public:
   /** Get timeout between bytes [ms] */
   bool GetByteTimeout(int &millis);
 
+  /** Set timeout for indication
+
+   The modbus_set_indication_timeout() function shall set the timeout interval
+   used by a server to wait for a request from a client. The value of to_usec
+   argument must be in the range 0 to 999999. If both to_sec and to_usec are
+   zero, this timeout will not be used at all. In this case, the server will
+   wait forever.
+
+   @param millis [ms], default 0
+   */
+  bool SetIndicationTimeout(const int &millis = 0);
+
+  /** Get timeout for indication [ms] */
+  bool GetIndicationTimeout(int &millis);
+
 protected:
   /** Get a Modbus register and convert to number or string
 
