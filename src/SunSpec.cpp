@@ -169,13 +169,25 @@ uint16_t *SunSpec::ReadRegister(const uint16_t &address, const uint16_t &size) {
   if (!tab_reg) {
     return nullptr;
   }
-  int rc = modbus_read_registers(Ctx, address, size, tab_reg);
-  if (rc == -1) {
-    ErrorMessage = std::string("Read register ") + std::to_string(address) +
-                   " failed: " + modbus_strerror(errno) + " (" +
-                   std::to_string(errno) + ")";
-    return nullptr;
+
+  int rc = 0;
+  for (int i = 0; i < 3; ++i) {
+    rc = modbus_read_registers(Ctx, address, size, tab_reg);
+    if (rc == -1) {
+      ErrorMessage = std::string("Read register ") + std::to_string(address) +
+                     " failed: " + modbus_strerror(errno) + " (" +
+                     std::to_string(errno) + ")";
+      modbus_close(Ctx);
+      if (modbus_connect(Ctx)) {
+        return nullptr;
+      }
+    } else {
+      break;
+    }
   }
+  if (rc == -1)
+    return nullptr;
+
   return tab_reg;
 }
 
@@ -251,13 +263,24 @@ bool SunSpec::GetModbusAddress(int &slave_id) {
 }
 
 bool SunSpec::SetRegister(const uint16_t &value, const uint16_t &reg_addr) {
-  int rc = modbus_write_register(Ctx, reg_addr, value);
-  if (rc == -1) {
-    ErrorMessage = std::string("Write register ") + std::to_string(reg_addr) +
-                   " failed: " + modbus_strerror(errno) + " (" +
-                   std::to_string(errno) + ")";
-    return false;
+  int rc = 0;
+
+  for (int i = 0; i < 3; ++i) {
+    rc = modbus_write_register(Ctx, reg_addr, value);
+    if (rc == -1) {
+      ErrorMessage = std::string("Write register ") + std::to_string(reg_addr) +
+                     " failed: " + modbus_strerror(errno) + " (" +
+                     std::to_string(errno) + ")";
+      modbus_close(Ctx);
+      if (modbus_connect(Ctx)) {
+        return false;
+      }
+    } else {
+      break;
+    }
   }
+  if (rc == -1)
+    return false;
 
   return true;
 }
