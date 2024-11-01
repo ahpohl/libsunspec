@@ -1,5 +1,8 @@
 # libsunspec changelog
 
+## v0.1.4 - 2024-11-xx
+* repeat reading and writing registers on timeout
+
 ## v0.1.3 - 2024-10-25
 * minimum libmodbus 3.1.11
 * switch to new modbus_connect_tcp_pi() function
