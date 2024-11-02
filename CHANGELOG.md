@@ -1,6 +1,6 @@
 # libsunspec changelog
 
-## v0.1.4 - 2024-11-xx
+## v0.1.4 - 2024-11-02
 * repeat reading and writing registers on timeout
 
 ## v0.1.3 - 2024-10-25
