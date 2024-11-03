@@ -15,6 +15,7 @@ var class_sun_spec =
     [ "GetResponseTimeout", "class_sun_spec.html#a0f368ec48bcad3d226ee2a0671e6ea42", null ],
     [ "ReadRegister", "class_sun_spec.html#a275e1ba1a759747656dde56d206460bd", null ],
     [ "SetByteTimeout", "class_sun_spec.html#a1774363395e43992b537fe6ecfd1e967", null ],
+    [ "SetErrorRecovery", "class_sun_spec.html#a9b5d6251f11f30035a07333845f4083e", null ],
     [ "SetIndicationTimeout", "class_sun_spec.html#a9531613f839eb50825a92756fb5e7fe8", null ],
     [ "SetModbusAddress", "class_sun_spec.html#ad9ec9175c826e98eb1c9ccc733dce247", null ],
     [ "SetModbusDebug", "class_sun_spec.html#a4f2336b143aae98acdbf38b4bedfa5c0", null ],

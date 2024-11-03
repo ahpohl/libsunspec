@@ -33,7 +33,7 @@
   <td id="projectlogo"><img alt="Logo" src="SunSpec_logo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">LIBSUNSPEC
-   &#160;<span id="projectnumber">v0.1.4</span>
+   &#160;<span id="projectnumber">v0.1.5</span>
    </div>
    <div id="projectbrief">A C++ library for the SunSpec protocol</div>
   </td>
@@ -153,6 +153,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a9531613f839eb50825a92756fb5e7fe8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1be6294098dc0e1fabb8ca5aafe53262"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sun_spec.html#a1be6294098dc0e1fabb8ca5aafe53262">GetIndicationTimeout</a> (int &amp;millis)</td></tr>
 <tr class="separator:a1be6294098dc0e1fabb8ca5aafe53262"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9b5d6251f11f30035a07333845f4083e"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sun_spec.html#a9b5d6251f11f30035a07333845f4083e">SetErrorRecovery</a> (const bool recovery)</td></tr>
+<tr class="separator:a9b5d6251f11f30035a07333845f4083e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1ca51c79369e3a7c45d2f3b69043355c"><td class="memTemplParams" colspan="2">template&lt;&gt; </td></tr>
 <tr class="memitem:a1ca51c79369e3a7c45d2f3b69043355c"><td class="memTemplItemLeft" align="right" valign="top">std::string&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="class_sun_spec.html#a1ca51c79369e3a7c45d2f3b69043355c">ConvertRegister</a> (const uint16_t *tab_reg, const uint16_t &amp;size)</td></tr>
 <tr class="separator:a1ca51c79369e3a7c45d2f3b69043355c"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -593,6 +595,30 @@ template&lt;typename T &gt; </div>
 
 </div>
 </div>
+<a class="anchor" id="a9b5d6251f11f30035a07333845f4083e"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool SunSpec::SetErrorRecovery </td>
+          <td>(</td>
+          <td class="paramtype">const bool&#160;</td>
+          <td class="paramname"><em>recovery</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Set error recovery</p>
+<p>The <a class="el" href="class_sun_spec.html#a9b5d6251f11f30035a07333845f4083e">SetErrorRecovery()</a> function shall set the error recovery mode to apply when the connection fails, a response timeout occurred or the byte received is not expected.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">recovery</td><td>flag to enable or disable error recovery mode </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a class="anchor" id="a9531613f839eb50825a92756fb5e7fe8"></a>
 <div class="memitem">
 <div class="memproto">
@@ -607,7 +633,7 @@ template&lt;typename T &gt; </div>
       </table>
 </div><div class="memdoc">
 <p>Set timeout for indication</p>
-<p>The modbus_set_indication_timeout() function shall set the timeout interval used by a server to wait for a request from a client. The value of to_usec argument must be in the range 0 to 999999. If both to_sec and to_usec are zero, this timeout will not be used at all. In this case, the server will wait forever.</p>
+<p>The <a class="el" href="class_sun_spec.html#a9531613f839eb50825a92756fb5e7fe8">SetIndicationTimeout()</a> function shall set the timeout interval used by a server to wait for a request from a client. The value of to_usec argument must be in the range 0 to 999999. If both to_sec and to_usec are zero, this timeout will not be used at all. In this case, the server will wait forever.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">millis</td><td>[ms], default 0 </td></tr>
