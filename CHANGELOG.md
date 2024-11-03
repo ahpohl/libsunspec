@@ -1,5 +1,9 @@
 # libsunspec changelog
 
+## v0.1.5 - 2024-11-03
+* added function to enable/disable link error recovery
+* removed read/write register loop
+
 ## v0.1.4 - 2024-11-02
 * repeat reading and writing registers on timeout
 
