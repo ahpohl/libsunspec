@@ -129,9 +129,9 @@ public:
 
   /** Set error recovery
 
-   The SetErrorRecovery() function shall set the error recovery mode to apply
-   when the connection fails, a response timeout occurred or the byte received
-   is not expected.
+   The SetErrorRecovery() function shall set link and protocol error recovery
+   mode to apply when the connection fails, a response timeout occurred or the
+   byte received is not expected.
 
    @param recovery flag to enable or disable error recovery mode
    */

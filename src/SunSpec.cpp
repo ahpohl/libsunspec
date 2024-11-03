@@ -166,7 +166,10 @@ bool SunSpec::GetIndicationTimeout(int &millis) {
 
 bool SunSpec::SetErrorRecovery(const bool recovery) {
   if (recovery) {
-    if (modbus_set_error_recovery(Ctx, MODBUS_ERROR_RECOVERY_LINK) == -1) {
+    if (modbus_set_error_recovery(Ctx, static_cast<modbus_error_recovery_mode>(
+                                           MODBUS_ERROR_RECOVERY_LINK |
+                                           MODBUS_ERROR_RECOVERY_PROTOCOL)) ==
+        -1) {
       ErrorMessage = std::string("Setting error recovery mode failed: ") +
                      modbus_strerror(errno) + " (" + std::to_string(errno) +
                      ")";
