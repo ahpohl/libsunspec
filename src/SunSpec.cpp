@@ -80,7 +80,15 @@ bool SunSpec::SetModbusAddress(const int &slave_id) {
     return false;
   }
   if (modbus_set_slave(Ctx, slave_id)) {
-    ErrorMessage = "Invalid slave ID";
+    ErrorMessage = "Set: Invalid slave ID";
+    return false;
+  }
+  return true;
+}
+
+bool SunSpec::GetModbusAddress(int &slave_id) {
+  if ((slave_id = modbus_get_slave(Ctx)) == -1) {
+    ErrorMessage = "Get: Invalid slave ID";
     return false;
   }
   return true;
@@ -266,15 +274,6 @@ template bool SunSpec::GetRegister(uint64_t &, const uint16_t &,
 template bool SunSpec::GetRegister(std::string &, const uint16_t &,
                                    const uint16_t &);
 template bool SunSpec::GetRegister(float &, const uint16_t &, const uint16_t &);
-
-bool SunSpec::GetModbusAddress(int &slave_id) {
-  if (!GetRegister(C001_DA.res, C001_DA.reg, C001_DA.nb)) {
-    return false;
-  }
-  slave_id = static_cast<int>(C001_DA.res);
-
-  return true;
-}
 
 bool SunSpec::SetRegister(const uint16_t &value, const uint16_t &reg_addr) {
   int rc = 0;

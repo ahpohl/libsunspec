@@ -1,5 +1,8 @@
 # libsunspec changelog
 
+## v0.1.6 - 2024-11-10
+* get slave address of modbus context
+
 ## v0.1.5 - 2024-11-03
 * added function to enable/disable error recovery
 * removed read/write register loop
