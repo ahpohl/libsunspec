@@ -80,7 +80,7 @@ bool SunSpec::SetModbusAddress(const int &slave_id) {
     return false;
   }
   if (modbus_set_slave(Ctx, slave_id)) {
-    ErrorMessage = "Set: Invalid slave ID";
+    ErrorMessage = "Setting Modbus address failed: Invalid slave ID";
     return false;
   }
   return true;
@@ -88,7 +88,8 @@ bool SunSpec::SetModbusAddress(const int &slave_id) {
 
 bool SunSpec::GetModbusAddress(int &slave_id) {
   if ((slave_id = modbus_get_slave(Ctx)) == -1) {
-    ErrorMessage = "Get: Invalid slave ID";
+    ErrorMessage =
+        "Getting Modbus address failed: The Modbus context is undefined.";
     return false;
   }
   return true;
