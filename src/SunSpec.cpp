@@ -73,14 +73,10 @@ void SunSpec::SetModbusDebug(const bool &debug) {
 }
 
 bool SunSpec::SetModbusAddress(const int &slave_id) {
-  if ((slave_id < 1) || (slave_id > 247)) {
-    ErrorMessage = std::string("Invalid slave ID (") +
-                   std::to_string(slave_id) +
-                   "). ID must be in the range (1-247)";
-    return false;
-  }
   if (modbus_set_slave(Ctx, slave_id)) {
-    ErrorMessage = "Setting Modbus address failed: Invalid slave ID";
+    ErrorMessage =
+        std::string("Setting Modbus address failed: Invalid slave ID (") +
+        std::to_string(slave_id) + ")";
     return false;
   }
   return true;
